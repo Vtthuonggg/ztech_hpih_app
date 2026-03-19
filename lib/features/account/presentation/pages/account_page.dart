@@ -57,7 +57,7 @@ class AccountPage extends ConsumerWidget {
                   _LoginPromptCard(onLogin: () => context.push(LoginPage.path)),
                   16.verticalSpace,
                 ],
-                ..._buildSections(context, isLoggedIn: user != null),
+                ..._buildSections(context, ref, isLoggedIn: user != null),
                 28.verticalSpace,
                 const _AccountFooter(),
                 SizedBox(height: kBottomNavigationBarHeight + 24),
@@ -70,7 +70,8 @@ class AccountPage extends ConsumerWidget {
   }
 
   List<Widget> _buildSections(
-    BuildContext context, {
+    BuildContext context,
+    WidgetRef ref, {
     required bool isLoggedIn,
   }) {
     final sections = <_AccountSection>[
@@ -165,12 +166,15 @@ class AccountPage extends ConsumerWidget {
       if (isLoggedIn)
         _AccountSection(
           title: '',
-          items: const [
+          items: [
             _AccountItem(
               icon: IconsaxPlusLinear.logout_1,
               iconBg: Color(0xFFFFEDEE),
               iconColor: Color(0xFFEF4444),
               title: 'Đăng xuất',
+              onTap: () async {
+                await ref.read(authProvider.notifier).logout();
+              },
             ),
           ],
         ),
@@ -461,7 +465,7 @@ class _AccountItemTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
-      onTap: () {},
+      onTap: item.onTap,
       leading: Container(
         width: 40,
         height: 40,
@@ -586,6 +590,7 @@ class _AccountItem {
     required this.iconColor,
     required this.title,
     this.trailingText,
+    this.onTap,
   });
 
   final IconData icon;
@@ -593,4 +598,5 @@ class _AccountItem {
   final Color iconColor;
   final String title;
   final String? trailingText;
+  final Function()? onTap;
 }

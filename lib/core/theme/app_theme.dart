@@ -12,6 +12,7 @@ class AppTheme {
       primary: primaryColor,
     ),
     scaffoldBackgroundColor: Colors.white,
+
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: Colors.grey[100],
@@ -67,6 +68,16 @@ class AppTheme {
     ),
     progressIndicatorTheme: const ProgressIndicatorThemeData(
       color: primaryColor,
+    ),
+    dialogTheme: DialogThemeData(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      backgroundColor: Colors.white,
+      titleTextStyle: const TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        color: Colors.black87,
+      ),
+      contentTextStyle: const TextStyle(fontSize: 16, color: Colors.black54),
     ),
   );
 

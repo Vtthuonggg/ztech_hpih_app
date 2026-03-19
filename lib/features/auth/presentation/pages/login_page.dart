@@ -59,7 +59,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
+            padding: EdgeInsets.only(
+              top: 16,
+              left: 16,
+              right: 16,
+              bottom: MediaQuery.of(context).viewInsets.bottom + 16,
+            ),
             child: Form(
               key: _formKey,
               child: Column(
@@ -132,9 +137,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   TextFormField(
                     controller: _usernameController,
                     textInputAction: TextInputAction.next,
-                    onFieldSubmitted: (_) {
-                      FocusScope.of(context).nextFocus();
-                    },
+
                     decoration: InputDecoration(
                       labelText: 'Số điện thoại/email',
                       hintText: 'Nhập tài khoản của bạn',

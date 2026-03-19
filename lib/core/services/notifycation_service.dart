@@ -27,8 +27,12 @@ class NotifycationService {
     );
 
     await _setupMessageHandlers();
-    final token = await _messaging.getToken();
-    log('FCM Token: $token');
+    try {
+      final token = await _messaging.getToken();
+      log('FCM Token: $token');
+    } catch (e) {
+      log('Error getting FCM token: $e');
+    }
   }
 
   Future<void> _requestPermission() async {
@@ -77,7 +81,6 @@ class NotifycationService {
   }
 
   Future<void> showNotification(RemoteMessage message) async {
-    log(message.toMap().toString());
     RemoteNotification? notification = message.notification;
     AndroidNotification? android = message.notification?.android;
     if (notification != null && android != null) {
@@ -111,7 +114,6 @@ class NotifycationService {
   Future<void> _setupMessageHandlers() async {
     // Handle messages when the app is in the foreground
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      log('onMessage: $message');
       showNotification(message);
     });
     // Handle messages when the app is opened from a terminated state

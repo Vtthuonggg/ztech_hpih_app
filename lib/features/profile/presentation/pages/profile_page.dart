@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:healthcare_app/core/widgets/select_option_bottom_sheet.dart';
 import 'package:healthcare_app/features/auth/domain/models/user.dart';
 import 'package:healthcare_app/features/auth/presentation/providers/auth_provider.dart';
 import 'package:healthcare_app/features/auth/presentation/providers/auth_state.dart';
+import 'package:healthcare_app/features/profile/presentation/pages/add_profile_by_code_page.dart';
+import 'package:healthcare_app/features/profile/presentation/pages/add_profile_form_page.dart';
+import 'package:healthcare_app/features/profile/presentation/pages/detail_profile_page.dart';
+import 'package:healthcare_app/features/profile/presentation/pages/health_infomation_page.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
 import '../../../../core/theme/app_theme.dart';
-import '../../../dashboard/presentation/pages/contact_page.dart';
 
 class ProfilePage extends ConsumerWidget {
   const ProfilePage({super.key});
@@ -25,66 +29,83 @@ class ProfilePage extends ConsumerWidget {
     );
     return Scaffold(
       backgroundColor: bodyBg,
-      body: Stack(
-        children: [
-          CustomScrollView(
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(
+          parent: AlwaysScrollableScrollPhysics(),
+        ),
+        slivers: [
+          SliverAppBar(
+            backgroundColor: AppTheme.primaryColor,
+            automaticallyImplyLeading: false,
+            expandedHeight: 130,
+            elevation: 0,
+            scrolledUnderElevation: 0,
+            stretch: true,
+            bottom: const PreferredSize(
+              preferredSize: Size.fromHeight(24),
+              child: _AppBarBottomCap(background: bodyBg),
             ),
-            slivers: [
-              SliverAppBar(
-                backgroundColor: AppTheme.primaryColor,
-                automaticallyImplyLeading: false,
-                expandedHeight: 180,
-                elevation: 0,
-                scrolledUnderElevation: 0,
-                stretch: true,
-                bottom: const PreferredSize(
-                  preferredSize: Size.fromHeight(24),
-                  child: _AppBarBottomCap(background: bodyBg),
+            flexibleSpace: FlexibleSpaceBar(background: _ProfileHeader(user)),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
+                const SizedBox(height: 18),
+                _SectionTitle(title: 'Thông tin chung'),
+                const SizedBox(height: 8),
+                _MenuCard(
+                  children: [
+                    _MenuTile(
+                      icon: IconsaxPlusLinear.user,
+                      title: 'Thông tin cá nhân',
+                      onTap: () {
+                        context.push(DetailProfilePage.path);
+                      },
+                    ),
+                    _MenuTile(
+                      icon: IconsaxPlusLinear.heart,
+                      title: 'Thông tin sức khỏe',
+                      onTap: () {
+                        context.push(HealthInfomationPage.path);
+                      },
+                    ),
+                  ],
                 ),
-                flexibleSpace: FlexibleSpaceBar(
-                  background: _ProfileHeader(user),
-                ),
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
-                sliver: SliverList(
-                  delegate: SliverChildListDelegate([
-                    const SizedBox(height: 18),
-                    _SectionTitle(title: 'Thông tin chung'),
-                    const SizedBox(height: 8),
-                    _MenuCard(
-                      children: [
-                        _MenuTile(
-                          icon: IconsaxPlusLinear.user,
-                          title: 'Thông tin cá nhân',
-                          onTap: () {},
+                const SizedBox(height: 22),
+                _SectionTitle(title: 'Hồ sơ người thân'),
+                const SizedBox(height: 14),
+                _RelativeEmptyCard(
+                  onAdd: () async {
+                    await SelectOptionBottomSheet.show(
+                      context,
+                      title: 'Chọn hồ sơ',
+                      options: [
+                        SelectOptionBottomSheetOption(
+                          title: 'Thêm hồ sơ qua mã y tế',
+                          icon: IconsaxPlusLinear.barcode,
+                          iconColor: Colors.blue,
+                          onTap: (ctx) async {
+                            context.push(AddProfileByCodePage.path);
+                            return;
+                          },
                         ),
-                        const Divider(height: 1),
-                        _MenuTile(
-                          icon: IconsaxPlusLinear.heart,
-                          title: 'Thông tin sức khỏe',
-                          onTap: () {},
+                        SelectOptionBottomSheetOption(
+                          title: 'Thêm hồ sơ qua nhập thông tin',
+                          iconColor: Colors.green,
+                          icon: IconsaxPlusLinear.document_text_1,
+                          onTap: (ctx) async {
+                            context.push(AddProfileFormPage.path);
+                            return;
+                          },
                         ),
                       ],
-                    ),
-                    const SizedBox(height: 22),
-                    _SectionTitle(title: 'Hồ sơ người thân'),
-                    const SizedBox(height: 14),
-                    _RelativeEmptyCard(onAdd: () {}),
-                    const SizedBox(height: 36),
-                    SizedBox(height: (kBottomNavigationBarHeight + 30).h),
-                  ]),
+                    );
+                  },
                 ),
-              ),
-            ],
-          ),
-          Positioned(
-            right: 18,
-            bottom: 18 + kBottomNavigationBarHeight,
-            child: _MessengerButton(
-              onTap: () => context.push(ContactPage.path),
+                const SizedBox(height: 36),
+                SizedBox(height: (kBottomNavigationBarHeight + 30).h),
+              ]),
             ),
           ),
         ],
@@ -152,12 +173,12 @@ class _ProfileHeader extends StatelessWidget {
                     offset: const Offset(0, 20),
                     child: Row(
                       children: [
-                        const _Avatar(radius: 44, onCameraTap: _noop),
+                        const _Avatar(radius: 30, onCameraTap: _noop),
                         const SizedBox(width: 12),
                         Text(
                           user?.fullName ?? 'Khách',
                           textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.titleLarge
+                          style: Theme.of(context).textTheme.titleMedium
                               ?.copyWith(
                                 fontWeight: FontWeight.w800,
                                 color: Colors.white,
@@ -274,8 +295,8 @@ class _SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       title,
-      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-        fontWeight: FontWeight.w800,
+      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+        fontWeight: FontWeight.w700,
         color: Colors.grey[900],
       ),
     );
@@ -326,19 +347,11 @@ class _MenuTile extends StatelessWidget {
     return ListTile(
       onTap: onTap,
       contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
-      leading: Container(
-        width: 44,
-        height: 44,
-        decoration: BoxDecoration(
-          color: AppTheme.primaryColor.withValues(alpha: 0.10),
-          borderRadius: BorderRadius.circular(14),
-        ),
-        child: Icon(icon, color: AppTheme.primaryColor),
-      ),
+      leading: Icon(icon, color: AppTheme.primaryColor, size: 18),
       title: Text(
         title,
-        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-          fontWeight: FontWeight.w700,
+        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+          fontWeight: FontWeight.w500,
           color: Colors.grey[900],
         ),
       ),
@@ -405,38 +418,6 @@ class _RelativeEmptyCard extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _MessengerButton extends StatelessWidget {
-  const _MessengerButton({required this.onTap});
-
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      shape: const CircleBorder(),
-      elevation: 12,
-      shadowColor: Colors.black.withValues(alpha: 0.12),
-      child: InkWell(
-        customBorder: const CircleBorder(),
-        onTap: onTap,
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: SizedBox(
-            width: 28,
-            height: 28,
-            child: Image.asset(
-              'assets/images/ic_messenger.png',
-              fit: BoxFit.contain,
-              color: AppTheme.primaryColor,
-            ),
-          ),
-        ),
       ),
     );
   }

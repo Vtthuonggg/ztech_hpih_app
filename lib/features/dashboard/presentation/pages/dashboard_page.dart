@@ -1,13 +1,15 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:healthcare_app/features/dashboard/presentation/pages/contact_page.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:health_icons/health_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/utils/asset_helper.dart';
+import '../../domain/models/dashboard_item.dart';
 import '../widgets/feature_table.dart';
 
 class DashBoardPage extends ConsumerStatefulWidget {
@@ -49,7 +51,10 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0pCwJuV_7SHriE0ay_CIzHTeTuk07U0BNhw&s',
     },
   ];
-
+  List<Map<String, dynamic>> bannerItems = [
+    {'image': AssetHelper.image('banner1.png'), 'url': 'https://hih.vn/'},
+    {'image': AssetHelper.image('banner2.png'), 'url': 'https://hih.vn/'},
+  ];
   @override
   void initState() {
     super.initState();
@@ -59,9 +64,9 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
       } else if (_scrollController.offset <= 450 && _isCollapsed) {
         setState(() => _isCollapsed = false);
       }
-      if (_scrollController.offset > 100 && !_isChangeBackground) {
+      if (_scrollController.offset > 50 && !_isChangeBackground) {
         setState(() => _isChangeBackground = true);
-      } else if (_scrollController.offset <= 100 && _isChangeBackground) {
+      } else if (_scrollController.offset <= 50 && _isChangeBackground) {
         setState(() => _isChangeBackground = false);
       }
     });
@@ -90,14 +95,16 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                       AppTheme.primaryColor,
                       Colors.white,
                       Colors.white,
+                      Colors.white,
                     ]
                   : const [
                       Colors.white,
                       Colors.white,
                       Colors.white,
                       Colors.white,
+                      Colors.white,
                     ],
-              stops: const [0.0, 0.4, 0.4, 1.0],
+              stops: const [0.0, 0.4, 0.4, 0.0, 1.0],
             ),
           ),
           child: Stack(
@@ -120,58 +127,46 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                           ),
                         ),
                         // Nội dung
-                        Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  'BỆNH VIỆN ĐA KHOA QUỐC TẾ',
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  'HẢI PHÒNG',
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 20),
-                              GestureDetector(
-                                onTap: () {
-                                  launchUrl(Uri.parse('https://hih.vn/'));
-                                },
-                                child: SizedBox(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(16),
-                                    child: FadeInImage(
-                                      fit: BoxFit.cover,
-                                      placeholder: AssetImage(
-                                        AssetHelper.placeholder,
-                                      ),
-                                      image: AssetImage(
-                                        AssetHelper.image('banner.png'),
+                        Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                children: [
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      'BỆNH VIỆN ĐA KHOA QUỐC TẾ',
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
                                       ),
                                     ),
                                   ),
-                                ),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      'HẢI PHÒNG',
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              const SizedBox(height: 20),
-                              const FeatureTable(),
-                            ],
-                          ),
+                            ),
+
+                            _buildCarousel(),
+                            Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: const FeatureTable(),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -202,7 +197,6 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                 child: AnimatedSlide(
                   offset: Offset.zero,
                   duration: const Duration(milliseconds: 100),
-                  // Để hiệu ứng hiện theo kiểu fade (không dùng curve cho slide):
                   curve: Curves.linear,
                   child: AnimatedOpacity(
                     opacity: _isCollapsed ? 1.0 : 0.0,
@@ -231,25 +225,8 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              _buildCollapsedIcon(
-                                HealthIcons.iScheduleSchoolDateTimeFilled,
-                              ),
-                              _buildCollapsedIcon(
-                                IconsaxPlusLinear.call,
-                                onTap: () {
-                                  context.push(ContactPage.path);
-                                },
-                              ),
-                              _buildCollapsedIcon(IconsaxPlusLinear.messages_2),
-                              _buildCollapsedIcon(HealthIcons.syringeOutline),
-                              _buildCollapsedIcon(HealthIcons.womanOutline),
-                              _buildCollapsedIcon(
-                                HealthIcons
-                                    .healthVulnerabilityThroughSocialDeterminantsFilled,
-                              ),
-                              _buildCollapsedIcon(
-                                HealthIcons.blisterPillsOvalX14Outline,
-                              ),
+                              for (final item in dashboardItems)
+                                _buildCollapsedIcon(context, item),
                             ],
                           ),
                         ),
@@ -265,13 +242,57 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
     );
   }
 
-  Widget _buildCollapsedIcon(IconData icon, {VoidCallback? onTap}) {
+  Widget _buildCarousel() {
+    ScreenUtil.init(context);
+    return CarouselSlider(
+      items: bannerItems.map((item) {
+        return Builder(
+          builder: (BuildContext context) {
+            return Container(
+              margin: EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              width: 1.sw,
+              child: GestureDetector(
+                onTap: () => {
+                  launchUrl(
+                    Uri.parse(item['url'] ?? ''),
+                    mode: LaunchMode.externalApplication,
+                  ),
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: FadeInImage(
+                    width: 1.sw,
+                    fit: BoxFit.cover,
+                    placeholder: AssetImage(AssetHelper.image('banner1.png')),
+                    image: AssetImage(item['image'] ?? ''),
+                    imageErrorBuilder: (context, error, stackTrace) {
+                      return Image.asset(
+                        AssetHelper.image('banner1.png'),
+                        width: 1.sw,
+                      );
+                    },
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      }).toList(),
+
+      options: CarouselOptions(
+        height: 0.3.sw,
+        viewportFraction: 1,
+        autoPlay: true,
+      ),
+    );
+  }
+
+  Widget _buildCollapsedIcon(BuildContext context, DashboardItem item) {
     return GestureDetector(
-      onTap: () {
-        if (onTap != null) {
-          onTap();
-        }
-      },
+      onTap: item.hasRoute ? () => context.push(item.routePath) : null,
       child: Container(
         width: 40,
         height: 40,
@@ -279,7 +300,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
           color: AppTheme.primaryColor.withAlpha(20),
           shape: BoxShape.circle,
         ),
-        child: Icon(icon, color: AppTheme.primaryColor, size: 20),
+        child: Icon(item.icon, color: AppTheme.primaryColor, size: 20),
       ),
     );
   }
@@ -298,39 +319,49 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
         ),
         const SizedBox(height: 12),
         ...newServices.map(
-          (service) => Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-            elevation: 1,
-            color: Colors.white,
-            child: ListTile(
-              onTap: () {},
-              contentPadding: const EdgeInsets.symmetric(horizontal: 6),
-              leading: ClipRRect(
+          (service) => Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4.0),
+            child: Container(
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                child: FadeInImage(
-                  width: 60,
-                  height: 60,
-                  fit: BoxFit.cover,
-                  image: NetworkImage(service['image']),
-                  placeholder: AssetImage(AssetHelper.placeholder),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.10),
+                    blurRadius: 8,
+                    spreadRadius: 2,
+                    offset: Offset(0, 0),
+                  ),
+                ],
+              ),
+              child: ListTile(
+                onTap: () {},
+                contentPadding: const EdgeInsets.symmetric(horizontal: 6),
+                leading: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: FadeInImage(
+                    width: 60,
+                    height: 60,
+                    fit: BoxFit.cover,
+                    image: NetworkImage(service['image']),
+                    placeholder: AssetImage(AssetHelper.placeholder),
+                  ),
                 ),
-              ),
-              title: Text(
-                service['title'],
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-              ),
-              subtitle: Text(
-                service['subtitle'],
-                style: TextStyle(fontSize: 10, color: Colors.grey[600]),
-              ),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  IconsaxPlusLinear.arrow_right_3,
-                  color: AppTheme.primaryColor,
-                  size: 20,
+                title: Text(
+                  service['title'],
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                ),
+                subtitle: Text(
+                  service['subtitle'],
+                  style: TextStyle(fontSize: 10, color: Colors.grey[600]),
+                ),
+                trailing: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    IconsaxPlusLinear.arrow_right_3,
+                    color: AppTheme.primaryColor,
+                    size: 20,
+                  ),
                 ),
               ),
             ),
@@ -354,28 +385,38 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
           ),
         ),
         ...questionAnswer.map(
-          (question) => Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-            elevation: 1,
-            color: Colors.white,
-            child: ListTile(
-              leading: Icon(
-                question['icon'],
-                color: AppTheme.primaryColor,
-                size: 20,
+          (question) => Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.10), // Độ đậm bóng
+                    blurRadius: 8,
+                    spreadRadius: 2,
+                    offset: Offset(0, 0), // Đổ bóng đều các phía
+                  ),
+                ],
               ),
-              title: Text(
-                question['title'],
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-              ),
-              trailing: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  IconsaxPlusLinear.arrow_right_3,
+              child: ListTile(
+                leading: Icon(
+                  question['icon'],
                   color: AppTheme.primaryColor,
                   size: 20,
+                ),
+                title: Text(
+                  question['title'],
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+                trailing: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    IconsaxPlusLinear.arrow_right_3,
+                    color: AppTheme.primaryColor,
+                    size: 20,
+                  ),
                 ),
               ),
             ),

@@ -12,12 +12,12 @@ class CustomDatePicker extends StatefulWidget {
   final Color? primaryColor;
 
   const CustomDatePicker({
-    Key? key,
+    super.key,
     required this.initialDate,
     this.firstDate,
     this.lastDate,
     this.primaryColor,
-  }) : super(key: key);
+  });
 
   static Future<DateTime?> show({
     required BuildContext context,
@@ -58,27 +58,83 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
 
   Color get primaryColor => widget.primaryColor ?? AppTheme.primaryColor;
 
+  DateTime get _normalizedFirstDate {
+    final firstDate = widget.firstDate ?? DateTime(1990);
+    return DateTime(firstDate.year, firstDate.month, firstDate.day);
+  }
+
+  DateTime get _normalizedLastDate {
+    final lastDate = widget.lastDate ?? DateTime.now().add(Duration(days: 365));
+    return DateTime(lastDate.year, lastDate.month, lastDate.day);
+  }
+
+  bool get _canGoToPreviousMonth {
+    final previousMonth = DateTime(focusedDay.year, focusedDay.month - 1, 1);
+    final firstMonth = DateTime(
+      _normalizedFirstDate.year,
+      _normalizedFirstDate.month,
+      1,
+    );
+    return !previousMonth.isBefore(firstMonth);
+  }
+
+  bool get _canGoToNextMonth {
+    final nextMonth = DateTime(focusedDay.year, focusedDay.month + 1, 1);
+    final lastMonth = DateTime(
+      _normalizedLastDate.year,
+      _normalizedLastDate.month,
+      1,
+    );
+    return !nextMonth.isAfter(lastMonth);
+  }
+
   void _selectYear(int year) {
+    final candidate = DateTime(year, focusedDay.month, 1);
+    final firstMonth = DateTime(
+      _normalizedFirstDate.year,
+      _normalizedFirstDate.month,
+      1,
+    );
+    final lastMonth = DateTime(
+      _normalizedLastDate.year,
+      _normalizedLastDate.month,
+      1,
+    );
+    if (candidate.isBefore(firstMonth) || candidate.isAfter(lastMonth)) return;
     setState(() {
-      focusedDay = DateTime(year, focusedDay.month, 1);
+      focusedDay = candidate;
       _isSelectingYear = false;
     });
   }
 
   void _selectMonth(int month) {
+    final candidate = DateTime(focusedDay.year, month, 1);
+    final firstMonth = DateTime(
+      _normalizedFirstDate.year,
+      _normalizedFirstDate.month,
+      1,
+    );
+    final lastMonth = DateTime(
+      _normalizedLastDate.year,
+      _normalizedLastDate.month,
+      1,
+    );
+    if (candidate.isBefore(firstMonth) || candidate.isAfter(lastMonth)) return;
     setState(() {
-      focusedDay = DateTime(focusedDay.year, month, 1);
+      focusedDay = candidate;
       _isSelectingMonth = false;
     });
   }
 
   void _previousMonth() {
+    if (!_canGoToPreviousMonth) return;
     setState(() {
       focusedDay = DateTime(focusedDay.year, focusedDay.month - 1, 1);
     });
   }
 
   void _nextMonth() {
+    if (!_canGoToNextMonth) return;
     setState(() {
       focusedDay = DateTime(focusedDay.year, focusedDay.month + 1, 1);
     });
@@ -156,7 +212,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
         children: [
           IconButton(
             icon: Icon(Icons.chevron_left, color: primaryColor),
-            onPressed: _previousMonth,
+            onPressed: _canGoToPreviousMonth ? _previousMonth : null,
           ),
           Row(
             children: [
@@ -211,7 +267,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
           ),
           IconButton(
             icon: Icon(Icons.chevron_right, color: primaryColor),
-            onPressed: _nextMonth,
+            onPressed: _canGoToNextMonth ? _nextMonth : null,
           ),
         ],
       ),
@@ -223,7 +279,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     final startYear = widget.firstDate?.year ?? 2000;
     final endYear = widget.lastDate?.year ?? currentYear + 10;
 
-    return Container(
+    return SizedBox(
       height: 300,
       child: Column(
         children: [
@@ -268,13 +324,20 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
               itemBuilder: (context, index) {
                 final year = endYear - index;
                 final isSelected = year == focusedDay.year;
+                final isDisabled =
+                    year < _normalizedFirstDate.year ||
+                    year > _normalizedLastDate.year;
 
                 return InkWell(
-                  onTap: () => _selectYear(year),
+                  onTap: isDisabled ? null : () => _selectYear(year),
                   borderRadius: BorderRadius.circular(8),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: isSelected ? primaryColor : Colors.grey[100],
+                      color: isDisabled
+                          ? Colors.grey[50]
+                          : isSelected
+                          ? primaryColor
+                          : Colors.grey[100],
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Center(
@@ -285,7 +348,11 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                           fontWeight: isSelected
                               ? FontWeight.w600
                               : FontWeight.w400,
-                          color: isSelected ? Colors.white : Color(0xff262A37),
+                          color: isDisabled
+                              ? Colors.grey[300]
+                              : isSelected
+                              ? Colors.white
+                              : Color(0xff262A37),
                         ),
                       ),
                     ),
@@ -315,7 +382,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
       'Tháng 12',
     ];
 
-    return Container(
+    return SizedBox(
       height: 300,
       child: Column(
         children: [
@@ -360,13 +427,31 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
               itemBuilder: (context, index) {
                 final month = index + 1;
                 final isSelected = month == focusedDay.month;
+                final candidate = DateTime(focusedDay.year, month, 1);
+                final firstMonth = DateTime(
+                  _normalizedFirstDate.year,
+                  _normalizedFirstDate.month,
+                  1,
+                );
+                final lastMonth = DateTime(
+                  _normalizedLastDate.year,
+                  _normalizedLastDate.month,
+                  1,
+                );
+                final isDisabled =
+                    candidate.isBefore(firstMonth) ||
+                    candidate.isAfter(lastMonth);
 
                 return InkWell(
-                  onTap: () => _selectMonth(month),
+                  onTap: isDisabled ? null : () => _selectMonth(month),
                   borderRadius: BorderRadius.circular(8),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: isSelected ? primaryColor : Colors.grey[100],
+                      color: isDisabled
+                          ? Colors.grey[50]
+                          : isSelected
+                          ? primaryColor
+                          : Colors.grey[100],
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Center(
@@ -377,7 +462,11 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                           fontWeight: isSelected
                               ? FontWeight.w600
                               : FontWeight.w400,
-                          color: isSelected ? Colors.white : Color(0xff262A37),
+                          color: isDisabled
+                              ? Colors.grey[300]
+                              : isSelected
+                              ? Colors.white
+                              : Color(0xff262A37),
                         ),
                       ),
                     ),
@@ -397,10 +486,10 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     final daysInMonth = lastDayOfMonth.day;
     final startWeekday = firstDayOfMonth.weekday % 7;
     final now = DateTime.now();
-    final firstDate = widget.firstDate ?? DateTime(1990);
-    final lastDate = widget.lastDate ?? DateTime.now().add(Duration(days: 365));
+    final firstDate = _normalizedFirstDate;
+    final lastDate = _normalizedLastDate;
 
-    return Container(
+    return SizedBox(
       height: 260,
       child: Column(
         children: [
@@ -465,7 +554,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                               color: isSelected
                                   ? primaryColor
                                   : isToday
-                                  ? primaryColor.withOpacity(0.1)
+                                  ? primaryColor.withValues(alpha: 0.1)
                                   : Colors.transparent,
                               borderRadius: BorderRadius.circular(8),
                               border: isToday && !isSelected
@@ -506,7 +595,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     return Container(
       padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: primaryColor.withOpacity(0.1),
+        color: primaryColor.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(

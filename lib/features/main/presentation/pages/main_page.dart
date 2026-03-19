@@ -7,6 +7,7 @@ import '../../../account/presentation/pages/account_page.dart';
 import '../../../auth/presentation/pages/login_page.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 import '../../../auth/presentation/providers/auth_state.dart';
+import '../../../book_visit/presentation/pages/create_book_visit_page.dart';
 import '../../../dashboard/presentation/pages/dashboard_page.dart';
 import '../../../profile/presentation/pages/profile_page.dart';
 
@@ -29,16 +30,8 @@ class MainPage extends ConsumerWidget {
 
     final currentIndex = ref.watch(currentIndexProvider);
 
-    final List<Widget> pages = [
-      const DashBoardPage(),
-      const ProfilePage(),
-      const LongTermPage(),
-      const NotificationPage(),
-      const AccountPage(),
-    ];
-
     return Scaffold(
-      body: pages[currentIndex],
+      body: _buildBody(currentIndex),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(top: 30),
         child: Column(
@@ -49,7 +42,7 @@ class MainPage extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(30),
               ),
               onPressed: () {
-                ref.read(currentIndexProvider.notifier).state = 2;
+                context.push(CreateBookVisitPage.path);
               },
               backgroundColor: Theme.of(context).colorScheme.primary,
               elevation: 0,
@@ -78,7 +71,7 @@ class MainPage extends ConsumerWidget {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.08),
+              color: Colors.black.withValues(alpha: 0.08),
               blurRadius: 16,
               offset: const Offset(0, -2),
             ),
@@ -101,8 +94,8 @@ class MainPage extends ConsumerWidget {
                 _buildItem(
                   context,
                   ref,
-                  IconsaxPlusLinear.profile_2user,
-                  IconsaxPlusBold.profile_2user,
+                  IconsaxPlusLinear.personalcard,
+                  IconsaxPlusBold.personalcard,
                   "Hồ sơ",
                   1,
                 ),
@@ -129,6 +122,20 @@ class MainPage extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  Widget _buildBody(int currentIndex) {
+    switch (currentIndex) {
+      case 1:
+        return const ProfilePage();
+      case 3:
+        return const NotificationPage();
+      case 4:
+        return const AccountPage();
+      case 0:
+      default:
+        return const DashBoardPage();
+    }
   }
 
   Widget _buildItem(
@@ -170,39 +177,6 @@ class MainPage extends ConsumerWidget {
                     : Colors.grey[600],
                 fontWeight: isActive ? FontWeight.w600 : FontWeight.normal,
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class LongTermPage extends StatelessWidget {
-  const LongTermPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Đặt lịch'), centerTitle: true),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(IconsaxPlusLinear.calendar, size: 80, color: Colors.grey[400]),
-            const SizedBox(height: 16),
-            Text(
-              'Đặt lịch',
-              style: Theme.of(
-                context,
-              ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Coming Soon',
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
             ),
           ],
         ),
