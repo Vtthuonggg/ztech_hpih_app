@@ -119,7 +119,14 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                         Container(
                           height: MediaQuery.of(context).size.height / 2.5,
                           decoration: const BoxDecoration(
-                            color: AppTheme.primaryColor,
+                            gradient: LinearGradient(
+                              colors: [
+                                AppTheme.primaryColor,
+                                AppTheme.secondaryColor,
+                              ],
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                            ),
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(30),
                               bottomRight: Radius.circular(30),
@@ -283,7 +290,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
       }).toList(),
 
       options: CarouselOptions(
-        height: 0.3.sw,
+        height: 0.35.sw,
         viewportFraction: 1,
         autoPlay: true,
       ),

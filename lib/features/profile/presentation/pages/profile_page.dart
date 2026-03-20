@@ -35,7 +35,7 @@ class ProfilePage extends ConsumerWidget {
         ),
         slivers: [
           SliverAppBar(
-            backgroundColor: AppTheme.primaryColor,
+            backgroundColor: Colors.transparent,
             automaticallyImplyLeading: false,
             expandedHeight: 130,
             elevation: 0,
@@ -142,12 +142,15 @@ class _ProfileHeader extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
           colors: [
             AppTheme.primaryColor,
-            AppTheme.primaryColor.withValues(alpha: 0.90),
+            AppTheme.primaryColor.withOpacity(0.85),
+            AppTheme.primaryColor.withOpacity(0.5),
+            Color(0xFF56CCF2).withOpacity(0.12),
           ],
+          stops: [0.0, 0.5, 0.85, 1.0],
         ),
       ),
       child: SafeArea(

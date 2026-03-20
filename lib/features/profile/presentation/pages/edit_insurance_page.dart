@@ -75,11 +75,10 @@ class _EditInsurancePageState extends ConsumerState<EditInsurancePage> {
   @override
   Widget build(BuildContext context) {
     final title = widget.isPrivateInsurance
-        ? 'Bảo hiểm tư nhân'
-        : 'Bảo hiểm y tế';
+        ? 'bảo hiểm tư nhân'
+        : 'bảo hiểm y tế';
 
     return Scaffold(
-      backgroundColor: Colors.grey[50],
       appBar: AppBar(
         title: Text(
           _isEditMode ? 'Sửa $title' : 'Thêm $title',

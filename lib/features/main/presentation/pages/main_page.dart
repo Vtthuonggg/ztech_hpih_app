@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:go_router/go_router.dart';
+import 'package:healthcare_app/core/theme/app_theme.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import '../../../account/presentation/pages/account_page.dart';
 import '../../../auth/presentation/pages/login_page.dart';
@@ -11,11 +12,10 @@ import '../../../book_visit/presentation/pages/create_book_visit_page.dart';
 import '../../../dashboard/presentation/pages/dashboard_page.dart';
 import '../../../profile/presentation/pages/profile_page.dart';
 
-final currentIndexProvider = StateProvider<int>((ref) => 0);
-
 class MainPage extends ConsumerWidget {
   static const path = '/main';
-  const MainPage({super.key});
+  MainPage({super.key});
+  final currentIndexProvider = StateProvider<int>((ref) => 0);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -33,7 +33,7 @@ class MainPage extends ConsumerWidget {
     return Scaffold(
       body: _buildBody(currentIndex),
       floatingActionButton: Padding(
-        padding: const EdgeInsets.only(top: 30),
+        padding: const EdgeInsets.only(top: 40),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -44,20 +44,20 @@ class MainPage extends ConsumerWidget {
               onPressed: () {
                 context.push(CreateBookVisitPage.path);
               },
-              backgroundColor: Theme.of(context).colorScheme.primary,
+              backgroundColor: AppTheme.accentColor,
               elevation: 0,
               child: const Icon(
                 IconsaxPlusLinear.calendar,
-                size: 28,
+                size: 24,
                 color: Colors.white,
               ),
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 8),
             Text(
               'Đặt lịch',
               style: TextStyle(
                 fontSize: 12,
-                color: Theme.of(context).colorScheme.primary,
+                color: Colors.grey[500],
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -79,7 +79,7 @@ class MainPage extends ConsumerWidget {
         ),
         child: SafeArea(
           child: SizedBox(
-            height: 70,
+            height: 60,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -165,17 +165,17 @@ class MainPage extends ConsumerWidget {
               color: isActive
                   ? Theme.of(context).colorScheme.primary
                   : Colors.grey[400],
-              size: 26,
+              size: 24,
             ),
             const SizedBox(height: 4),
             Text(
               title,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 11,
                 color: isActive
                     ? Theme.of(context).colorScheme.primary
                     : Colors.grey[600],
-                fontWeight: isActive ? FontWeight.w600 : FontWeight.normal,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ],
