@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import 'package:healthcare_app/features/auth/presentation/pages/forget_password_page.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import '../../../../core/utils/asset_helper.dart';
@@ -53,6 +54,10 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         orElse: () {},
       );
     });
+    final hospital = context.l10n.dashboard_hospital_name;
+    final city = context.l10n.dashboard_hospital_city;
+    final isVi = Localizations.localeOf(context).languageCode == 'vi';
+
     final authState = ref.watch(authProvider);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -102,31 +107,59 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
                   const SizedBox(height: 32),
 
-                  // Title
-                  Text.rich(
-                    TextSpan(
-                      text: 'BỆNH VIỆN ĐA KHOA QUỐC TẾ\n',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.grey[800],
-                      ),
-                      children: [
-                        TextSpan(
-                          text: 'HẢI PHÒNG',
-                          style: Theme.of(context).textTheme.headlineMedium
-                              ?.copyWith(
-                                color: Theme.of(context).colorScheme.primary,
-                                fontWeight: FontWeight.bold,
-                              ),
-                        ),
-                      ],
-                    ),
+                  RichText(
                     textAlign: TextAlign.center,
+                    text: TextSpan(
+                      children: isVi
+                          ? [
+                              TextSpan(
+                                text: '$hospital\n',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey[800],
+                                ),
+                              ),
+                              TextSpan(
+                                text: city,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineMedium
+                                    ?.copyWith(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.primary,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ]
+                          : [
+                              TextSpan(
+                                text: '$city\n',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineMedium
+                                    ?.copyWith(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.primary,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                              TextSpan(
+                                text: hospital,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.grey[800],
+                                ),
+                              ),
+                            ],
+                    ),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Nhập tài khoản và mật khẩu',
+                    context.l10n.auth_login_subtitle,
                     style: Theme.of(
                       context,
                     ).textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
@@ -139,8 +172,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     textInputAction: TextInputAction.next,
 
                     decoration: InputDecoration(
-                      labelText: 'Số điện thoại/email',
-                      hintText: 'Nhập tài khoản của bạn',
+                      labelText: context.l10n.auth_username_label,
+                      hintText: context.l10n.auth_username_hint,
 
                       prefixIcon: Icon(
                         IconsaxPlusLinear.user,
@@ -161,8 +194,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       _handleLogin();
                     },
                     decoration: InputDecoration(
-                      labelText: 'Mật khẩu',
-                      hintText: 'Nhập mật khẩu của bạn',
+                      labelText: context.l10n.auth_password_label,
+                      hintText: context.l10n.auth_password_hint,
                       prefixIcon: Icon(
                         IconsaxPlusLinear.lock,
                         color: Theme.of(context).colorScheme.primary,
@@ -199,7 +232,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         const Center(child: CircularProgressIndicator()),
                     orElse: () => ElevatedButton(
                       onPressed: _handleLogin,
-                      child: const Text('Đăng nhập'),
+                      child: Text(context.l10n.auth_login),
                     ),
                   ),
                   14.verticalSpace,
@@ -208,7 +241,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       onPressed: () {
                         context.push(ForgetPasswordPage.path);
                       },
-                      child: const Text('Quên mật khẩu?'),
+                      child: Text(context.l10n.auth_forgot_password_link),
                     ),
                   ),
                   12.verticalSpace,
@@ -217,12 +250,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Bạn chưa có tài khoản?'),
+                        Text(context.l10n.auth_register_prompt),
                         TextButton(
                           onPressed: () {
                             context.push(RegisterPage.path);
                           },
-                          child: const Text('Đăng ký ngay'),
+                          child: Text(context.l10n.auth_register_link),
                         ),
                       ],
                     ),
@@ -239,7 +272,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   void _handleLogin() {
     if (_usernameController.text.isEmpty || _passwordController.text.isEmpty) {
       setState(() {
-        _errorMessage = 'Vui lòng nhập đầy đủ thông tin';
+        _errorMessage = context.l10n.auth_login_error_required;
       });
       return;
     }

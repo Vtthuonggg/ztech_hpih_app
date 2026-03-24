@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import '../../../../core/utils/toast_helper.dart';
 import 'dart:async';
+import 'package:sms_autofill/sms_autofill.dart';
 
 class ConfirmOtpPage extends ConsumerStatefulWidget {
   static const path = '/confirm-otp';
@@ -15,7 +17,8 @@ class ConfirmOtpPage extends ConsumerStatefulWidget {
   ConsumerState<ConfirmOtpPage> createState() => _ConfirmOtpPageState();
 }
 
-class _ConfirmOtpPageState extends ConsumerState<ConfirmOtpPage> {
+class _ConfirmOtpPageState extends ConsumerState<ConfirmOtpPage>
+    with CodeAutoFill {
   static const _otpLength = 6;
   static const _initialCountdownSeconds = 100;
 
@@ -28,18 +31,33 @@ class _ConfirmOtpPageState extends ConsumerState<ConfirmOtpPage> {
   @override
   void initState() {
     super.initState();
+
+    listenForCode();
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) _otpFocusNode.requestFocus();
     });
+
     _startCountdown();
   }
 
   @override
   void dispose() {
+    cancel();
     _countdownTimer?.cancel();
     _otpController.dispose();
     _otpFocusNode.dispose();
     super.dispose();
+  }
+
+  @override
+  void codeUpdated() {
+    final newCode = code ?? '';
+    _otpController.text = newCode;
+
+    if (newCode.length == _otpLength) {
+      _handleConfirm();
+    }
   }
 
   @override
@@ -50,13 +68,13 @@ class _ConfirmOtpPageState extends ConsumerState<ConfirmOtpPage> {
     final otp = _otpController.text;
     final canConfirm = otp.length == _otpLength;
     final canResend = _secondsRemaining == 0;
-
+    final l10n = context.l10n;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
-          'Xác thực số điện thoại/email',
-          style: TextStyle(fontWeight: FontWeight.w600),
+        title: Text(
+          l10n.auth_confirm_otp_title,
+          style: const TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
       body: SafeArea(
@@ -68,12 +86,11 @@ class _ConfirmOtpPageState extends ConsumerState<ConfirmOtpPage> {
               children: [
                 24.verticalSpace,
                 Text(
-                  'Mã xác thực OTP đã được gửi đến số điện thoại/email sau',
+                  l10n.auth_otp_sent_message,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Colors.grey[700],
                     height: 1.35,
                   ),
-                  textAlign: TextAlign.left,
                 ),
                 8.verticalSpace,
                 Text(
@@ -91,8 +108,8 @@ class _ConfirmOtpPageState extends ConsumerState<ConfirmOtpPage> {
                   child: Center(child: _OtpBoxes(controller: _otpController)),
                 ),
 
-                Offstage(
-                  offstage: true,
+                Opacity(
+                  opacity: 0,
                   child: TextField(
                     controller: _otpController,
                     focusNode: _otpFocusNode,
@@ -103,12 +120,17 @@ class _ConfirmOtpPageState extends ConsumerState<ConfirmOtpPage> {
                       FilteringTextInputFormatter.digitsOnly,
                       LengthLimitingTextInputFormatter(_otpLength),
                     ],
-                    onChanged: (_) {
+                    onChanged: (value) {
                       if (!mounted) return;
+
                       if (_errorMessage.isNotEmpty) {
                         setState(() => _errorMessage = '');
                       } else {
                         setState(() {});
+                      }
+
+                      if (value.length == _otpLength) {
+                        _handleConfirm();
                       }
                     },
                     onSubmitted: (_) => _handleConfirm(),
@@ -128,15 +150,15 @@ class _ConfirmOtpPageState extends ConsumerState<ConfirmOtpPage> {
                 28.verticalSpace,
                 ElevatedButton(
                   onPressed: canConfirm ? _handleConfirm : null,
-                  child: const Text('Xác nhận'),
+                  child: Text(l10n.auth_confirm_button),
                 ),
                 12.verticalSpace,
                 TextButton(
                   onPressed: canResend ? _handleResend : null,
                   child: Text(
                     canResend
-                        ? 'Gửi lại OTP'
-                        : 'Gửi lại OTP (${_secondsRemaining}s)',
+                        ? l10n.auth_resend_otp
+                        : l10n.auth_resend_otp_timer(_secondsRemaining),
                   ),
                 ),
               ],
@@ -155,6 +177,7 @@ class _ConfirmOtpPageState extends ConsumerState<ConfirmOtpPage> {
 
     _countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (!mounted) return;
+
       if (_secondsRemaining <= 1) {
         timer.cancel();
         setState(() {
@@ -162,6 +185,7 @@ class _ConfirmOtpPageState extends ConsumerState<ConfirmOtpPage> {
         });
         return;
       }
+
       setState(() {
         _secondsRemaining -= 1;
       });
@@ -170,19 +194,35 @@ class _ConfirmOtpPageState extends ConsumerState<ConfirmOtpPage> {
 
   void _handleConfirm() {
     final otp = _otpController.text;
+
     if (otp.length != _otpLength) {
       setState(() {
-        _errorMessage = 'Vui lòng nhập đủ $_otpLength chữ số OTP';
+        _errorMessage = context.l10n.auth_otp_length_error(_otpLength);
       });
       return;
     }
 
     TextInput.finishAutofillContext();
-    ToastHelper.success(context, message: 'Xác thực OTP thành công (demo)');
+
+    final isValid = otp == "123456";
+
+    if (!isValid) {
+      HapticFeedback.lightImpact();
+
+      setState(() {
+        _errorMessage = context.l10n.auth_otp_invalid_error;
+        _otpController.clear();
+      });
+
+      _otpFocusNode.requestFocus();
+      return;
+    }
+
+    ToastHelper.success(context, message: context.l10n.auth_otp_success_toast);
   }
 
   void _handleResend() {
-    ToastHelper.info(context, message: 'Đã gửi lại OTP (demo)');
+    ToastHelper.info(context, message: context.l10n.auth_otp_resent_toast);
     _otpController.clear();
     _otpFocusNode.requestFocus();
     _startCountdown();

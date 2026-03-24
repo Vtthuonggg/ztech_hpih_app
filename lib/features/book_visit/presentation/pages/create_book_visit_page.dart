@@ -29,7 +29,6 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
   DateTime? _dateOfBirth;
   DateTime? _appointmentDate;
   Gender? _gender;
-  _BookingBranch? _branch;
   _AppointmentSession? _appointmentSession;
   bool _isForeignPatient = false;
   bool _submitting = false;
@@ -65,7 +64,6 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
         _dateOfBirth != null &&
         _phoneController.text.trim().isNotEmpty &&
         _gender != null &&
-        _branch != null &&
         _appointmentDate != null &&
         _appointmentSession != null &&
         _reasonController.text.trim().isNotEmpty;
@@ -185,30 +183,7 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    _SectionCard(
-                      title: 'Thông tin đặt hẹn',
-                      icon: IconsaxPlusLinear.buildings,
-                      child: DropdownButtonFormField<_BookingBranch>(
-                        initialValue: _branch,
-                        decoration: const InputDecoration(
-                          hintText: 'Chọn chi nhánh',
-                          prefixIcon: Icon(IconsaxPlusLinear.location),
-                          suffix: _RequiredStar(),
-                        ),
-                        items: _BookingBranch.values.map((branch) {
-                          return DropdownMenuItem<_BookingBranch>(
-                            value: branch,
-                            child: Text(branch.label),
-                          );
-                        }).toList(),
-                        onChanged: (value) => setState(() => _branch = value),
-                        validator: (value) {
-                          if (value == null) return 'Bắt buộc';
-                          return null;
-                        },
-                      ),
-                    ),
+
                     const SizedBox(height: 16),
                     _SectionCard(
                       title: 'Lịch hẹn',
@@ -386,7 +361,7 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
         'phone': _phoneController.text.trim(),
         'general': _gender?.apiValue,
         'is_foreign_booking': _isForeignPatient,
-        'branch': _branch?.apiValue,
+
         'appointment_date': _appointmentDate?.toIso8601String(),
         'appointment_session': _appointmentSession?.apiValue,
         'reason': _reasonController.text.trim(),
@@ -638,16 +613,6 @@ class _RequiredStar extends StatelessWidget {
       ),
     );
   }
-}
-
-enum _BookingBranch {
-  leChan('Chi nhánh Lê Chân', 'le_chan'),
-  vinhBao('Chi nhánh Vĩnh Bảo', 'vinh_bao');
-
-  const _BookingBranch(this.label, this.apiValue);
-
-  final String label;
-  final String apiValue;
 }
 
 enum _AppointmentSession {

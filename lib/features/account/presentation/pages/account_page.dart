@@ -3,11 +3,13 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import 'package:healthcare_app/core/utils/constant.dart';
+import 'package:healthcare_app/features/account/presentation/pages/language_page.dart';
+import 'package:healthcare_app/features/account/presentation/pages/reset_password_page.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
-import '../../../auth/presentation/pages/login_page.dart';
 import '../../../auth/presentation/providers/auth_state.dart';
 import '../../../auth/domain/models/user.dart';
 import '../../../../core/theme/app_theme.dart';
@@ -19,7 +21,6 @@ class AccountPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ScreenUtil.init(context);
-
     final AuthState authState = ref.watch(authProvider);
     final user = authState.maybeWhen(
       authenticated: (u) => u,
@@ -53,10 +54,6 @@ class AccountPage extends ConsumerWidget {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 const SizedBox(height: 18),
-                if (user == null) ...[
-                  _LoginPromptCard(onLogin: () => context.push(LoginPage.path)),
-                  16.verticalSpace,
-                ],
                 ..._buildSections(context, ref, isLoggedIn: user != null),
                 28.verticalSpace,
                 const _AccountFooter(),
@@ -74,92 +71,99 @@ class AccountPage extends ConsumerWidget {
     WidgetRef ref, {
     required bool isLoggedIn,
   }) {
+    final l10n = context.l10n;
     final sections = <_AccountSection>[
       _AccountSection(
-        title: 'Quản lý yêu cầu và ưu đãi',
-        items: const [
+        title: l10n.account_section_requests_title,
+        items: [
           _AccountItem(
             icon: IconsaxPlusLinear.box,
             iconBg: Color(0xFFFFF1DF),
             iconColor: Color(0xFFF7A534),
-            title: 'Yêu cầu giao thuốc',
+            title: l10n.account_request_medication_delivery,
           ),
           _AccountItem(
             icon: IconsaxPlusLinear.support,
             iconBg: Color(0xFFE8F7F5),
             iconColor: Color(0xFF26A69A),
-            title: 'Yêu cầu hỗ trợ CSKH',
+            title: l10n.account_request_customer_support,
           ),
           _AccountItem(
             icon: IconsaxPlusLinear.ticket,
             iconBg: Color(0xFFFFEEE8),
             iconColor: Color(0xFFFF7043),
-            title: 'Ưu đãi của tôi',
+            title: l10n.account_my_offers,
           ),
         ],
       ),
       _AccountSection(
-        title: 'Cài đặt',
-        items: const [
+        title: l10n.account_section_settings_title,
+        items: [
           _AccountItem(
             icon: IconsaxPlusLinear.lock,
             iconBg: Color(0xFFE8F7F5),
             iconColor: Color(0xFF26A69A),
-            title: 'Đổi mật khẩu',
+            title: l10n.account_change_password,
+            onTap: () {
+              context.push(ResetPasswordPage.path);
+            },
           ),
           _AccountItem(
             icon: IconsaxPlusLinear.global,
             iconBg: Color(0xFFFFEDEE),
             iconColor: Color(0xFFEF5350),
-            title: 'Ngôn ngữ',
-            trailingText: 'Tiếng Việt',
+            title: context.l10n.account_language,
+            trailingText: context.l10n.account_language_current,
+            onTap: () {
+              context.push(LanguagePage.path);
+            },
           ),
           _AccountItem(
             icon: IconsaxPlusLinear.shield_tick,
             iconBg: Color(0xFFEAF2FF),
             iconColor: Color(0xFF3B82F6),
-            title: 'Bảo mật',
+            title: context.l10n.account_security,
             trailingText: 'Chưa thiết lập',
           ),
         ],
       ),
       _AccountSection(
-        title: 'Điều khoản & quy định',
-        items: const [
+        title: context.l10n.account_section_terms_title,
+        items: [
           _AccountItem(
             icon: IconsaxPlusLinear.document_text,
             iconBg: Color(0xFFEAF2FF),
             iconColor: Color(0xFF3B82F6),
-            title: 'Quy định sử dụng',
+            title: l10n.account_terms_of_use,
           ),
           _AccountItem(
             icon: IconsaxPlusLinear.warning_2,
             iconBg: Color(0xFFE6F7FF),
             iconColor: Color(0xFF38BDF8),
-            title: 'Chính sách giải quyết khiếu nại, tranh chấp',
+            title: l10n.account_complaint_policy,
           ),
           _AccountItem(
             icon: IconsaxPlusLinear.security_safe,
             iconBg: Color(0xFFFFEDEE),
             iconColor: Color(0xFFEF4444),
-            title: 'Chính sách bảo vệ dữ liệu cá nhân',
+            title: l10n.account_privacy_policy,
           ),
         ],
       ),
       _AccountSection(
         title: '',
-        items: const [
+        items: [
           _AccountItem(
             icon: IconsaxPlusLinear.info_circle,
             iconBg: Color(0xFFF1F5F9),
             iconColor: Color(0xFF64748B),
-            title: 'Hỏi đáp về ứng dụng',
+            title: l10n.account_faq,
           ),
           _AccountItem(
             icon: IconsaxPlusLinear.share,
             iconBg: Color(0xFFFFF1DF),
             iconColor: Color(0xFFF59E0B),
-            title: 'Chia sẻ ứng dụng',
+            title: l10n.account_share_app,
           ),
         ],
       ),
@@ -171,7 +175,7 @@ class AccountPage extends ConsumerWidget {
               icon: IconsaxPlusLinear.logout_1,
               iconBg: Color(0xFFFFEDEE),
               iconColor: Color(0xFFEF4444),
-              title: 'Đăng xuất',
+              title: l10n.account_logout,
               onTap: () async {
                 await ref.read(authProvider.notifier).logout();
               },
@@ -210,8 +214,9 @@ class _AccountHeaderContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final fullName = user?.fullName ?? '';
-    final name = fullName.trim().isEmpty ? 'Khách' : fullName;
+    final name = fullName.trim().isEmpty ? l10n.account_guest_label : fullName;
     final subtitle = user?.department?.name ?? user?.role?.roleName ?? '';
 
     return Container(
@@ -221,9 +226,9 @@ class _AccountHeaderContent extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: [
             AppTheme.primaryColor,
-            AppTheme.primaryColor.withOpacity(0.85),
-            AppTheme.primaryColor.withOpacity(0.5),
-            Color(0xFF56CCF2).withOpacity(0.12),
+            AppTheme.primaryColor.withValues(alpha: 0.85),
+            AppTheme.primaryColor.withValues(alpha: 0.5),
+            Color(0xFF56CCF2).withValues(alpha: 0.12),
           ],
           stops: [0.0, 0.5, 0.85, 1.0],
         ),
@@ -397,6 +402,7 @@ class _LoginPromptCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -414,7 +420,7 @@ class _LoginPromptCard extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              'Bạn đang ở chế độ Khách.\nĐăng nhập để sử dụng đầy đủ tính năng.',
+              l10n.account_guest_prompt,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 height: 1.35,
                 color: Colors.grey[800],
@@ -422,7 +428,7 @@ class _LoginPromptCard extends StatelessWidget {
             ),
           ),
           12.horizontalSpace,
-          ElevatedButton(onPressed: onLogin, child: const Text('Đăng nhập')),
+          ElevatedButton(onPressed: onLogin, child: Text(l10n.auth_login)),
         ],
       ),
     );
@@ -541,11 +547,11 @@ class _AccountFooterState extends State<_AccountFooter> {
       fontWeight: FontWeight.w600,
       height: 1.35,
     );
-
+    final l10n = context.l10n;
     return Column(
       children: [
         Text(
-          'BỆNH VIỆN ĐA KHOA QUỐC TẾ HẢI PHÒNG\n124 Nguyễn Đức Cảnh, Cát Dài Q Lê Chân, Hải Phòng',
+          l10n.account_hospital_contact,
           style: baseStyle,
           textAlign: TextAlign.center,
         ),

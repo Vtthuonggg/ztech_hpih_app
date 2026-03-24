@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import 'package:healthcare_app/features/auth/presentation/pages/confirm_otp_page.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
@@ -21,12 +22,12 @@ class _ForgetPasswordPageState extends ConsumerState<ForgetPasswordPage> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
-
+    final l10n = context.l10n;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
-          'Quên mật khẩu',
+        title: Text(
+          l10n.forgot_password_title,
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
@@ -44,8 +45,8 @@ class _ForgetPasswordPageState extends ConsumerState<ForgetPasswordPage> {
                   textInputAction: TextInputAction.next,
                   onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
                   decoration: InputDecoration(
-                    labelText: 'Số điện thoại/email',
-                    hintText: 'Nhập số điện thoại hoặc email',
+                    labelText: l10n.auth_username_label,
+                    hintText: l10n.auth_username_hint,
                     prefixIcon: Icon(
                       IconsaxPlusLinear.user,
                       color: Theme.of(context).colorScheme.primary,
@@ -68,7 +69,7 @@ class _ForgetPasswordPageState extends ConsumerState<ForgetPasswordPage> {
                 24.verticalSpace,
                 ElevatedButton(
                   onPressed: _handleContinue,
-                  child: const Text('Tiếp tục'),
+                  child: Text(l10n.forgot_password_continue),
                 ),
               ],
             ),
@@ -83,7 +84,7 @@ class _ForgetPasswordPageState extends ConsumerState<ForgetPasswordPage> {
       context.push(ConfirmOtpPage.path, extra: _usernameController.text);
     } else {
       setState(() {
-        _errorMessage = 'Vui lòng nhập thông tin hợp lệ';
+        _errorMessage = context.l10n.forgot_password_invalid_input;
       });
     }
   }

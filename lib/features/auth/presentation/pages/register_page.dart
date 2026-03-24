@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import '../../../../core/utils/toast_helper.dart';
 
@@ -35,12 +36,12 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
-
+    final l10n = context.l10n;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
-          'Tạo tài khoản mới',
+        title: Text(
+          l10n.auth_register_title,
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
         backgroundColor: Colors.white,
@@ -61,8 +62,8 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                   textInputAction: TextInputAction.next,
                   onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
                   decoration: InputDecoration(
-                    labelText: 'Số điện thoại/email',
-                    hintText: 'Nhập số điện thoại hoặc email',
+                    labelText: l10n.auth_username_label,
+                    hintText: l10n.auth_username_hint,
                     prefixIcon: Icon(
                       IconsaxPlusLinear.user,
                       color: Theme.of(context).colorScheme.primary,
@@ -77,8 +78,8 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                   textInputAction: TextInputAction.next,
                   onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
                   decoration: InputDecoration(
-                    labelText: 'Mật khẩu',
-                    hintText: 'Nhập mật khẩu',
+                    labelText: l10n.auth_password_label,
+                    hintText: l10n.auth_password_hint,
                     prefixIcon: Icon(
                       IconsaxPlusLinear.lock,
                       color: Theme.of(context).colorScheme.primary,
@@ -106,8 +107,8 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                   textInputAction: TextInputAction.done,
                   onFieldSubmitted: (_) => _handleRegister(),
                   decoration: InputDecoration(
-                    labelText: 'Nhập lại mật khẩu',
-                    hintText: 'Nhập lại mật khẩu',
+                    labelText: l10n.auth_confirm_password_label,
+                    hintText: l10n.auth_confirm_password_label,
                     prefixIcon: Icon(
                       IconsaxPlusLinear.lock,
                       color: Theme.of(context).colorScheme.primary,
@@ -262,28 +263,24 @@ class _TermsTextState extends State<_TermsText> {
       color: Theme.of(context).colorScheme.primary,
       fontWeight: FontWeight.w600,
     );
-
+    final l10n = context.l10n;
     return Text.rich(
       TextSpan(
         style: normalStyle,
         children: [
-          const TextSpan(text: 'Tôi đã đọc và đồng ý với '),
+          TextSpan(text: l10n.terms_prefix),
           TextSpan(
-            text: 'Quy định sử dụng',
+            text: l10n.terms_terms_link,
             style: linkStyle,
             recognizer: _termsRecognizer,
           ),
-          const TextSpan(text: ' và '),
+          TextSpan(text: l10n.terms_and),
           TextSpan(
-            text:
-                'Chính sách bảo vệ dữ liệu cá nhân của Bệnh viện ĐKQT Hải Phòng',
+            text: l10n.terms_policy_link,
             style: linkStyle,
             recognizer: _policyRecognizer,
           ),
-          const TextSpan(
-            text:
-                ' và chấp thuận để bệnh viện xử lý dữ liệu cá nhân của tôi theo quy định của pháp luật về bảo vệ dữ liệu cá nhân.',
-          ),
+          TextSpan(text: l10n.terms_suffix),
         ],
       ),
     );

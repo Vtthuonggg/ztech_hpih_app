@@ -39,7 +39,6 @@ dependencies:
   freezed_annotation: ^3.1.0
   json_annotation: ^4.11.0
   dio: ^5.9.1
-  intl: ^0.20.2
   motion_toast: ^2.15.0
   iconsax_plus: ^1.0.0
   flutter_launcher_icons: ^0.13.1
@@ -58,9 +57,11 @@ dependencies:
   mobile_scanner: ^7.2.0
   carousel_slider: ^5.1.2
   flutter_form_builder: ^10.3.0+2
+  sms_autofill: ^2.4.1
 
   flutter_localizations:
     sdk: flutter
+  intl: ^0.20.2
 
 # Build icons: "flutter pub run flutter_launcher_icons:main"
 flutter_launcher_icons:
@@ -90,6 +91,7 @@ flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
+  generate: true
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:

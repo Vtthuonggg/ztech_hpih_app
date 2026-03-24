@@ -146,9 +146,9 @@ class _ProfileHeader extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: [
             AppTheme.primaryColor,
-            AppTheme.primaryColor.withOpacity(0.85),
-            AppTheme.primaryColor.withOpacity(0.5),
-            Color(0xFF56CCF2).withOpacity(0.12),
+            AppTheme.primaryColor.withValues(alpha: 0.85),
+            AppTheme.primaryColor.withValues(alpha: 0.5),
+            Color(0xFF56CCF2).withValues(alpha: 0.12),
           ],
           stops: [0.0, 0.5, 0.85, 1.0],
         ),

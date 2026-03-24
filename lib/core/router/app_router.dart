@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:healthcare_app/features/account/presentation/pages/language_page.dart';
+import 'package:healthcare_app/features/account/presentation/pages/reset_password_page.dart';
 import 'package:healthcare_app/features/auth/presentation/pages/confirm_otp_page.dart';
 import 'package:healthcare_app/features/dashboard/presentation/pages/contact_page.dart';
 import 'package:healthcare_app/features/book_visit/presentation/pages/create_book_visit_page.dart';
@@ -189,10 +191,20 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: CreateBookVisitPage.path,
-        pageBuilder: (context, state) => TransitionHelper.slideBottomToTop(
+        pageBuilder: (context, state) => TransitionHelper.slideRightToLeft(
           state,
           const CreateBookVisitPage(),
         ),
+      ),
+      GoRoute(
+        path: ResetPasswordPage.path,
+        pageBuilder: (context, state) =>
+            TransitionHelper.slideRightToLeft(state, const ResetPasswordPage()),
+      ),
+      GoRoute(
+        path: LanguagePage.path,
+        pageBuilder: (context, state) =>
+            TransitionHelper.slideRightToLeft(state, const LanguagePage()),
       ),
     ],
   );

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:go_router/go_router.dart';
+import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import 'package:healthcare_app/core/theme/app_theme.dart';
+import 'package:healthcare_app/features/book_visit/presentation/pages/select_branch_page.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import '../../../account/presentation/pages/account_page.dart';
 import '../../../auth/presentation/pages/login_page.dart';
@@ -12,10 +14,11 @@ import '../../../book_visit/presentation/pages/create_book_visit_page.dart';
 import '../../../dashboard/presentation/pages/dashboard_page.dart';
 import '../../../profile/presentation/pages/profile_page.dart';
 
+final currentIndexProvider = StateProvider<int>((ref) => 0);
+
 class MainPage extends ConsumerWidget {
   static const path = '/main';
-  MainPage({super.key});
-  final currentIndexProvider = StateProvider<int>((ref) => 0);
+  const MainPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,11 +30,9 @@ class MainPage extends ConsumerWidget {
         orElse: () {},
       );
     });
-
-    final currentIndex = ref.watch(currentIndexProvider);
-
+    final l10n = context.l10n;
     return Scaffold(
-      body: _buildBody(currentIndex),
+      body: _buildBody(ref.watch(currentIndexProvider)),
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(top: 40),
         child: Column(
@@ -41,8 +42,14 @@ class MainPage extends ConsumerWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
               ),
-              onPressed: () {
-                context.push(CreateBookVisitPage.path);
+              onPressed: () async {
+                final branchApiValue = await showSelectBranchSheet(context);
+                if (branchApiValue != null && context.mounted) {
+                  context.push(
+                    CreateBookVisitPage.path,
+                    extra: {'branch': branchApiValue},
+                  );
+                }
               },
               backgroundColor: AppTheme.accentColor,
               elevation: 0,
@@ -54,7 +61,7 @@ class MainPage extends ConsumerWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Đặt lịch',
+              l10n.main_fab_label,
               style: TextStyle(
                 fontSize: 12,
                 color: Colors.grey[500],
@@ -88,7 +95,7 @@ class MainPage extends ConsumerWidget {
                   ref,
                   IconsaxPlusLinear.home_2,
                   IconsaxPlusBold.home_2,
-                  "Trang chủ",
+                  l10n.main_tab_home,
                   0,
                 ),
                 _buildItem(
@@ -96,7 +103,7 @@ class MainPage extends ConsumerWidget {
                   ref,
                   IconsaxPlusLinear.personalcard,
                   IconsaxPlusBold.personalcard,
-                  "Hồ sơ",
+                  l10n.main_tab_profile,
                   1,
                 ),
                 const SizedBox(width: 60),
@@ -105,7 +112,7 @@ class MainPage extends ConsumerWidget {
                   ref,
                   IconsaxPlusLinear.notification,
                   IconsaxPlusBold.notification,
-                  "Thông báo",
+                  l10n.main_tab_notifications,
                   3,
                 ),
                 _buildItem(
@@ -113,7 +120,7 @@ class MainPage extends ConsumerWidget {
                   ref,
                   IconsaxPlusLinear.user,
                   IconsaxPlusBold.user,
-                  "Tài khoản",
+                  l10n.main_tab_account,
                   4,
                 ),
               ],

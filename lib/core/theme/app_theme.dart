@@ -1,25 +1,15 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
-  static const Color primaryColor = Color(
-    0xFF234F9B,
-  ); // 🔵 Màu chính (brand): AppBar, nút chính, icon & text quan trọng
+  static const Color primaryColor = Color(0xFF234F9B);
 
-  static const Color secondaryColor = Color(
-    0xFF5B8DEF,
-  ); // 🔷 Màu phụ: tab selected, border focus, progress, background nhẹ cho card
+  static const Color secondaryColor = Color(0xFF5B8DEF);
 
-  static const Color backgroundColor = Color(
-    0xFFF4F7FF,
-  ); // ⚪ Background tổng: Scaffold, nền màn hình, giúp UI sáng và thoáng
+  static const Color backgroundColor = Color(0xFFF4F7FF);
 
-  static const Color accentColor = Color(
-    0xFFFFC857,
-  ); // 🟠 Màu nhấn (CTA): nút "Đặt lịch", "Thanh toán", FAB, badge (dùng ít để nổi bật)
+  static const Color accentColor = Color(0xFFFFC857);
 
-  static const Color successColor = Color(
-    0xFF2EC4B6,
-  ); // 🟢 Thành công: thông báo success, icon check, trạng thái hoàn tất
+  static const Color successColor = Color(0xFF2EC4B6);
 
   static ThemeData lightTheme = ThemeData(
     appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
@@ -55,11 +45,11 @@ class AppTheme {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: secondaryColor,
+        backgroundColor: primaryColor,
         foregroundColor: Colors.white,
         textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         elevation: 8,
-        shadowColor: AppTheme.secondaryColor.withOpacity(0.3),
+        shadowColor: AppTheme.secondaryColor.withValues(alpha: 0.3),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
@@ -78,14 +68,14 @@ class AppTheme {
           Set<WidgetState> states,
         ) {
           if (states.contains(WidgetState.pressed)) {
-            return secondaryColor.withOpacity(0.5);
+            return primaryColor.withValues(alpha: 0.5);
           }
-          return secondaryColor;
+          return primaryColor;
         }),
       ),
     ),
     progressIndicatorTheme: const ProgressIndicatorThemeData(
-      color: secondaryColor,
+      color: primaryColor,
     ),
     dialogTheme: DialogThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),

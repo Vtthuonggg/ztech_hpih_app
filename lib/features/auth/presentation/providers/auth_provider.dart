@@ -1,19 +1,22 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
+import 'package:healthcare_app/features/main/presentation/pages/main_page.dart';
 import '../../data/repositoreis/auth_repository.dart';
 import '../../domain/models/login_request.dart';
 import 'auth_state.dart';
 
 final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
-  return AuthNotifier(ref.watch(authRepositoryProvider));
+  return AuthNotifier(ref, ref.watch(authRepositoryProvider));
 });
 
 class AuthNotifier extends StateNotifier<AuthState> {
   final AuthRepository _authRepository;
-
-  AuthNotifier(this._authRepository) : super(const AuthState.checking()) {
+  final Ref _ref;
+  AuthNotifier(this._ref, this._authRepository)
+    : super(const AuthState.checking()) {
     checkAuthStatus();
   }
   // Kiểm tra trạng thái đăng nhập
@@ -66,6 +69,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   Future<void> logout() async {
     await _authRepository.logout();
+    _ref.read(currentIndexProvider.notifier).state = 0;
     state = const AuthState.unauthenticated();
   }
 }
