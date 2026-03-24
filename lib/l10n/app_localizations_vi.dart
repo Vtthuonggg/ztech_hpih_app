@@ -247,4 +247,338 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get notification_empty_subtitle => 'Sắp ra mắt';
+
+  @override
+  String get profile_section_general_title => 'Thông tin chung';
+
+  @override
+  String get profile_personal_info => 'Thông tin cá nhân';
+
+  @override
+  String get profile_health_info => 'Thông tin sức khỏe';
+
+  @override
+  String get profile_relatives_title => 'Hồ sơ người thân';
+
+  @override
+  String get profile_select_profile => 'Chọn hồ sơ';
+
+  @override
+  String get profile_add_profile_by_code => 'Thêm hồ sơ qua mã y tế';
+
+  @override
+  String get profile_add_profile_by_form => 'Thêm hồ sơ qua nhập thông tin';
+
+  @override
+  String get profile_add_profile_button => 'THÊM HỒ SƠ';
+
+  @override
+  String get profile_guest_label => 'Khách';
+
+  @override
+  String get profile_add_by_code_title => 'Thêm hồ sơ bằng mã';
+
+  @override
+  String get profile_add_by_code_tab_input => 'Nhập mã';
+
+  @override
+  String get profile_add_by_code_tab_scan => 'Quét mã';
+
+  @override
+  String get profile_add_by_code_instructions => 'Nhập mã hồ sơ để tìm kiếm';
+
+  @override
+  String get profile_add_by_code_hint => 'Nhập mã hồ sơ';
+
+  @override
+  String get profile_add_by_code_search_button => 'Tìm hồ sơ';
+
+  @override
+  String get profile_add_by_code_scanning_checking => 'Đang kiểm tra mã...';
+
+  @override
+  String get profile_add_by_code_scanning_instruction =>
+      'Đưa mã vào giữa khung để quét tự động';
+
+  @override
+  String get profile_add_by_code_no_scanned => 'Chưa có mã nào được quét';
+
+  @override
+  String profile_add_by_code_last_scanned(Object code) {
+    return 'Mã gần nhất: $code';
+  }
+
+  @override
+  String profile_add_by_code_checked_snackbar(Object code) {
+    return 'Đã kiểm tra mã hồ sơ: $code (mô phỏng).';
+  }
+
+  @override
+  String get profile_add_form_title => 'Thêm hồ sơ';
+
+  @override
+  String get profile_name_hint => 'Họ và tên';
+
+  @override
+  String get profile_nickname_hint => 'Tên thân mật';
+
+  @override
+  String get profile_dob_hint => 'Sinh nhật';
+
+  @override
+  String get profile_phone_hint => 'Số điện thoại';
+
+  @override
+  String get profile_email_optional_hint => 'Email (không bắt buộc)';
+
+  @override
+  String get profile_gender_label => 'Giới tính';
+
+  @override
+  String get profile_relationship_label => 'Đây là hồ sơ của';
+
+  @override
+  String get profile_required => 'Bắt buộc';
+
+  @override
+  String get profile_phone_invalid => 'Số điện thoại không hợp lệ';
+
+  @override
+  String get profile_email_invalid => 'Email không hợp lệ';
+
+  @override
+  String get profile_finish_button => 'Hoàn tất';
+
+  @override
+  String get profile_avatar_take_photo => 'Chụp ảnh';
+
+  @override
+  String get profile_avatar_pick_from_gallery => 'Chọn từ thư viện';
+
+  @override
+  String get profile_avatar_pick_error =>
+      'Không thể chọn ảnh. Vui lòng thử lại.';
+
+  @override
+  String get profile_add_success_toast => 'Đã thêm hồ sơ (mô phỏng).';
+
+  @override
+  String get profile_relationship_child => 'Con';
+
+  @override
+  String get profile_relationship_wife => 'Vợ';
+
+  @override
+  String get profile_relationship_husband => 'Chồng';
+
+  @override
+  String get profile_relationship_father => 'Bố';
+
+  @override
+  String get profile_relationship_mother => 'Mẹ';
+
+  @override
+  String get profile_relationship_other => 'Khác';
+
+  @override
+  String get profile_additional_title => 'Thông tin bổ sung';
+
+  @override
+  String get profile_identify_code_hint => 'Số CMT/Hộ chiếu';
+
+  @override
+  String get profile_job_hint => 'Nghề nghiệp';
+
+  @override
+  String get profile_address_hint => 'Địa chỉ';
+
+  @override
+  String get profile_nationality_hint => 'Quốc tịch';
+
+  @override
+  String get profile_nation_hint => 'Dân tộc';
+
+  @override
+  String get profile_additional_submitted_snackbar =>
+      'Đã gửi thông tin (mô phỏng).';
+
+  @override
+  String get profile_basic_info_title => 'Thông tin cơ bản';
+
+  @override
+  String get profile_edit_button => 'Chỉnh sửa';
+
+  @override
+  String get profile_add_button => 'Thêm';
+
+  @override
+  String get profile_company_info_title => 'Thông tin công ty';
+
+  @override
+  String get profile_insurance_title => 'Thông tin bảo hiểm';
+
+  @override
+  String get profile_insurance_health => 'Bảo hiểm y tế';
+
+  @override
+  String get profile_insurance_private => 'Bảo hiểm tư nhân';
+
+  @override
+  String get profile_label_full_name => 'Họ và tên';
+
+  @override
+  String get profile_label_dob => 'Ngày sinh';
+
+  @override
+  String get profile_label_phone => 'Số điện thoại';
+
+  @override
+  String get profile_label_email => 'Email';
+
+  @override
+  String get profile_label_gender => 'Giới tính';
+
+  @override
+  String get profile_company_name => 'Tên doanh nghiệp';
+
+  @override
+  String get profile_company_tax_code => 'Mã số thuế';
+
+  @override
+  String get profile_company_address => 'Địa chỉ';
+
+  @override
+  String get profile_edit_basic_profile_title => 'Sửa thông tin cơ bản';
+
+  @override
+  String get profile_company_edit_title => 'Sửa thông tin công ty';
+
+  @override
+  String get profile_company_add_title => 'Thêm thông tin công ty';
+
+  @override
+  String get profile_company_name_hint => 'Tên doanh nghiệp';
+
+  @override
+  String get profile_company_tax_code_hint => 'Mã số thuế';
+
+  @override
+  String get profile_company_address_hint => 'Địa chỉ';
+
+  @override
+  String get profile_company_updated_snackbar =>
+      'Đã cập nhật thông tin công ty (mô phỏng).';
+
+  @override
+  String get profile_company_added_snackbar =>
+      'Đã thêm thông tin công ty (mô phỏng).';
+
+  @override
+  String get profile_insurance_number_hint => 'Số thẻ';
+
+  @override
+  String get profile_insurance_registration_location_hint => 'Nơi đăng ký';
+
+  @override
+  String get profile_insurance_expiration_date_hint => 'Ngày hết hạn';
+
+  @override
+  String get profile_insurance_updated_snackbar =>
+      'Đã cập nhật thông tin bảo hiểm (mô phỏng).';
+
+  @override
+  String get profile_insurance_added_snackbar =>
+      'Đã thêm thông tin bảo hiểm (mô phỏng).';
+
+  @override
+  String get profile_general_health_title => 'Thông tin tổng quát';
+
+  @override
+  String get profile_overview_title => 'Chỉ số sức khỏe cơ bản';
+
+  @override
+  String get profile_label_blood_type => 'Nhóm máu';
+
+  @override
+  String get profile_label_height => 'Chiều cao';
+
+  @override
+  String get profile_label_weight => 'Cân nặng';
+
+  @override
+  String get profile_blood_type_unknown => 'Chưa xác định';
+
+  @override
+  String get profile_decimal_input_hint =>
+      'Bạn có thể nhập số lẻ, ví dụ 165.5 cm hoặc 52.3 kg.';
+
+  @override
+  String get profile_invalid_value => 'Không hợp lệ';
+
+  @override
+  String get profile_unit_cm => 'cm';
+
+  @override
+  String get profile_unit_kg => 'kg';
+
+  @override
+  String get profile_height_weight_title => 'Chiều cao và cân nặng';
+
+  @override
+  String get profile_height_weight_subtitle =>
+      'Nhập các chỉ số cơ bản để hồ sơ sức khỏe đầy đủ hơn.';
+
+  @override
+  String get profile_general_health_saved_snackbar =>
+      'Đã lưu thông tin tổng quát (mô phỏng).';
+
+  @override
+  String get profile_blood_type_subtitle =>
+      'Bỏ qua bước chọn nhóm máu nếu bạn chưa có thông tin.';
+
+  @override
+  String get profile_life_style_title => 'Thói quen sinh hoạt';
+
+  @override
+  String get profile_allergy_information_title => 'Thông tin dị ứng';
+
+  @override
+  String get dashboard_section_new_services => 'Dịch vụ mới';
+
+  @override
+  String get dashboard_service_customer_portal_title =>
+      'Customer service portal';
+
+  @override
+  String get dashboard_service_customer_portal_subtitle =>
+      'Fast - Convenient - Easy';
+
+  @override
+  String get dashboard_service_quick_booking_title =>
+      'Quick booking - Auto confirm';
+
+  @override
+  String get dashboard_service_quick_booking_subtitle =>
+      'View appointment slots and confirmations from anywhere';
+
+  @override
+  String get dashboard_question_screening_title => 'Câu hỏi sàng lọc sức khoẻ';
+
+  @override
+  String get dashboard_news_category_title => 'Danh mục tin tức';
+
+  @override
+  String get dashboard_important_notify_title => 'Thông báo quan trọng';
+
+  @override
+  String get dashboard_new_badge => 'Tin mới';
+
+  @override
+  String get dashboard_latest_news_title => 'Tin mới nhất';
+
+  @override
+  String get profile_gender_male => 'Nam';
+
+  @override
+  String get profile_gender_female => 'Nữ';
 }

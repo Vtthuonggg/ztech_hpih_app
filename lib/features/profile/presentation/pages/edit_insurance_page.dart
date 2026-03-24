@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import 'package:healthcare_app/core/widgets/custom_date_picker.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
@@ -74,16 +75,14 @@ class _EditInsurancePageState extends ConsumerState<EditInsurancePage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final title = widget.isPrivateInsurance
-        ? 'bảo hiểm tư nhân'
-        : 'bảo hiểm y tế';
+        ? l10n.profile_insurance_private
+        : l10n.profile_insurance_health;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          _isEditMode ? 'Sửa $title' : 'Thêm $title',
-          style: const TextStyle(fontWeight: FontWeight.w600),
-        ),
+        title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -96,13 +95,15 @@ class _EditInsurancePageState extends ConsumerState<EditInsurancePage> {
                   controller: _codeController,
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
                   textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                    hintText: 'Số thẻ',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_insurance_number_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.card),
                     suffix: _RequiredStar(),
                   ),
                   validator: (value) {
-                    if ((value ?? '').trim().isEmpty) return 'Bắt buộc';
+                    if ((value ?? '').trim().isEmpty) {
+                      return l10n.profile_required;
+                    }
                     return null;
                   },
                 ),
@@ -113,13 +114,15 @@ class _EditInsurancePageState extends ConsumerState<EditInsurancePage> {
                   textInputAction: widget.isPrivateInsurance
                       ? TextInputAction.next
                       : TextInputAction.done,
-                  decoration: const InputDecoration(
-                    hintText: 'Nơi đăng ký',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_insurance_registration_location_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.location),
                     suffix: _RequiredStar(),
                   ),
                   validator: (value) {
-                    if ((value ?? '').trim().isEmpty) return 'Bắt buộc';
+                    if ((value ?? '').trim().isEmpty) {
+                      return l10n.profile_required;
+                    }
                     return null;
                   },
                 ),
@@ -129,14 +132,14 @@ class _EditInsurancePageState extends ConsumerState<EditInsurancePage> {
                     controller: _expirationDateController,
                     onTapOutside: (event) => FocusScope.of(context).unfocus(),
                     readOnly: true,
-                    decoration: const InputDecoration(
-                      hintText: 'Ngày hết hạn',
+                    decoration: InputDecoration(
+                      hintText: l10n.profile_insurance_expiration_date_hint,
                       prefixIcon: Icon(IconsaxPlusLinear.calendar),
                       suffix: _RequiredStar(),
                     ),
                     onTap: _pickExpirationDate,
                     validator: (_) {
-                      if (_expirationDate == null) return 'Bắt buộc';
+                      if (_expirationDate == null) return l10n.profile_required;
                       return null;
                     },
                   ),
@@ -159,7 +162,7 @@ class _EditInsurancePageState extends ConsumerState<EditInsurancePage> {
                       height: 22,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
-                  : const Text('Hoàn tất'),
+                  : Text(l10n.profile_finish_button),
             ),
           ),
         ),
@@ -201,12 +204,13 @@ class _EditInsurancePageState extends ConsumerState<EditInsurancePage> {
       await Future<void>.delayed(const Duration(milliseconds: 700));
 
       if (!mounted) return;
+      final l10n = context.l10n;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
             _isEditMode
-                ? 'Đã cập nhật thông tin bảo hiểm (mô phỏng).'
-                : 'Đã thêm thông tin bảo hiểm (mô phỏng).',
+                ? l10n.profile_insurance_updated_snackbar
+                : l10n.profile_insurance_added_snackbar,
           ),
         ),
       );

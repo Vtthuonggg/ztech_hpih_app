@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import 'package:healthcare_app/core/widgets/select_option_bottom_sheet.dart';
 import 'package:healthcare_app/features/auth/domain/models/user.dart';
 import 'package:healthcare_app/features/auth/presentation/providers/auth_provider.dart';
@@ -20,7 +21,7 @@ class ProfilePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ScreenUtil.init(context);
-
+    final l10n = context.l10n;
     const bodyBg = Colors.white;
     final AuthState authState = ref.watch(authProvider);
     final user = authState.maybeWhen(
@@ -52,20 +53,20 @@ class ProfilePage extends ConsumerWidget {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 const SizedBox(height: 18),
-                _SectionTitle(title: 'Thông tin chung'),
+                _SectionTitle(title: l10n.profile_section_general_title),
                 const SizedBox(height: 8),
                 _MenuCard(
                   children: [
                     _MenuTile(
                       icon: IconsaxPlusLinear.user,
-                      title: 'Thông tin cá nhân',
+                      title: l10n.profile_personal_info,
                       onTap: () {
                         context.push(DetailProfilePage.path);
                       },
                     ),
                     _MenuTile(
                       icon: IconsaxPlusLinear.heart,
-                      title: 'Thông tin sức khỏe',
+                      title: l10n.profile_health_info,
                       onTap: () {
                         context.push(HealthInfomationPage.path);
                       },
@@ -73,16 +74,16 @@ class ProfilePage extends ConsumerWidget {
                   ],
                 ),
                 const SizedBox(height: 22),
-                _SectionTitle(title: 'Hồ sơ người thân'),
+                _SectionTitle(title: l10n.profile_relatives_title),
                 const SizedBox(height: 14),
                 _RelativeEmptyCard(
                   onAdd: () async {
                     await SelectOptionBottomSheet.show(
                       context,
-                      title: 'Chọn hồ sơ',
+                      title: l10n.profile_select_profile,
                       options: [
                         SelectOptionBottomSheetOption(
-                          title: 'Thêm hồ sơ qua mã y tế',
+                          title: l10n.profile_add_profile_by_code,
                           icon: IconsaxPlusLinear.barcode,
                           iconColor: Colors.blue,
                           onTap: (ctx) async {
@@ -91,7 +92,7 @@ class ProfilePage extends ConsumerWidget {
                           },
                         ),
                         SelectOptionBottomSheetOption(
-                          title: 'Thêm hồ sơ qua nhập thông tin',
+                          title: l10n.profile_add_profile_by_form,
                           iconColor: Colors.green,
                           icon: IconsaxPlusLinear.document_text_1,
                           onTap: (ctx) async {
@@ -139,6 +140,7 @@ class _ProfileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -179,7 +181,7 @@ class _ProfileHeader extends StatelessWidget {
                         const _Avatar(radius: 30, onCameraTap: _noop),
                         const SizedBox(width: 12),
                         Text(
-                          user?.fullName ?? 'Khách',
+                          user?.fullName ?? l10n.profile_guest_label,
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.titleMedium
                               ?.copyWith(
@@ -417,7 +419,7 @@ class _RelativeEmptyCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(22),
                 ),
               ),
-              child: const Text('THÊM HỒ SƠ'),
+              child: Text(context.l10n.profile_add_profile_button),
             ),
           ),
         ],

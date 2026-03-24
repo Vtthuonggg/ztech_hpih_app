@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
 class AdditionalInformationPage extends ConsumerStatefulWidget {
@@ -36,11 +37,12 @@ class _AdditionalInformationPageState
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        title: const Text(
-          'Thông tin bổ sung',
+        title: Text(
+          l10n.profile_additional_title,
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
@@ -55,8 +57,8 @@ class _AdditionalInformationPageState
                   controller: _identifyCodeController,
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
                   textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                    hintText: 'Số CMT/Hộ chiếu',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_identify_code_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.card),
                   ),
                 ),
@@ -66,8 +68,8 @@ class _AdditionalInformationPageState
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
 
                   textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                    hintText: 'Nghề nghiệp',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_job_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.briefcase),
                   ),
                 ),
@@ -77,8 +79,8 @@ class _AdditionalInformationPageState
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
 
                   textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                    hintText: 'Địa chỉ',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_address_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.location),
                   ),
                 ),
@@ -88,8 +90,8 @@ class _AdditionalInformationPageState
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
 
                   textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                    hintText: 'Quốc tịch',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_nationality_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.global),
                   ),
                 ),
@@ -98,8 +100,8 @@ class _AdditionalInformationPageState
                   controller: _nationController,
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
                   textInputAction: TextInputAction.done,
-                  decoration: const InputDecoration(
-                    hintText: 'Dân tộc',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_nation_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.flag),
                   ),
                 ),
@@ -122,7 +124,7 @@ class _AdditionalInformationPageState
                       height: 22,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
-                  : const Text('Hoàn tất'),
+                  : Text(l10n.profile_finish_button),
             ),
           ),
         ),
@@ -149,7 +151,9 @@ class _AdditionalInformationPageState
 
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Đã gửi thông tin (mô phỏng).')),
+        SnackBar(
+          content: Text(context.l10n.profile_additional_submitted_snackbar),
+        ),
       );
     } finally {
       if (mounted) setState(() => _submitting = false);

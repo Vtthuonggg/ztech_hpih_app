@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import 'package:healthcare_app/features/profile/presentation/pages/edit_basic_profile_page.dart';
 import 'package:healthcare_app/features/profile/presentation/pages/edit_company_info_page.dart';
 import 'package:healthcare_app/features/profile/presentation/pages/edit_insurance_page.dart';
@@ -40,12 +41,13 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
       backgroundColor: Colors.grey[50],
 
       appBar: AppBar(
-        title: const Text(
-          'Thông tin cá nhân',
+        title: Text(
+          l10n.profile_personal_info,
           style: TextStyle(fontWeight: FontWeight.w500),
         ),
       ),
@@ -56,7 +58,7 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
               delegate: SliverChildListDelegate([
                 const SizedBox(height: 16),
                 MenuCard(
-                  title: 'Thông tin cơ bản',
+                  title: l10n.profile_basic_info_title,
                   icon: IconsaxPlusLinear.profile_circle,
                   iconColor: AppTheme.primaryColor,
                   iconBg: AppTheme.primaryColor.withValues(alpha: 0.12),
@@ -64,12 +66,12 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
                     onPressed: () {
                       context.push(EditBasicProfilePage.path);
                     },
-                    child: Text('Chỉnh sửa'),
+                    child: Text(l10n.profile_edit_button),
                   ),
                   body: _buildBasicInfoBody(),
                 ),
                 MenuCard(
-                  title: 'Thông tin bổ sung',
+                  title: l10n.profile_additional_title,
                   icon: IconsaxPlusLinear.document_text,
                   iconColor: Color(0xFF26A69A),
                   iconBg: Color(0xFFE8F7F5),
@@ -77,19 +79,19 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
                     onPressed: () {
                       context.push(AdditionalInformationPage.path);
                     },
-                    child: Text('Thêm'),
+                    child: Text(l10n.profile_add_button),
                   ),
                   body: _buildAdditionalInfoBody(),
                 ),
                 MenuCard(
-                  title: 'Thông tin bảo hiểm',
+                  title: l10n.profile_insurance_title,
                   icon: IconsaxPlusLinear.shield_tick,
                   iconColor: Color(0xFFF59E0B),
                   iconBg: Color(0xFFFFF1DF),
                   body: _buildInsuranceBody(),
                 ),
                 MenuCard(
-                  title: 'Thông tin công ty',
+                  title: l10n.profile_company_info_title,
                   icon: IconsaxPlusLinear.building_4,
                   iconColor: Color(0xFF3B82F6),
                   iconBg: Color(0xFFEAF2FF),
@@ -100,7 +102,7 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
                         extra: {'edit_data': _companyInfo},
                       );
                     },
-                    child: const Text('Chỉnh sửa'),
+                    child: Text(l10n.profile_edit_button),
                   ),
                   body: _buildCompanyInfoBody(),
                 ),
@@ -113,6 +115,7 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
   }
 
   Widget _buildInsuranceBody() {
+    final l10n = context.l10n;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -123,7 +126,7 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _InsuranceRow(
-              title: 'Bảo hiểm y tế',
+              title: l10n.profile_insurance_health,
               data: _healthInsurance,
               onTap: () {
                 context.push(
@@ -137,7 +140,7 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
             ),
             const SizedBox(height: 12),
             _InsuranceRow(
-              title: 'Bảo hiểm tư nhân',
+              title: l10n.profile_insurance_private,
               data: _privateInsurance,
               onTap: () {
                 context.push(
@@ -156,6 +159,7 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
   }
 
   Widget _buildBasicInfoBody() {
+    final l10n = context.l10n;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -165,16 +169,19 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            InforRow(title: 'Họ và tên', value: 'Nguyễn Văn A'),
+            InforRow(
+              title: l10n.profile_label_full_name,
+              value: 'Nguyễn Văn A',
+            ),
             const SizedBox(height: 12),
-            InforRow(title: 'Ngày sinh', value: '01/01/1990'),
+            InforRow(title: l10n.profile_label_dob, value: '01/01/1990'),
             const SizedBox(height: 12),
-            InforRow(title: 'Số điện thoại', value: '0123456789'),
+            InforRow(title: l10n.profile_label_phone, value: '0123456789'),
             const SizedBox(height: 12),
-            InforRow(title: 'Email'),
+            InforRow(title: l10n.profile_label_email),
             const SizedBox(height: 12),
 
-            InforRow(title: 'Giới tính', value: 'Nam'),
+            InforRow(title: l10n.profile_label_gender, value: 'Nam'),
             const SizedBox(height: 12),
           ],
         ),
@@ -183,6 +190,7 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
   }
 
   Widget _buildAdditionalInfoBody() {
+    final l10n = context.l10n;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -192,14 +200,17 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            InforRow(title: 'Số CMT/Hộ chiếu', value: '031203010143'),
+            InforRow(
+              title: l10n.profile_identify_code_hint,
+              value: '031203010143',
+            ),
             const SizedBox(height: 12),
-            InforRow(title: 'Nghề nghiệp', value: 'Lập trình viên'),
+            InforRow(title: l10n.profile_job_hint, value: 'Lập trình viên'),
             const SizedBox(height: 12),
 
-            InforRow(title: 'Quốc tịch', value: 'Việt Nam'),
+            InforRow(title: l10n.profile_nationality_hint, value: 'Việt Nam'),
             const SizedBox(height: 12),
-            InforRow(title: 'Dân tộc', value: 'Kinh'),
+            InforRow(title: l10n.profile_nation_hint, value: 'Kinh'),
             const SizedBox(height: 12),
           ],
         ),
@@ -208,6 +219,7 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
   }
 
   Widget _buildCompanyInfoBody() {
+    final l10n = context.l10n;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -218,17 +230,17 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             InforRow(
-              title: 'Tên doanh nghiệp',
+              title: l10n.profile_company_name,
               value: _companyInfo['name'] as String?,
             ),
             const SizedBox(height: 12),
             InforRow(
-              title: 'Mã số thuế',
+              title: l10n.profile_company_tax_code,
               value: _companyInfo['tax_code'] as String?,
             ),
             const SizedBox(height: 12),
             InforRow(
-              title: 'Địa chỉ',
+              title: l10n.profile_company_address,
               value: _companyInfo['address'] as String?,
             ),
             const SizedBox(height: 12),
@@ -252,6 +264,7 @@ class _InsuranceRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final hasData = data != null;
     return Row(
       children: [
@@ -278,7 +291,9 @@ class _InsuranceRow extends StatelessWidget {
         ),
         TextButton(
           onPressed: onTap,
-          child: Text(hasData ? 'Chỉnh sửa' : 'Thêm'),
+          child: Text(
+            hasData ? l10n.profile_edit_button : l10n.profile_add_button,
+          ),
         ),
       ],
     );

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:health_icons/health_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -80,6 +81,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
       backgroundColor: _isCollapsed ? Colors.white : AppTheme.primaryColor,
       body: SafeArea(
@@ -143,7 +145,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                                   Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      'BỆNH VIỆN ĐA KHOA QUỐC TẾ',
+                                      l10n.dashboard_hospital_name,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                         color: Colors.white,
@@ -155,7 +157,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                                   Align(
                                     alignment: Alignment.centerLeft,
                                     child: Text(
-                                      'HẢI PHÒNG',
+                                      l10n.dashboard_hospital_city,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                         color: Colors.white,
@@ -316,8 +318,8 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Dịch vụ mới',
+        Text(
+          context.l10n.dashboard_section_new_services,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -383,8 +385,8 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 24),
-        const Text(
-          'Câu hỏi sàng lọc sức khoẻ',
+        Text(
+          context.l10n.dashboard_question_screening_title,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -400,10 +402,10 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                 borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.10), // Độ đậm bóng
+                    color: Colors.black.withValues(alpha: 0.10),
                     blurRadius: 8,
                     spreadRadius: 2,
-                    offset: Offset(0, 0), // Đổ bóng đều các phía
+                    offset: Offset(0, 0),
                   ),
                 ],
               ),
@@ -438,8 +440,8 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 24),
-        const Text(
-          'Danh mục tin tức',
+        Text(
+          context.l10n.dashboard_news_category_title,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -514,8 +516,8 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 24),
-        const Text(
-          'Thông báo quan trọng',
+        Text(
+          context.l10n.dashboard_important_notify_title,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -571,8 +573,8 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                           size: 12,
                         ),
                         const SizedBox(width: 4),
-                        const Text(
-                          'Tin mới',
+                        Text(
+                          context.l10n.dashboard_new_badge,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 10,
@@ -595,8 +597,8 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 24),
-        const Text(
-          'Tin mới nhất',
+        Text(
+          context.l10n.dashboard_latest_news_title,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,

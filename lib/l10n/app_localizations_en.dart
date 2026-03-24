@@ -250,4 +250,339 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notification_empty_subtitle => 'Coming Soon';
+
+  @override
+  String get profile_section_general_title => 'General information';
+
+  @override
+  String get profile_personal_info => 'Personal information';
+
+  @override
+  String get profile_health_info => 'Health information';
+
+  @override
+  String get profile_relatives_title => 'Family profiles';
+
+  @override
+  String get profile_select_profile => 'Select profile';
+
+  @override
+  String get profile_add_profile_by_code => 'Add profile by medical code';
+
+  @override
+  String get profile_add_profile_by_form => 'Add profile by manual entry';
+
+  @override
+  String get profile_add_profile_button => 'ADD PROFILE';
+
+  @override
+  String get profile_guest_label => 'Guest';
+
+  @override
+  String get profile_add_by_code_title => 'Add profile by code';
+
+  @override
+  String get profile_add_by_code_tab_input => 'Enter code';
+
+  @override
+  String get profile_add_by_code_tab_scan => 'Scan code';
+
+  @override
+  String get profile_add_by_code_instructions => 'Enter profile code to search';
+
+  @override
+  String get profile_add_by_code_hint => 'Enter profile code';
+
+  @override
+  String get profile_add_by_code_search_button => 'Find profile';
+
+  @override
+  String get profile_add_by_code_scanning_checking => 'Checking code...';
+
+  @override
+  String get profile_add_by_code_scanning_instruction =>
+      'Place the code inside the frame to scan automatically';
+
+  @override
+  String get profile_add_by_code_no_scanned => 'No code scanned yet';
+
+  @override
+  String profile_add_by_code_last_scanned(Object code) {
+    return 'Last scanned code: $code';
+  }
+
+  @override
+  String profile_add_by_code_checked_snackbar(Object code) {
+    return 'Checked profile code: $code (mock).';
+  }
+
+  @override
+  String get profile_add_form_title => 'Add profile';
+
+  @override
+  String get profile_name_hint => 'Full name';
+
+  @override
+  String get profile_nickname_hint => 'Nickname';
+
+  @override
+  String get profile_dob_hint => 'Date of birth';
+
+  @override
+  String get profile_phone_hint => 'Phone number';
+
+  @override
+  String get profile_email_optional_hint => 'Email (optional)';
+
+  @override
+  String get profile_gender_label => 'Gender';
+
+  @override
+  String get profile_relationship_label => 'This profile is for';
+
+  @override
+  String get profile_required => 'Required';
+
+  @override
+  String get profile_phone_invalid => 'Invalid phone number';
+
+  @override
+  String get profile_email_invalid => 'Invalid email';
+
+  @override
+  String get profile_finish_button => 'Finish';
+
+  @override
+  String get profile_avatar_take_photo => 'Take photo';
+
+  @override
+  String get profile_avatar_pick_from_gallery => 'Choose from gallery';
+
+  @override
+  String get profile_avatar_pick_error =>
+      'Unable to pick image. Please try again.';
+
+  @override
+  String get profile_add_success_toast => 'Profile added (mock).';
+
+  @override
+  String get profile_relationship_child => 'Child';
+
+  @override
+  String get profile_relationship_wife => 'Wife';
+
+  @override
+  String get profile_relationship_husband => 'Husband';
+
+  @override
+  String get profile_relationship_father => 'Father';
+
+  @override
+  String get profile_relationship_mother => 'Mother';
+
+  @override
+  String get profile_relationship_other => 'Other';
+
+  @override
+  String get profile_additional_title => 'Additional information';
+
+  @override
+  String get profile_identify_code_hint => 'ID card / Passport number';
+
+  @override
+  String get profile_job_hint => 'Occupation';
+
+  @override
+  String get profile_address_hint => 'Address';
+
+  @override
+  String get profile_nationality_hint => 'Nationality';
+
+  @override
+  String get profile_nation_hint => 'Ethnicity';
+
+  @override
+  String get profile_additional_submitted_snackbar =>
+      'Additional information submitted (mock).';
+
+  @override
+  String get profile_basic_info_title => 'Basic information';
+
+  @override
+  String get profile_edit_button => 'Edit';
+
+  @override
+  String get profile_add_button => 'Add';
+
+  @override
+  String get profile_company_info_title => 'Company information';
+
+  @override
+  String get profile_insurance_title => 'Insurance information';
+
+  @override
+  String get profile_insurance_health => 'Health insurance';
+
+  @override
+  String get profile_insurance_private => 'Private insurance';
+
+  @override
+  String get profile_label_full_name => 'Full name';
+
+  @override
+  String get profile_label_dob => 'Date of birth';
+
+  @override
+  String get profile_label_phone => 'Phone number';
+
+  @override
+  String get profile_label_email => 'Email';
+
+  @override
+  String get profile_label_gender => 'Gender';
+
+  @override
+  String get profile_company_name => 'Company name';
+
+  @override
+  String get profile_company_tax_code => 'Tax code';
+
+  @override
+  String get profile_company_address => 'Address';
+
+  @override
+  String get profile_edit_basic_profile_title => 'Edit basic profile';
+
+  @override
+  String get profile_company_edit_title => 'Edit company information';
+
+  @override
+  String get profile_company_add_title => 'Add company information';
+
+  @override
+  String get profile_company_name_hint => 'Company name';
+
+  @override
+  String get profile_company_tax_code_hint => 'Tax code';
+
+  @override
+  String get profile_company_address_hint => 'Address';
+
+  @override
+  String get profile_company_updated_snackbar =>
+      'Company information updated (mock).';
+
+  @override
+  String get profile_company_added_snackbar =>
+      'Company information added (mock).';
+
+  @override
+  String get profile_insurance_number_hint => 'Insurance number';
+
+  @override
+  String get profile_insurance_registration_location_hint =>
+      'Registration location';
+
+  @override
+  String get profile_insurance_expiration_date_hint => 'Expiration date';
+
+  @override
+  String get profile_insurance_updated_snackbar =>
+      'Insurance information updated (mock).';
+
+  @override
+  String get profile_insurance_added_snackbar =>
+      'Insurance information added (mock).';
+
+  @override
+  String get profile_general_health_title => 'General health';
+
+  @override
+  String get profile_overview_title => 'Basic health metrics';
+
+  @override
+  String get profile_label_blood_type => 'Blood type';
+
+  @override
+  String get profile_label_height => 'Height';
+
+  @override
+  String get profile_label_weight => 'Weight';
+
+  @override
+  String get profile_blood_type_unknown => 'Not specified';
+
+  @override
+  String get profile_decimal_input_hint =>
+      'You can enter decimals, e.g. 165.5 cm or 52.3 kg.';
+
+  @override
+  String get profile_invalid_value => 'Invalid value';
+
+  @override
+  String get profile_unit_cm => 'cm';
+
+  @override
+  String get profile_unit_kg => 'kg';
+
+  @override
+  String get profile_height_weight_title => 'Height & weight';
+
+  @override
+  String get profile_height_weight_subtitle =>
+      'Enter basic metrics to complete the health profile.';
+
+  @override
+  String get profile_general_health_saved_snackbar =>
+      'General health saved (mock).';
+
+  @override
+  String get profile_blood_type_subtitle =>
+      'Skip selecting blood type if you don\'t have the information.';
+
+  @override
+  String get profile_life_style_title => 'Life-style habits';
+
+  @override
+  String get profile_allergy_information_title => 'Allergy information';
+
+  @override
+  String get dashboard_section_new_services => 'New services';
+
+  @override
+  String get dashboard_service_customer_portal_title =>
+      'Customer service portal';
+
+  @override
+  String get dashboard_service_customer_portal_subtitle =>
+      'Fast - Convenient - Easy';
+
+  @override
+  String get dashboard_service_quick_booking_title =>
+      'Quick booking - Auto confirm';
+
+  @override
+  String get dashboard_service_quick_booking_subtitle =>
+      'View appointment slots and confirmations from anywhere';
+
+  @override
+  String get dashboard_question_screening_title => 'Health screening questions';
+
+  @override
+  String get dashboard_news_category_title => 'News categories';
+
+  @override
+  String get dashboard_important_notify_title => 'Important notices';
+
+  @override
+  String get dashboard_new_badge => 'New';
+
+  @override
+  String get dashboard_latest_news_title => 'Latest news';
+
+  @override
+  String get profile_gender_male => 'Male';
+
+  @override
+  String get profile_gender_female => 'Female';
 }

@@ -1,23 +1,42 @@
 import 'package:flutter/material.dart';
 
 import '../theme/app_theme.dart';
+import 'package:healthcare_app/core/localization/l10n_extension.dart';
 
 enum Gender {
-  male('Nam', 'male', Icons.male_rounded),
-  female('Nữ', 'female', Icons.female_rounded);
+  male('male', Icons.male_rounded),
+  female('female', Icons.female_rounded);
 
-  const Gender(this.label, this.apiValue, this.icon);
+  const Gender(this.apiValue, this.icon);
 
-  final String label;
   final String apiValue;
   final IconData icon;
 }
 
+typedef GenderLabelBuilder =
+    String Function(BuildContext context, Gender gender);
+
 class GenderPicker extends StatelessWidget {
-  const GenderPicker({super.key, required this.value, required this.onChanged});
+  const GenderPicker({
+    super.key,
+    required this.value,
+    required this.onChanged,
+    this.labelBuilder,
+  });
 
   final Gender? value;
   final ValueChanged<Gender> onChanged;
+  final GenderLabelBuilder? labelBuilder;
+
+  String _defaultLabel(BuildContext context, Gender gender) {
+    final l10n = context.l10n;
+    switch (gender) {
+      case Gender.male:
+        return l10n.profile_gender_male;
+      case Gender.female:
+        return l10n.profile_gender_female;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +75,7 @@ class GenderPicker extends StatelessWidget {
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      gender.label,
+                      (labelBuilder ?? _defaultLabel)(context, gender),
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         color: isSelected
@@ -74,3 +93,4 @@ class GenderPicker extends StatelessWidget {
     );
   }
 }
+// ...existing code...

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
 class EditCompanyInfoPage extends ConsumerStatefulWidget {
@@ -44,11 +45,14 @@ class _EditCompanyInfoState extends ConsumerState<EditCompanyInfoPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
         title: Text(
-          _isEditMode ? 'Sửa thông tin công ty' : 'Thêm thông tin công ty',
+          _isEditMode
+              ? l10n.profile_company_edit_title
+              : l10n.profile_company_add_title,
           style: const TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
@@ -63,8 +67,8 @@ class _EditCompanyInfoState extends ConsumerState<EditCompanyInfoPage> {
                   controller: _companyNameController,
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
                   textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                    hintText: 'Tên doanh nghiệp',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_company_name_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.building_4),
                   ),
                 ),
@@ -73,8 +77,8 @@ class _EditCompanyInfoState extends ConsumerState<EditCompanyInfoPage> {
                   controller: _taxCodeController,
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
                   textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                    hintText: 'Mã số thuế',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_company_tax_code_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.card),
                   ),
                 ),
@@ -83,8 +87,8 @@ class _EditCompanyInfoState extends ConsumerState<EditCompanyInfoPage> {
                   controller: _addressController,
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
                   textInputAction: TextInputAction.done,
-                  decoration: const InputDecoration(
-                    hintText: 'Địa chỉ',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_company_address_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.location),
                   ),
                   maxLines: 2,
@@ -108,7 +112,7 @@ class _EditCompanyInfoState extends ConsumerState<EditCompanyInfoPage> {
                       height: 22,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
-                  : const Text('Hoàn tất'),
+                  : Text(l10n.profile_finish_button),
             ),
           ),
         ),
@@ -133,12 +137,13 @@ class _EditCompanyInfoState extends ConsumerState<EditCompanyInfoPage> {
       await Future<void>.delayed(const Duration(milliseconds: 700));
 
       if (!mounted) return;
+      final l10n = context.l10n;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
             _isEditMode
-                ? 'Đã cập nhật thông tin công ty (mô phỏng).'
-                : 'Đã thêm thông tin công ty (mô phỏng).',
+                ? l10n.profile_company_updated_snackbar
+                : l10n.profile_company_added_snackbar,
           ),
         ),
       );

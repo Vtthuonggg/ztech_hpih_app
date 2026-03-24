@@ -90,5 +90,135 @@
 
   "notification_title": "Notifications",
   "notification_empty_title": "No notifications yet",
-  "notification_empty_subtitle": "Coming Soon"
+  "notification_empty_subtitle": "Coming Soon",
+
+  "profile_section_general_title": "General information",
+  "profile_personal_info": "Personal information",
+  "profile_health_info": "Health information",
+  "profile_relatives_title": "Family profiles",
+  "profile_select_profile": "Select profile",
+  "profile_add_profile_by_code": "Add profile by medical code",
+  "profile_add_profile_by_form": "Add profile by manual entry",
+  "profile_add_profile_button": "ADD PROFILE",
+  "profile_guest_label": "Guest",
+
+   "profile_add_by_code_title": "Add profile by code",
+  "profile_add_by_code_tab_input": "Enter code",
+  "profile_add_by_code_tab_scan": "Scan code",
+  "profile_add_by_code_instructions": "Enter profile code to search",
+  "profile_add_by_code_hint": "Enter profile code",
+  "profile_add_by_code_search_button": "Find profile",
+  "profile_add_by_code_scanning_checking": "Checking code...",
+  "profile_add_by_code_scanning_instruction": "Place the code inside the frame to scan automatically",
+  "profile_add_by_code_no_scanned": "No code scanned yet",
+  "profile_add_by_code_last_scanned": "Last scanned code: {code}",
+  "@profile_add_by_code_last_scanned": {
+    "placeholders": { "code": {} }
+  },
+  "profile_add_by_code_checked_snackbar": "Checked profile code: {code} (mock).",
+  "@profile_add_by_code_checked_snackbar": {
+    "placeholders": { "code": {} }
+  },
+  "profile_add_form_title": "Add profile",
+  "profile_name_hint": "Full name",
+  "profile_nickname_hint": "Nickname",
+  "profile_dob_hint": "Date of birth",
+  "profile_phone_hint": "Phone number",
+  "profile_email_optional_hint": "Email (optional)",
+  "profile_gender_label": "Gender",
+  "profile_relationship_label": "This profile is for",
+  "profile_required": "Required",
+  "profile_phone_invalid": "Invalid phone number",
+  "profile_email_invalid": "Invalid email",
+  "profile_finish_button": "Finish",
+  "profile_avatar_take_photo": "Take photo",
+  "profile_avatar_pick_from_gallery": "Choose from gallery",
+  "profile_avatar_pick_error": "Unable to pick image. Please try again.",
+  "profile_add_success_toast": "Profile added (mock).",
+
+  "profile_relationship_child": "Child",
+  "profile_relationship_wife": "Wife",
+  "profile_relationship_husband": "Husband",
+  "profile_relationship_father": "Father",
+  "profile_relationship_mother": "Mother",
+  "profile_relationship_other": "Other",
+
+  "profile_additional_title": "Additional information",
+  "profile_identify_code_hint": "ID card / Passport number",
+  "profile_job_hint": "Occupation",
+  "profile_address_hint": "Address",
+  "profile_nationality_hint": "Nationality",
+  "profile_nation_hint": "Ethnicity",
+  "profile_additional_submitted_snackbar": "Additional information submitted (mock).",
+
+  "profile_basic_info_title": "Basic information",
+  "profile_edit_button": "Edit",
+  "profile_add_button": "Add",
+  "profile_company_info_title": "Company information",
+
+  "profile_insurance_title": "Insurance information",
+  "profile_insurance_health": "Health insurance",
+  "profile_insurance_private": "Private insurance",
+
+  "profile_label_full_name": "Full name",
+  "profile_label_dob": "Date of birth",
+  "profile_label_phone": "Phone number",
+  "profile_label_email": "Email",
+  "profile_label_gender": "Gender",
+
+  "profile_company_name": "Company name",
+  "profile_company_tax_code": "Tax code",
+  "profile_company_address": "Address",
+
+  "profile_edit_basic_profile_title": "Edit basic profile",
+
+  "profile_company_edit_title": "Edit company information",
+  "profile_company_add_title": "Add company information",
+  "profile_company_name_hint": "Company name",
+  "profile_company_tax_code_hint": "Tax code",
+  "profile_company_address_hint": "Address",
+  "profile_company_updated_snackbar": "Company information updated (mock).",
+  "profile_company_added_snackbar": "Company information added (mock).",
+
+  "profile_insurance_number_hint": "Insurance number",
+  "profile_insurance_registration_location_hint": "Registration location",
+  "profile_insurance_expiration_date_hint": "Expiration date",
+
+  "profile_insurance_updated_snackbar": "Insurance information updated (mock).",
+  "profile_insurance_added_snackbar": "Insurance information added (mock).",
+  
+  "profile_general_health_title": "General health",
+  "profile_overview_title": "Basic health metrics",
+  "profile_label_blood_type": "Blood type",
+  "profile_label_height": "Height",
+  "profile_label_weight": "Weight",
+  "profile_blood_type_unknown": "Not specified",
+  "profile_decimal_input_hint": "You can enter decimals, e.g. 165.5 cm or 52.3 kg.",
+  "profile_invalid_value": "Invalid value",
+  "profile_unit_cm": "cm",
+  "profile_unit_kg": "kg",
+  "profile_height_weight_title": "Height & weight",
+  "profile_height_weight_subtitle": "Enter basic metrics to complete the health profile.",
+  "profile_general_health_saved_snackbar": "General health saved (mock).",
+  "profile_blood_type_subtitle": "Skip selecting blood type if you don't have the information.",
+
+  "profile_life_style_title": "Life-style habits",
+  "profile_allergy_information_title": "Allergy information",
+
+  "dashboard_section_new_services": "New services",
+  "dashboard_service_customer_portal_title": "Customer service portal",
+  "dashboard_service_customer_portal_subtitle": "Fast - Convenient - Easy",
+  "dashboard_service_quick_booking_title": "Quick booking - Auto confirm",
+  "dashboard_service_quick_booking_subtitle": "View appointment slots and confirmations from anywhere",
+  "dashboard_question_screening_title": "Health screening questions",
+  "dashboard_news_category_title": "News categories",
+  "dashboard_important_notify_title": "Important notices",
+  "dashboard_new_badge": "New",
+  "dashboard_latest_news_title": "Latest news",
+
+  "profile_gender_male": "Male",
+  "profile_gender_female": "Female"
+
+ 
+
 }

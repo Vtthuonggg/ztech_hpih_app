@@ -1,1 +1,8 @@
-{}
+{
+  "vi": [
+    "dashboard_service_customer_portal_title",
+    "dashboard_service_customer_portal_subtitle",
+    "dashboard_service_quick_booking_title",
+    "dashboard_service_quick_booking_subtitle"
+  ]
+}

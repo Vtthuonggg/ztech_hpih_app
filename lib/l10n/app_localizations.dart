@@ -553,6 +553,636 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Coming Soon'**
   String get notification_empty_subtitle;
+
+  /// No description provided for @profile_section_general_title.
+  ///
+  /// In en, this message translates to:
+  /// **'General information'**
+  String get profile_section_general_title;
+
+  /// No description provided for @profile_personal_info.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal information'**
+  String get profile_personal_info;
+
+  /// No description provided for @profile_health_info.
+  ///
+  /// In en, this message translates to:
+  /// **'Health information'**
+  String get profile_health_info;
+
+  /// No description provided for @profile_relatives_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Family profiles'**
+  String get profile_relatives_title;
+
+  /// No description provided for @profile_select_profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Select profile'**
+  String get profile_select_profile;
+
+  /// No description provided for @profile_add_profile_by_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Add profile by medical code'**
+  String get profile_add_profile_by_code;
+
+  /// No description provided for @profile_add_profile_by_form.
+  ///
+  /// In en, this message translates to:
+  /// **'Add profile by manual entry'**
+  String get profile_add_profile_by_form;
+
+  /// No description provided for @profile_add_profile_button.
+  ///
+  /// In en, this message translates to:
+  /// **'ADD PROFILE'**
+  String get profile_add_profile_button;
+
+  /// No description provided for @profile_guest_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Guest'**
+  String get profile_guest_label;
+
+  /// No description provided for @profile_add_by_code_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Add profile by code'**
+  String get profile_add_by_code_title;
+
+  /// No description provided for @profile_add_by_code_tab_input.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter code'**
+  String get profile_add_by_code_tab_input;
+
+  /// No description provided for @profile_add_by_code_tab_scan.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan code'**
+  String get profile_add_by_code_tab_scan;
+
+  /// No description provided for @profile_add_by_code_instructions.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter profile code to search'**
+  String get profile_add_by_code_instructions;
+
+  /// No description provided for @profile_add_by_code_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter profile code'**
+  String get profile_add_by_code_hint;
+
+  /// No description provided for @profile_add_by_code_search_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Find profile'**
+  String get profile_add_by_code_search_button;
+
+  /// No description provided for @profile_add_by_code_scanning_checking.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking code...'**
+  String get profile_add_by_code_scanning_checking;
+
+  /// No description provided for @profile_add_by_code_scanning_instruction.
+  ///
+  /// In en, this message translates to:
+  /// **'Place the code inside the frame to scan automatically'**
+  String get profile_add_by_code_scanning_instruction;
+
+  /// No description provided for @profile_add_by_code_no_scanned.
+  ///
+  /// In en, this message translates to:
+  /// **'No code scanned yet'**
+  String get profile_add_by_code_no_scanned;
+
+  /// No description provided for @profile_add_by_code_last_scanned.
+  ///
+  /// In en, this message translates to:
+  /// **'Last scanned code: {code}'**
+  String profile_add_by_code_last_scanned(Object code);
+
+  /// No description provided for @profile_add_by_code_checked_snackbar.
+  ///
+  /// In en, this message translates to:
+  /// **'Checked profile code: {code} (mock).'**
+  String profile_add_by_code_checked_snackbar(Object code);
+
+  /// No description provided for @profile_add_form_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Add profile'**
+  String get profile_add_form_title;
+
+  /// No description provided for @profile_name_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get profile_name_hint;
+
+  /// No description provided for @profile_nickname_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Nickname'**
+  String get profile_nickname_hint;
+
+  /// No description provided for @profile_dob_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of birth'**
+  String get profile_dob_hint;
+
+  /// No description provided for @profile_phone_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get profile_phone_hint;
+
+  /// No description provided for @profile_email_optional_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Email (optional)'**
+  String get profile_email_optional_hint;
+
+  /// No description provided for @profile_gender_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get profile_gender_label;
+
+  /// No description provided for @profile_relationship_label.
+  ///
+  /// In en, this message translates to:
+  /// **'This profile is for'**
+  String get profile_relationship_label;
+
+  /// No description provided for @profile_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Required'**
+  String get profile_required;
+
+  /// No description provided for @profile_phone_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid phone number'**
+  String get profile_phone_invalid;
+
+  /// No description provided for @profile_email_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid email'**
+  String get profile_email_invalid;
+
+  /// No description provided for @profile_finish_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish'**
+  String get profile_finish_button;
+
+  /// No description provided for @profile_avatar_take_photo.
+  ///
+  /// In en, this message translates to:
+  /// **'Take photo'**
+  String get profile_avatar_take_photo;
+
+  /// No description provided for @profile_avatar_pick_from_gallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get profile_avatar_pick_from_gallery;
+
+  /// No description provided for @profile_avatar_pick_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to pick image. Please try again.'**
+  String get profile_avatar_pick_error;
+
+  /// No description provided for @profile_add_success_toast.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile added (mock).'**
+  String get profile_add_success_toast;
+
+  /// No description provided for @profile_relationship_child.
+  ///
+  /// In en, this message translates to:
+  /// **'Child'**
+  String get profile_relationship_child;
+
+  /// No description provided for @profile_relationship_wife.
+  ///
+  /// In en, this message translates to:
+  /// **'Wife'**
+  String get profile_relationship_wife;
+
+  /// No description provided for @profile_relationship_husband.
+  ///
+  /// In en, this message translates to:
+  /// **'Husband'**
+  String get profile_relationship_husband;
+
+  /// No description provided for @profile_relationship_father.
+  ///
+  /// In en, this message translates to:
+  /// **'Father'**
+  String get profile_relationship_father;
+
+  /// No description provided for @profile_relationship_mother.
+  ///
+  /// In en, this message translates to:
+  /// **'Mother'**
+  String get profile_relationship_mother;
+
+  /// No description provided for @profile_relationship_other.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get profile_relationship_other;
+
+  /// No description provided for @profile_additional_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Additional information'**
+  String get profile_additional_title;
+
+  /// No description provided for @profile_identify_code_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'ID card / Passport number'**
+  String get profile_identify_code_hint;
+
+  /// No description provided for @profile_job_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Occupation'**
+  String get profile_job_hint;
+
+  /// No description provided for @profile_address_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get profile_address_hint;
+
+  /// No description provided for @profile_nationality_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Nationality'**
+  String get profile_nationality_hint;
+
+  /// No description provided for @profile_nation_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Ethnicity'**
+  String get profile_nation_hint;
+
+  /// No description provided for @profile_additional_submitted_snackbar.
+  ///
+  /// In en, this message translates to:
+  /// **'Additional information submitted (mock).'**
+  String get profile_additional_submitted_snackbar;
+
+  /// No description provided for @profile_basic_info_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Basic information'**
+  String get profile_basic_info_title;
+
+  /// No description provided for @profile_edit_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get profile_edit_button;
+
+  /// No description provided for @profile_add_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get profile_add_button;
+
+  /// No description provided for @profile_company_info_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Company information'**
+  String get profile_company_info_title;
+
+  /// No description provided for @profile_insurance_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Insurance information'**
+  String get profile_insurance_title;
+
+  /// No description provided for @profile_insurance_health.
+  ///
+  /// In en, this message translates to:
+  /// **'Health insurance'**
+  String get profile_insurance_health;
+
+  /// No description provided for @profile_insurance_private.
+  ///
+  /// In en, this message translates to:
+  /// **'Private insurance'**
+  String get profile_insurance_private;
+
+  /// No description provided for @profile_label_full_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get profile_label_full_name;
+
+  /// No description provided for @profile_label_dob.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of birth'**
+  String get profile_label_dob;
+
+  /// No description provided for @profile_label_phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get profile_label_phone;
+
+  /// No description provided for @profile_label_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get profile_label_email;
+
+  /// No description provided for @profile_label_gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get profile_label_gender;
+
+  /// No description provided for @profile_company_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Company name'**
+  String get profile_company_name;
+
+  /// No description provided for @profile_company_tax_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Tax code'**
+  String get profile_company_tax_code;
+
+  /// No description provided for @profile_company_address.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get profile_company_address;
+
+  /// No description provided for @profile_edit_basic_profile_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit basic profile'**
+  String get profile_edit_basic_profile_title;
+
+  /// No description provided for @profile_company_edit_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit company information'**
+  String get profile_company_edit_title;
+
+  /// No description provided for @profile_company_add_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Add company information'**
+  String get profile_company_add_title;
+
+  /// No description provided for @profile_company_name_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Company name'**
+  String get profile_company_name_hint;
+
+  /// No description provided for @profile_company_tax_code_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tax code'**
+  String get profile_company_tax_code_hint;
+
+  /// No description provided for @profile_company_address_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get profile_company_address_hint;
+
+  /// No description provided for @profile_company_updated_snackbar.
+  ///
+  /// In en, this message translates to:
+  /// **'Company information updated (mock).'**
+  String get profile_company_updated_snackbar;
+
+  /// No description provided for @profile_company_added_snackbar.
+  ///
+  /// In en, this message translates to:
+  /// **'Company information added (mock).'**
+  String get profile_company_added_snackbar;
+
+  /// No description provided for @profile_insurance_number_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Insurance number'**
+  String get profile_insurance_number_hint;
+
+  /// No description provided for @profile_insurance_registration_location_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration location'**
+  String get profile_insurance_registration_location_hint;
+
+  /// No description provided for @profile_insurance_expiration_date_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Expiration date'**
+  String get profile_insurance_expiration_date_hint;
+
+  /// No description provided for @profile_insurance_updated_snackbar.
+  ///
+  /// In en, this message translates to:
+  /// **'Insurance information updated (mock).'**
+  String get profile_insurance_updated_snackbar;
+
+  /// No description provided for @profile_insurance_added_snackbar.
+  ///
+  /// In en, this message translates to:
+  /// **'Insurance information added (mock).'**
+  String get profile_insurance_added_snackbar;
+
+  /// No description provided for @profile_general_health_title.
+  ///
+  /// In en, this message translates to:
+  /// **'General health'**
+  String get profile_general_health_title;
+
+  /// No description provided for @profile_overview_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Basic health metrics'**
+  String get profile_overview_title;
+
+  /// No description provided for @profile_label_blood_type.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood type'**
+  String get profile_label_blood_type;
+
+  /// No description provided for @profile_label_height.
+  ///
+  /// In en, this message translates to:
+  /// **'Height'**
+  String get profile_label_height;
+
+  /// No description provided for @profile_label_weight.
+  ///
+  /// In en, this message translates to:
+  /// **'Weight'**
+  String get profile_label_weight;
+
+  /// No description provided for @profile_blood_type_unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Not specified'**
+  String get profile_blood_type_unknown;
+
+  /// No description provided for @profile_decimal_input_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'You can enter decimals, e.g. 165.5 cm or 52.3 kg.'**
+  String get profile_decimal_input_hint;
+
+  /// No description provided for @profile_invalid_value.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid value'**
+  String get profile_invalid_value;
+
+  /// No description provided for @profile_unit_cm.
+  ///
+  /// In en, this message translates to:
+  /// **'cm'**
+  String get profile_unit_cm;
+
+  /// No description provided for @profile_unit_kg.
+  ///
+  /// In en, this message translates to:
+  /// **'kg'**
+  String get profile_unit_kg;
+
+  /// No description provided for @profile_height_weight_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Height & weight'**
+  String get profile_height_weight_title;
+
+  /// No description provided for @profile_height_weight_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter basic metrics to complete the health profile.'**
+  String get profile_height_weight_subtitle;
+
+  /// No description provided for @profile_general_health_saved_snackbar.
+  ///
+  /// In en, this message translates to:
+  /// **'General health saved (mock).'**
+  String get profile_general_health_saved_snackbar;
+
+  /// No description provided for @profile_blood_type_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip selecting blood type if you don\'t have the information.'**
+  String get profile_blood_type_subtitle;
+
+  /// No description provided for @profile_life_style_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Life-style habits'**
+  String get profile_life_style_title;
+
+  /// No description provided for @profile_allergy_information_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergy information'**
+  String get profile_allergy_information_title;
+
+  /// No description provided for @dashboard_section_new_services.
+  ///
+  /// In en, this message translates to:
+  /// **'New services'**
+  String get dashboard_section_new_services;
+
+  /// No description provided for @dashboard_service_customer_portal_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Customer service portal'**
+  String get dashboard_service_customer_portal_title;
+
+  /// No description provided for @dashboard_service_customer_portal_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fast - Convenient - Easy'**
+  String get dashboard_service_customer_portal_subtitle;
+
+  /// No description provided for @dashboard_service_quick_booking_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick booking - Auto confirm'**
+  String get dashboard_service_quick_booking_title;
+
+  /// No description provided for @dashboard_service_quick_booking_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'View appointment slots and confirmations from anywhere'**
+  String get dashboard_service_quick_booking_subtitle;
+
+  /// No description provided for @dashboard_question_screening_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Health screening questions'**
+  String get dashboard_question_screening_title;
+
+  /// No description provided for @dashboard_news_category_title.
+  ///
+  /// In en, this message translates to:
+  /// **'News categories'**
+  String get dashboard_news_category_title;
+
+  /// No description provided for @dashboard_important_notify_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Important notices'**
+  String get dashboard_important_notify_title;
+
+  /// No description provided for @dashboard_new_badge.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get dashboard_new_badge;
+
+  /// No description provided for @dashboard_latest_news_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest news'**
+  String get dashboard_latest_news_title;
+
+  /// No description provided for @profile_gender_male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get profile_gender_male;
+
+  /// No description provided for @profile_gender_female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get profile_gender_female;
 }
 
 class _AppLocalizationsDelegate

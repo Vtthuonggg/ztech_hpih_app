@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import 'package:healthcare_app/core/widgets/custom_date_picker.dart';
 import 'package:healthcare_app/core/widgets/gender_picker.dart';
 import 'package:image_picker/image_picker.dart';
@@ -69,12 +70,13 @@ class _AddProfileFormPageState extends ConsumerState<AddProfileFormPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        title: const Text(
-          'Thêm hồ sơ',
-          style: TextStyle(fontWeight: FontWeight.w600),
+        title: Text(
+          l10n.profile_add_form_title,
+          style: const TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
       body: SafeArea(
@@ -95,13 +97,15 @@ class _AddProfileFormPageState extends ConsumerState<AddProfileFormPage> {
                   controller: _nameController,
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
                   textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                    hintText: 'Họ và tên',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_name_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.user),
                     suffix: _RequiredStar(),
                   ),
                   validator: (value) {
-                    if ((value ?? '').trim().isEmpty) return 'Bắt buộc';
+                    if ((value ?? '').trim().isEmpty) {
+                      return l10n.profile_required;
+                    }
                     return null;
                   },
                 ),
@@ -110,8 +114,8 @@ class _AddProfileFormPageState extends ConsumerState<AddProfileFormPage> {
                   controller: _nickNameController,
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
                   textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                    hintText: 'Tên thân mật',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_nickname_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.user_tag),
                   ),
                 ),
@@ -120,14 +124,14 @@ class _AddProfileFormPageState extends ConsumerState<AddProfileFormPage> {
                   controller: _dobController,
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
                   readOnly: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Sinh nhật',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_dob_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.cake),
                     suffix: _RequiredStar(),
                   ),
                   onTap: _pickDateOfBirth,
                   validator: (_) {
-                    if (_dateOfBirth == null) return 'Bắt buộc';
+                    if (_dateOfBirth == null) return l10n.profile_required;
                     return null;
                   },
                 ),
@@ -137,15 +141,15 @@ class _AddProfileFormPageState extends ConsumerState<AddProfileFormPage> {
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
                   keyboardType: TextInputType.phone,
                   textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                    hintText: 'Số điện thoại',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_phone_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.call),
                     suffix: _RequiredStar(),
                   ),
                   validator: (value) {
                     final v = (value ?? '').trim();
-                    if (v.isEmpty) return 'Bắt buộc';
-                    if (v.length < 9) return 'Số điện thoại không hợp lệ';
+                    if (v.isEmpty) return l10n.profile_required;
+                    if (v.length < 9) return l10n.profile_phone_invalid;
                     return null;
                   },
                 ),
@@ -155,8 +159,8 @@ class _AddProfileFormPageState extends ConsumerState<AddProfileFormPage> {
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.done,
-                  decoration: const InputDecoration(
-                    hintText: 'Email (không bắt buộc)',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_email_optional_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.sms),
                   ),
                   validator: (value) {
@@ -165,14 +169,14 @@ class _AddProfileFormPageState extends ConsumerState<AddProfileFormPage> {
                     final ok = RegExp(
                       r'^[^@\s]+@[^@\s]+\.[^@\s]+$',
                     ).hasMatch(v);
-                    if (!ok) return 'Email không hợp lệ';
+                    if (!ok) return l10n.profile_email_invalid;
                     return null;
                   },
                 ),
                 const SizedBox(height: 12),
                 Text.rich(
                   TextSpan(
-                    text: 'Giới tính',
+                    text: l10n.profile_gender_label,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: Colors.grey[800],
@@ -216,7 +220,7 @@ class _AddProfileFormPageState extends ConsumerState<AddProfileFormPage> {
                       height: 22,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
-                  : const Text('Hoàn tất'),
+                  : Text(l10n.profile_finish_button),
             ),
           ),
         ),
@@ -249,7 +253,7 @@ class _AddProfileFormPageState extends ConsumerState<AddProfileFormPage> {
                 const SizedBox(height: 14),
                 _AvatarActionTile(
                   icon: IconsaxPlusLinear.camera,
-                  title: 'Chụp ảnh',
+                  title: context.l10n.profile_avatar_take_photo,
                   onTap: () async {
                     Navigator.of(context).pop();
                     await _pickAvatar(ImageSource.camera);
@@ -257,7 +261,7 @@ class _AddProfileFormPageState extends ConsumerState<AddProfileFormPage> {
                 ),
                 _AvatarActionTile(
                   icon: IconsaxPlusLinear.gallery,
-                  title: 'Chọn từ thư viện',
+                  title: context.l10n.profile_avatar_pick_from_gallery,
                   onTap: () async {
                     Navigator.of(context).pop();
                     await _pickAvatar(ImageSource.gallery);
@@ -284,7 +288,7 @@ class _AddProfileFormPageState extends ConsumerState<AddProfileFormPage> {
       log('pickAvatar error: $e', stackTrace: st);
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Không thể chọn ảnh. Vui lòng thử lại.')),
+        SnackBar(content: Text(context.l10n.profile_avatar_pick_error)),
       );
     }
   }
@@ -339,21 +343,22 @@ class _AddProfileFormPageState extends ConsumerState<AddProfileFormPage> {
 
 enum _Relationship { child, wife, husband, father, mother, other }
 
-extension on _Relationship {
-  String get label {
+extension RelationshipLabel on _Relationship {
+  String label(BuildContext context) {
+    final l10n = context.l10n;
     switch (this) {
       case _Relationship.child:
-        return 'Con';
+        return l10n.profile_relationship_child;
       case _Relationship.wife:
-        return 'Vợ';
+        return l10n.profile_relationship_wife;
       case _Relationship.husband:
-        return 'Chồng';
+        return l10n.profile_relationship_husband;
       case _Relationship.father:
-        return 'Bố';
+        return l10n.profile_relationship_father;
       case _Relationship.mother:
-        return 'Mẹ';
+        return l10n.profile_relationship_mother;
       case _Relationship.other:
-        return 'Khác';
+        return l10n.profile_relationship_other;
     }
   }
 
@@ -510,7 +515,7 @@ class _RelationshipField extends FormField<_Relationship> {
              children: [
                Text.rich(
                  TextSpan(
-                   text: 'Đây là hồ sơ của',
+                   text: state.context.l10n.profile_relationship_label,
                    style: Theme.of(state.context).textTheme.titleSmall
                        ?.copyWith(
                          fontWeight: FontWeight.w700,
@@ -535,7 +540,7 @@ class _RelationshipField extends FormField<_Relationship> {
                    final isSelected = selected == item;
                    return ChoiceChip(
                      selected: isSelected,
-                     label: Text(item.label),
+                     label: Text(item.label(state.context)),
                      onSelected: (_) {
                        state.didChange(item);
                        onChanged(item);

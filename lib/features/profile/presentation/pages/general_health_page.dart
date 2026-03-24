@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
 import '../../../../core/theme/app_theme.dart';
@@ -63,13 +64,13 @@ class _GeneralHealthPageState extends State<GeneralHealthPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
+    final l10n = context.l10n;
     return Scaffold(
       backgroundColor: const Color(0xFFF7F8FA),
       appBar: AppBar(
-        title: const Text(
-          'Thông tin tổng quát',
-          style: TextStyle(fontWeight: FontWeight.w700),
+        title: Text(
+          l10n.profile_general_health_title,
+          style: const TextStyle(fontWeight: FontWeight.w700),
         ),
       ),
       body: SafeArea(
@@ -83,24 +84,22 @@ class _GeneralHealthPageState extends State<GeneralHealthPage> {
                 _OverviewCard(
                   heightText: _heightController.text.trim().isEmpty
                       ? '--'
-                      : '${_heightController.text.trim()} cm',
+                      : '${_heightController.text.trim()} ${l10n.profile_unit_cm}',
                   weightText: _weightController.text.trim().isEmpty
                       ? '--'
-                      : '${_weightController.text.trim()} kg',
+                      : '${_weightController.text.trim()} ${l10n.profile_unit_kg}',
                   bloodTypeText: _isBloodTypeUnknown
-                      ? 'Chưa xác định'
-                      : (_selectedBloodType ?? 'Chọn nhóm máu'),
+                      ? l10n.profile_blood_type_unknown
+                      : (_selectedBloodType ?? l10n.profile_blood_type_unknown),
                 ),
                 const SizedBox(height: 16),
                 _SectionCard(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const _SectionHeader(
+                      _SectionHeader(
                         icon: IconsaxPlusLinear.activity,
-                        title: 'Nhóm máu',
-                        subtitle:
-                            'Nếu chưa biết nhóm máu, bạn có thể giữ ở trạng thái chưa xác định.',
+                        title: l10n.profile_label_blood_type,
                       ),
                       const SizedBox(height: 16),
                       Container(
@@ -124,12 +123,12 @@ class _GeneralHealthPageState extends State<GeneralHealthPage> {
                               ),
                             ),
                             const SizedBox(width: 12),
-                            const Expanded(
+                            Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Chưa xác định',
+                                    l10n.profile_blood_type_unknown,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 15,
@@ -137,7 +136,7 @@ class _GeneralHealthPageState extends State<GeneralHealthPage> {
                                   ),
                                   SizedBox(height: 2),
                                   Text(
-                                    'Bỏ qua bước chọn nhóm máu nếu bạn chưa có thông tin.',
+                                    l10n.profile_blood_type_subtitle,
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Color(0xFF667085),
@@ -221,11 +220,9 @@ class _GeneralHealthPageState extends State<GeneralHealthPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const _SectionHeader(
+                      _SectionHeader(
                         icon: IconsaxPlusLinear.rulerpen,
-                        title: 'Chiều cao và cân nặng',
-                        subtitle:
-                            'Nhập các chỉ số cơ bản để hồ sơ sức khỏe đầy đủ hơn.',
+                        title: l10n.profile_height_weight_title,
                       ),
                       const SizedBox(height: 16),
                       Row(
@@ -239,17 +236,17 @@ class _GeneralHealthPageState extends State<GeneralHealthPage> {
                                   ),
                               onTapOutside: (event) =>
                                   FocusScope.of(context).unfocus(),
-                              decoration: const InputDecoration(
-                                hintText: 'Chiều cao',
+                              decoration: InputDecoration(
+                                hintText: l10n.profile_label_height,
                                 prefixIcon: Icon(IconsaxPlusLinear.ruler),
-                                suffixText: 'cm',
+                                suffixText: l10n.profile_unit_cm,
                               ),
                               validator: (value) {
                                 final raw = (value ?? '').trim();
-                                if (raw.isEmpty) return 'Bắt buộc';
+                                if (raw.isEmpty) return l10n.profile_required;
                                 final parsed = _parseDouble(raw);
                                 if (parsed == null || parsed <= 0) {
-                                  return 'Không hợp lệ';
+                                  return l10n.profile_invalid_value;
                                 }
                                 return null;
                               },
@@ -265,17 +262,17 @@ class _GeneralHealthPageState extends State<GeneralHealthPage> {
                                   ),
                               onTapOutside: (event) =>
                                   FocusScope.of(context).unfocus(),
-                              decoration: const InputDecoration(
-                                hintText: 'Cân nặng',
+                              decoration: InputDecoration(
+                                hintText: l10n.profile_label_weight,
                                 prefixIcon: Icon(IconsaxPlusLinear.weight),
-                                suffixText: 'kg',
+                                suffixText: l10n.profile_unit_kg,
                               ),
                               validator: (value) {
                                 final raw = (value ?? '').trim();
-                                if (raw.isEmpty) return 'Bắt buộc';
+                                if (raw.isEmpty) return l10n.profile_required;
                                 final parsed = _parseDouble(raw);
                                 if (parsed == null || parsed <= 0) {
-                                  return 'Không hợp lệ';
+                                  return l10n.profile_invalid_value;
                                 }
                                 return null;
                               },
@@ -301,7 +298,7 @@ class _GeneralHealthPageState extends State<GeneralHealthPage> {
                             const SizedBox(width: 10),
                             Expanded(
                               child: Text(
-                                'Bạn có thể nhập số lẻ, ví dụ 165.5 cm hoặc 52.3 kg.',
+                                l10n.profile_decimal_input_hint,
                                 style: theme.textTheme.bodySmall?.copyWith(
                                   color: const Color(0xFF475467),
                                   height: 1.45,
@@ -333,7 +330,7 @@ class _GeneralHealthPageState extends State<GeneralHealthPage> {
                       height: 22,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
-                  : const Text('Hoàn tất'),
+                  : Text(l10n.profile_finish_button),
             ),
           ),
         ),
@@ -360,8 +357,9 @@ class _GeneralHealthPageState extends State<GeneralHealthPage> {
       await Future<void>.delayed(const Duration(milliseconds: 800));
 
       if (!mounted) return;
+      final l10n = context.l10n;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Đã lưu thông tin tổng quát (mô phỏng).')),
+        SnackBar(content: Text(l10n.profile_general_health_saved_snackbar)),
       );
     } finally {
       if (mounted) {
@@ -390,6 +388,7 @@ class _OverviewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(18),
@@ -411,12 +410,12 @@ class _OverviewCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Row(
+          Row(
             children: [
               Icon(IconsaxPlusLinear.heart_circle, color: Colors.white),
               SizedBox(width: 8),
               Text(
-                'Chỉ số sức khỏe cơ bản',
+                l10n.profile_overview_title,
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w700,
@@ -429,15 +428,24 @@ class _OverviewCard extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: _OverviewItem(label: 'Nhóm máu', value: bloodTypeText),
+                child: _OverviewItem(
+                  label: l10n.profile_label_blood_type,
+                  value: bloodTypeText,
+                ),
               ),
               const SizedBox(width: 10),
               Expanded(
-                child: _OverviewItem(label: 'Chiều cao', value: heightText),
+                child: _OverviewItem(
+                  label: l10n.profile_label_height,
+                  value: heightText,
+                ),
               ),
               const SizedBox(width: 10),
               Expanded(
-                child: _OverviewItem(label: 'Cân nặng', value: weightText),
+                child: _OverviewItem(
+                  label: l10n.profile_label_weight,
+                  value: weightText,
+                ),
               ),
             ],
           ),
@@ -525,20 +533,15 @@ class _SectionCard extends StatelessWidget {
 }
 
 class _SectionHeader extends StatelessWidget {
-  const _SectionHeader({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-  });
+  const _SectionHeader({required this.icon, required this.title});
 
   final IconData icon;
   final String title;
-  final String subtitle;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
           width: 46,
@@ -550,26 +553,11 @@ class _SectionHeader extends StatelessWidget {
           child: Icon(icon, color: AppTheme.primaryColor),
         ),
         const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w800,
-                  color: const Color(0xFF101828),
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                subtitle,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: const Color(0xFF667085),
-                  height: 1.45,
-                ),
-              ),
-            ],
+        Text(
+          title,
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.w800,
+            color: const Color(0xFF101828),
           ),
         ),
       ],

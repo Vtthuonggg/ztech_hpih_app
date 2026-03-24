@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import 'package:healthcare_app/core/widgets/custom_date_picker.dart';
 import 'package:healthcare_app/core/widgets/gender_picker.dart';
 import 'package:image_picker/image_picker.dart';
@@ -69,11 +70,12 @@ class _EditBasicProfilePageState extends ConsumerState<EditBasicProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        title: const Text(
-          'Sửa thông tin cơ bản',
+        title: Text(
+          l10n.profile_edit_basic_profile_title,
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
@@ -94,13 +96,14 @@ class _EditBasicProfilePageState extends ConsumerState<EditBasicProfilePage> {
                   controller: _nameController,
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
                   textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                    hintText: 'Họ và tên',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_name_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.user),
                     suffix: _RequiredStar(),
                   ),
                   validator: (value) {
-                    if ((value ?? '').trim().isEmpty) return 'Bắt buộc';
+                    if ((value ?? '').trim().isEmpty)
+                      return l10n.profile_required;
                     return null;
                   },
                 ),
@@ -109,8 +112,8 @@ class _EditBasicProfilePageState extends ConsumerState<EditBasicProfilePage> {
                   controller: _nickNameController,
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
                   textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                    hintText: 'Tên thân mật',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_nickname_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.user_tag),
                   ),
                 ),
@@ -119,14 +122,14 @@ class _EditBasicProfilePageState extends ConsumerState<EditBasicProfilePage> {
                   controller: _dobController,
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
                   readOnly: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Sinh nhật',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_dob_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.cake),
                     suffix: _RequiredStar(),
                   ),
                   onTap: _pickDateOfBirth,
                   validator: (_) {
-                    if (_dateOfBirth == null) return 'Bắt buộc';
+                    if (_dateOfBirth == null) return l10n.profile_required;
                     return null;
                   },
                 ),
@@ -136,15 +139,15 @@ class _EditBasicProfilePageState extends ConsumerState<EditBasicProfilePage> {
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
                   keyboardType: TextInputType.phone,
                   textInputAction: TextInputAction.next,
-                  decoration: const InputDecoration(
-                    hintText: 'Số điện thoại',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_phone_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.call),
                     suffix: _RequiredStar(),
                   ),
                   validator: (value) {
                     final v = (value ?? '').trim();
-                    if (v.isEmpty) return 'Bắt buộc';
-                    if (v.length < 9) return 'Số điện thoại không hợp lệ';
+                    if (v.isEmpty) return l10n.profile_required;
+                    if (v.length < 9) return l10n.profile_phone_invalid;
                     return null;
                   },
                 ),
@@ -154,8 +157,8 @@ class _EditBasicProfilePageState extends ConsumerState<EditBasicProfilePage> {
                   onTapOutside: (event) => FocusScope.of(context).unfocus(),
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.done,
-                  decoration: const InputDecoration(
-                    hintText: 'Email (không bắt buộc)',
+                  decoration: InputDecoration(
+                    hintText: l10n.profile_email_optional_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.sms),
                   ),
                   validator: (value) {
@@ -164,14 +167,14 @@ class _EditBasicProfilePageState extends ConsumerState<EditBasicProfilePage> {
                     final ok = RegExp(
                       r'^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$',
                     ).hasMatch(v);
-                    if (!ok) return 'Email không hợp lệ';
+                    if (!ok) return l10n.profile_email_invalid;
                     return null;
                   },
                 ),
                 const SizedBox(height: 12),
                 Text.rich(
                   TextSpan(
-                    text: 'Giới tính',
+                    text: l10n.profile_label_gender,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: Colors.grey[800],
@@ -210,7 +213,7 @@ class _EditBasicProfilePageState extends ConsumerState<EditBasicProfilePage> {
                       height: 22,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
-                  : const Text('Hoàn tất'),
+                  : Text(l10n.profile_finish_button),
             ),
           ),
         ),
@@ -226,6 +229,7 @@ class _EditBasicProfilePageState extends ConsumerState<EditBasicProfilePage> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
       ),
       builder: (context) {
+        final l10n = context.l10n;
         return SafeArea(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 10, 16, 16),
@@ -243,7 +247,7 @@ class _EditBasicProfilePageState extends ConsumerState<EditBasicProfilePage> {
                 const SizedBox(height: 14),
                 _AvatarActionTile(
                   icon: IconsaxPlusLinear.camera,
-                  title: 'Chụp ảnh',
+                  title: l10n.profile_avatar_take_photo,
                   onTap: () async {
                     Navigator.of(context).pop();
                     await _pickAvatar(ImageSource.camera);
@@ -251,7 +255,7 @@ class _EditBasicProfilePageState extends ConsumerState<EditBasicProfilePage> {
                 ),
                 _AvatarActionTile(
                   icon: IconsaxPlusLinear.gallery,
-                  title: 'Chọn từ thư viện',
+                  title: l10n.profile_avatar_pick_from_gallery,
                   onTap: () async {
                     Navigator.of(context).pop();
                     await _pickAvatar(ImageSource.gallery);
@@ -278,9 +282,10 @@ class _EditBasicProfilePageState extends ConsumerState<EditBasicProfilePage> {
     } catch (e, st) {
       log('pickAvatar error: $e', stackTrace: st);
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Không thể chọn ảnh. Vui lòng thử lại.')),
-      );
+      final l10n = context.l10n;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(l10n.profile_avatar_pick_error)));
     }
   }
 
@@ -325,9 +330,6 @@ class _EditBasicProfilePageState extends ConsumerState<EditBasicProfilePage> {
       await Future<void>.delayed(const Duration(milliseconds: 900));
 
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Đã gửi thông tin (mô phỏng).')),
-      );
     } finally {
       if (mounted) setState(() => _submitting = false);
     }

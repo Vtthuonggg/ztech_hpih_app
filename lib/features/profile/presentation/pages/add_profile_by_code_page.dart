@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
@@ -48,23 +49,24 @@ class _AddProfileByCodePageState extends ConsumerState<AddProfileByCodePage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         backgroundColor: Colors.grey[50],
         appBar: AppBar(
-          title: const Text(
-            'Thêm hồ sơ bằng mã',
+          title: Text(
+            l10n.profile_add_by_code_title,
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
           bottom: TabBar(
             indicatorSize: TabBarIndicatorSize.tab,
             dividerColor: Colors.transparent,
-            overlayColor: MaterialStateProperty.all(Colors.transparent),
+            overlayColor: WidgetStateProperty.all(Colors.transparent),
             splashFactory: NoSplash.splashFactory,
-            tabs: const [
-              Tab(text: 'Nhập mã'),
-              Tab(text: 'Quét mã'),
+            tabs: [
+              Tab(text: l10n.profile_add_by_code_tab_input),
+              Tab(text: l10n.profile_add_by_code_tab_scan),
             ],
           ),
         ),
@@ -111,7 +113,7 @@ class _AddProfileByCodePageState extends ConsumerState<AddProfileByCodePage> {
                   ),
                   const SizedBox(height: 14),
                   Text(
-                    'Nhập mã hồ sơ để tìm kiếm',
+                    context.l10n.profile_add_by_code_instructions,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w700,
                       color: Colors.grey[900],
@@ -124,9 +126,9 @@ class _AddProfileByCodePageState extends ConsumerState<AddProfileByCodePage> {
                     onTapOutside: (event) => FocusScope.of(context).unfocus(),
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                    decoration: const InputDecoration(
-                      hintText: 'Nhập mã hồ sơ',
-                      prefixIcon: Icon(IconsaxPlusLinear.scan_barcode),
+                    decoration: InputDecoration(
+                      hintText: context.l10n.profile_add_by_code_hint,
+                      prefixIcon: const Icon(IconsaxPlusLinear.scan_barcode),
                     ),
                   ),
                 ],
@@ -143,7 +145,7 @@ class _AddProfileByCodePageState extends ConsumerState<AddProfileByCodePage> {
                         height: 22,
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
-                    : const Text('Tìm hồ sơ'),
+                    : Text(context.l10n.profile_add_by_code_search_button),
               ),
             ),
           ],
@@ -211,8 +213,10 @@ class _AddProfileByCodePageState extends ConsumerState<AddProfileByCodePage> {
                       bottom: 24,
                       child: Text(
                         _searchingByScan
-                            ? 'Đang kiểm tra mã...'
-                            : 'Đưa mã vào giữa khung để quét tự động',
+                            ? context.l10n.profile_add_by_code_scanning_checking
+                            : context
+                                  .l10n
+                                  .profile_add_by_code_scanning_instruction,
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           color: Colors.white,
@@ -240,8 +244,10 @@ class _AddProfileByCodePageState extends ConsumerState<AddProfileByCodePage> {
                   Expanded(
                     child: Text(
                       _lastScannedCode == null
-                          ? 'Chưa có mã nào được quét'
-                          : 'Mã gần nhất: $_lastScannedCode',
+                          ? context.l10n.profile_add_by_code_no_scanned
+                          : context.l10n.profile_add_by_code_last_scanned(
+                              _lastScannedCode ?? '',
+                            ),
                       style: TextStyle(color: Colors.grey[800]),
                     ),
                   ),
@@ -296,7 +302,9 @@ class _AddProfileByCodePageState extends ConsumerState<AddProfileByCodePage> {
     if (!mounted) return;
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Đã kiểm tra mã hồ sơ: $code (mô phỏng).')),
+      SnackBar(
+        content: Text(context.l10n.profile_add_by_code_checked_snackbar(code)),
+      ),
     );
   }
 }
