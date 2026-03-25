@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import 'package:healthcare_app/core/theme/app_theme.dart';
 import 'package:healthcare_app/features/book_visit/presentation/pages/select_branch_page.dart';
+import 'package:healthcare_app/features/notification/presentation/pages/notification_page.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import '../../../account/presentation/pages/account_page.dart';
 import '../../../auth/presentation/pages/login_page.dart';
@@ -184,43 +185,6 @@ class MainPage extends ConsumerWidget {
                     : Colors.grey[600],
                 fontWeight: FontWeight.w600,
               ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class NotificationPage extends StatelessWidget {
-  const NotificationPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Thông báo'), centerTitle: true),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              IconsaxPlusLinear.notification,
-              size: 80,
-              color: Colors.grey[400],
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Thông báo',
-              style: Theme.of(
-                context,
-              ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Coming Soon',
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: Colors.grey[600]),
             ),
           ],
         ),

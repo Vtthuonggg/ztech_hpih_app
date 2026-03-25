@@ -23,7 +23,6 @@ class DashBoardPage extends ConsumerStatefulWidget {
 class _DashBoardPageState extends ConsumerState<DashBoardPage> {
   final ScrollController _scrollController = ScrollController();
   bool _isCollapsed = false;
-  bool _isChangeBackground = false;
 
   List<Map<String, dynamic>> listNoti = [
     {
@@ -65,11 +64,6 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
       } else if (_scrollController.offset <= 450 && _isCollapsed) {
         setState(() => _isCollapsed = false);
       }
-      if (_scrollController.offset > 50 && !_isChangeBackground) {
-        setState(() => _isChangeBackground = true);
-      } else if (_scrollController.offset <= 50 && _isChangeBackground) {
-        setState(() => _isChangeBackground = false);
-      }
     });
   }
 
@@ -87,32 +81,12 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
       body: SafeArea(
         bottom: false,
         child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: !_isChangeBackground
-                  ? const [
-                      AppTheme.primaryColor,
-                      AppTheme.primaryColor,
-                      Colors.white,
-                      Colors.white,
-                      Colors.white,
-                    ]
-                  : const [
-                      Colors.white,
-                      Colors.white,
-                      Colors.white,
-                      Colors.white,
-                      Colors.white,
-                    ],
-              stops: const [0.0, 0.4, 0.4, 0.0, 1.0],
-            ),
-          ),
+          color: Colors.white,
           child: Stack(
             children: [
               CustomScrollView(
                 controller: _scrollController,
+                physics: const ClampingScrollPhysics(),
                 slivers: [
                   SliverToBoxAdapter(
                     child: Stack(

@@ -7,6 +7,7 @@ import 'package:healthcare_app/core/localization/l10n_extension.dart';
 import 'package:healthcare_app/core/utils/constant.dart';
 import 'package:healthcare_app/features/account/presentation/pages/language_page.dart';
 import 'package:healthcare_app/features/account/presentation/pages/reset_password_page.dart';
+import 'package:healthcare_app/features/account/presentation/widgets/profile_header.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
@@ -30,23 +31,14 @@ class AccountPage extends ConsumerWidget {
     return Scaffold(
       backgroundColor: background,
       body: CustomScrollView(
-        physics: const BouncingScrollPhysics(
-          parent: AlwaysScrollableScrollPhysics(),
-        ),
+        physics: ClampingScrollPhysics(),
         slivers: [
-          SliverAppBar(
-            backgroundColor: Colors.transparent,
-            automaticallyImplyLeading: false,
-            expandedHeight: 180,
-            elevation: 0,
-            scrolledUnderElevation: 0,
-            stretch: true,
-            bottom: PreferredSize(
-              preferredSize: const Size.fromHeight(24),
-              child: _AppBarBottomCap(background: background),
-            ),
-            flexibleSpace: FlexibleSpaceBar(
-              background: _AccountHeaderContent(user: user),
+          SliverToBoxAdapter(
+            child: ProfileHeaderWidget(
+              name: user?.fullName ?? '',
+              phone: '0865202584',
+              avatarUrl: null,
+              onCameraPressed: () {},
             ),
           ),
           SliverPadding(
