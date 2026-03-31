@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:healthcare_app/core/localization/l10n_extension.dart';
-import 'package:healthcare_app/features/auth/presentation/pages/confirm_otp_page.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
+import 'package:ztech_hpih_app/features/auth/presentation/pages/confirm_otp_page.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
 class ForgetPasswordPage extends ConsumerStatefulWidget {

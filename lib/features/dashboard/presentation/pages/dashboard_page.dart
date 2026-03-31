@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:healthcare_app/core/localization/l10n_extension.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:health_icons/health_icons.dart';
 import 'package:url_launcher/url_launcher.dart';

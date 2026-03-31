@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:healthcare_app/core/localization/l10n_extension.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 import '../../../../core/utils/toast_helper.dart';
 import 'dart:async';
 import 'package:sms_autofill/sms_autofill.dart';

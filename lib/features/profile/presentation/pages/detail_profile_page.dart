@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:healthcare_app/core/localization/l10n_extension.dart';
-import 'package:healthcare_app/features/profile/presentation/pages/edit_basic_profile_page.dart';
-import 'package:healthcare_app/features/profile/presentation/pages/edit_company_info_page.dart';
-import 'package:healthcare_app/features/profile/presentation/pages/edit_insurance_page.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/edit_basic_profile_page.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/edit_company_info_page.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/edit_insurance_page.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
 import '../../../../core/theme/app_theme.dart';

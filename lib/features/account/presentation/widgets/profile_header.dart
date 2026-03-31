@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:healthcare_app/core/theme/app_theme.dart';
+import 'package:ztech_hpih_app/core/theme/app_theme.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {

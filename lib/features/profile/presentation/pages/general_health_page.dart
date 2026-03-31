@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:healthcare_app/core/localization/l10n_extension.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
 import '../../../../core/theme/app_theme.dart';

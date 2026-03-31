@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCWr7rXpDcpNpUnfA4RqpnNVMEOybWwM8M',
-    appId: '1:152383111099:android:1cd7620a1ae14fd76d8e9e',
+    appId: '1:152383111099:android:76aed88ef8df773a6d8e9e',
     messagingSenderId: '152383111099',
     projectId: 'healthcare-app-8148a',
     storageBucket: 'healthcare-app-8148a.firebasestorage.app',
@@ -59,10 +59,10 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyAqiiS8PeDJF7-zM0v0chF-4uJ_KNXH5u0',
-    appId: '1:152383111099:ios:635114bb0b42b2566d8e9e',
+    appId: '1:152383111099:ios:ebcb715cb54a64726d8e9e',
     messagingSenderId: '152383111099',
     projectId: 'healthcare-app-8148a',
     storageBucket: 'healthcare-app-8148a.firebasestorage.app',
-    iosBundleId: 'com.ztech.healthcare.app',
+    iosBundleId: 'com.ztech.hpih',
   );
 }

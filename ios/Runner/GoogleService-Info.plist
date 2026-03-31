@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.ztech.healthcare.app</string>
+	<string>com.ztech.hpih</string>
 	<key>PROJECT_ID</key>
 	<string>healthcare-app-8148a</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:152383111099:ios:635114bb0b42b2566d8e9e</string>
+	<string>1:152383111099:ios:ebcb715cb54a64726d8e9e</string>
 </dict>
 </plist>

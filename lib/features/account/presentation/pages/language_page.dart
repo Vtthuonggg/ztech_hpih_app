@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:healthcare_app/core/providers/locale_provider.dart';
-import 'package:healthcare_app/core/localization/l10n_extension.dart';
-import 'package:healthcare_app/core/theme/app_theme.dart';
+import 'package:ztech_hpih_app/core/providers/locale_provider.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
+import 'package:ztech_hpih_app/core/theme/app_theme.dart';
 
 class LanguagePage extends ConsumerWidget {
   static const path = '/settings/language';

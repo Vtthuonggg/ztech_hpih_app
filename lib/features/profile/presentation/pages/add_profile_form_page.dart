@@ -3,9 +3,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:healthcare_app/core/localization/l10n_extension.dart';
-import 'package:healthcare_app/core/widgets/custom_date_picker.dart';
-import 'package:healthcare_app/core/widgets/gender_picker.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
+import 'package:ztech_hpih_app/core/widgets/custom_date_picker.dart';
+import 'package:ztech_hpih_app/core/widgets/gender_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';

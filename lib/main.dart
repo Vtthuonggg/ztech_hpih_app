@@ -2,10 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:healthcare_app/core/config/env_config.dart';
-import 'package:healthcare_app/core/providers/locale_provider.dart';
-import 'package:healthcare_app/firebase_options.dart';
-import 'package:healthcare_app/l10n/app_localizations.dart';
+import 'package:ztech_hpih_app/core/config/env_config.dart';
+import 'package:ztech_hpih_app/core/providers/locale_provider.dart';
+import 'package:ztech_hpih_app/firebase_options.dart';
+import 'package:ztech_hpih_app/l10n/app_localizations.dart';
 
 import 'core/router/app_router.dart';
 import 'core/services/notifycation_service.dart';

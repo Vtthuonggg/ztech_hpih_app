@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:152383111099:android:1cd7620a1ae14fd76d8e9e",
+        "mobilesdk_app_id": "1:152383111099:android:76aed88ef8df773a6d8e9e",
         "android_client_info": {
-          "package_name": "com.ztech.healthcare.app"
+          "package_name": "com.ztech.hpih"
         }
       },
       "oauth_client": [],

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:healthcare_app/core/localization/l10n_extension.dart';
-import 'package:healthcare_app/core/theme/app_theme.dart';
-import 'package:healthcare_app/features/dashboard/domain/models/dashboard_item.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
+import 'package:ztech_hpih_app/core/theme/app_theme.dart';
+import 'package:ztech_hpih_app/features/dashboard/domain/models/dashboard_item.dart';
 
 class FeatureTable extends StatelessWidget {
   const FeatureTable({super.key});

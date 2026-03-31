@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:health_icons/health_icons.dart';
-import 'package:healthcare_app/core/localization/l10n_extension.dart';
-import 'package:healthcare_app/features/profile/domain/models/allergy_infomation_item.dart';
-import 'package:healthcare_app/features/profile/presentation/pages/detail_profile_page.dart';
-import 'package:healthcare_app/features/profile/presentation/pages/general_health_page.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
+import 'package:ztech_hpih_app/features/profile/domain/models/allergy_infomation_item.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/detail_profile_page.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/general_health_page.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
 import '../../domain/models/life_style_habit_item.dart';

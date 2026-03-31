@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:healthcare_app/core/localization/l10n_extension.dart';
-import 'package:healthcare_app/core/widgets/custom_date_picker.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
+import 'package:ztech_hpih_app/core/widgets/custom_date_picker.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 
 class EditInsurancePage extends ConsumerStatefulWidget {

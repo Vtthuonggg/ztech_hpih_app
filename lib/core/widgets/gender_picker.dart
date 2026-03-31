@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../theme/app_theme.dart';
-import 'package:healthcare_app/core/localization/l10n_extension.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 
 enum Gender {
   male('male', Icons.male_rounded),

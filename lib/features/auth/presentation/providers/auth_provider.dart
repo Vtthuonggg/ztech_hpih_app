@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
-import 'package:healthcare_app/features/main/presentation/pages/main_page.dart';
+import 'package:ztech_hpih_app/features/main/presentation/pages/main_page.dart';
 import '../../data/repositoreis/auth_repository.dart';
 import '../../domain/models/login_request.dart';
 import 'auth_state.dart';
