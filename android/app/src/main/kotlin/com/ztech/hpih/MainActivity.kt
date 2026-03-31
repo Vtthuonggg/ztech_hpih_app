@@ -1,4 +1,4 @@
-package com.ztech.healthcare.app
+package com.ztech.hpih
 
 import io.flutter.embedding.android.FlutterActivity
 
