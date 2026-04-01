@@ -78,23 +78,21 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: RegisterPage.path,
         pageBuilder: (context, state) =>
-            TransitionHelper.slideRightToLeft(state, const RegisterPage()),
+            TransitionHelper.cupertino(state, const RegisterPage()),
       ),
       GoRoute(
         path: DetailProfilePage.path,
         pageBuilder: (context, state) =>
-            TransitionHelper.slideRightToLeft(state, const DetailProfilePage()),
+            TransitionHelper.cupertino(state, const DetailProfilePage()),
       ),
       GoRoute(
         path: EditBasicProfilePage.path,
-        pageBuilder: (context, state) => TransitionHelper.slideRightToLeft(
-          state,
-          const EditBasicProfilePage(),
-        ),
+        pageBuilder: (context, state) =>
+            TransitionHelper.cupertino(state, const EditBasicProfilePage()),
       ),
       GoRoute(
         path: AdditionalInformationPage.path,
-        pageBuilder: (context, state) => TransitionHelper.slideRightToLeft(
+        pageBuilder: (context, state) => TransitionHelper.cupertino(
           state,
           const AdditionalInformationPage(),
         ),
@@ -103,7 +101,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: EditInsurancePage.path,
         pageBuilder: (context, state) {
           final extra = state.extra as Map<String, dynamic>? ?? const {};
-          return TransitionHelper.slideRightToLeft(
+          return TransitionHelper.cupertino(
             state,
             EditInsurancePage(
               isPrivateInsurance:
@@ -117,7 +115,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: EditCompanyInfoPage.path,
         pageBuilder: (context, state) {
           final extra = state.extra as Map<String, dynamic>? ?? const {};
-          return TransitionHelper.slideRightToLeft(
+          return TransitionHelper.cupertino(
             state,
             EditCompanyInfoPage(
               editData: extra['edit_data'] as Map<String, dynamic>?,
@@ -127,10 +125,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: ForgetPasswordPage.path,
-        pageBuilder: (context, state) => TransitionHelper.slideRightToLeft(
-          state,
-          const ForgetPasswordPage(),
-        ),
+        pageBuilder: (context, state) =>
+            TransitionHelper.cupertino(state, const ForgetPasswordPage()),
       ),
       GoRoute(
         path: ConfirmOtpPage.path,
@@ -139,7 +135,7 @@ final routerProvider = Provider<GoRouter>((ref) {
               (state.extra as String?) ??
               state.uri.queryParameters['username'] ??
               '';
-          return TransitionHelper.slideRightToLeft(
+          return TransitionHelper.cupertino(
             state,
             ConfirmOtpPage(username: username),
           );
@@ -165,46 +161,38 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(
         path: AddProfileByCodePage.path,
-        pageBuilder: (context, state) => TransitionHelper.slideRightToLeft(
-          state,
-          const AddProfileByCodePage(),
-        ),
+        pageBuilder: (context, state) =>
+            TransitionHelper.cupertino(state, const AddProfileByCodePage()),
       ),
       GoRoute(
         path: AddProfileFormPage.path,
-        pageBuilder: (context, state) => TransitionHelper.slideRightToLeft(
-          state,
-          const AddProfileFormPage(),
-        ),
+        pageBuilder: (context, state) =>
+            TransitionHelper.cupertino(state, const AddProfileFormPage()),
       ),
       GoRoute(
         path: HealthInfomationPage.path,
-        pageBuilder: (context, state) => TransitionHelper.slideRightToLeft(
-          state,
-          const HealthInfomationPage(),
-        ),
+        pageBuilder: (context, state) =>
+            TransitionHelper.cupertino(state, const HealthInfomationPage()),
       ),
       GoRoute(
         path: GeneralHealthPage.path,
         pageBuilder: (context, state) =>
-            TransitionHelper.slideRightToLeft(state, const GeneralHealthPage()),
+            TransitionHelper.cupertino(state, const GeneralHealthPage()),
       ),
       GoRoute(
         path: CreateBookVisitPage.path,
-        pageBuilder: (context, state) => TransitionHelper.slideRightToLeft(
-          state,
-          const CreateBookVisitPage(),
-        ),
+        pageBuilder: (context, state) =>
+            TransitionHelper.cupertino(state, const CreateBookVisitPage()),
       ),
       GoRoute(
         path: ResetPasswordPage.path,
         pageBuilder: (context, state) =>
-            TransitionHelper.slideRightToLeft(state, const ResetPasswordPage()),
+            TransitionHelper.cupertino(state, const ResetPasswordPage()),
       ),
       GoRoute(
         path: LanguagePage.path,
         pageBuilder: (context, state) =>
-            TransitionHelper.slideRightToLeft(state, const LanguagePage()),
+            TransitionHelper.cupertino(state, const LanguagePage()),
       ),
     ],
   );

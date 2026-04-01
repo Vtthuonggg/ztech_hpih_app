@@ -9,6 +9,8 @@ import '../../../../core/theme/app_theme.dart';
 import '../../../../core/widgets/custom_date_picker.dart';
 import '../../../../core/widgets/gender_picker.dart';
 
+enum _BookingType { doctor, specialty, symptom }
+
 class CreateBookVisitPage extends ConsumerStatefulWidget {
   static const path = '/create-book-visit';
 
@@ -32,7 +34,7 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
   _AppointmentSession? _appointmentSession;
   bool _isForeignPatient = false;
   bool _submitting = false;
-
+  _BookingType? _selectedBookingType;
   List<DateTime> get _quickDates => List.generate(
     3,
     (index) => DateTime.now()
@@ -184,6 +186,149 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
                       ),
                     ),
 
+                    const SizedBox(height: 16),
+                    _SectionCard(
+                      title: "Thông tin đặt hẹn",
+                      icon: IconsaxPlusLinear.info_circle,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: InkWell(
+                                onTap: () => setState(
+                                  () => _selectedBookingType =
+                                      _BookingType.doctor,
+                                ),
+                                child: Container(
+                                  height: 72,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        _selectedBookingType ==
+                                            _BookingType.doctor
+                                        ? AppTheme.primaryColor.withValues(
+                                            alpha: 0.08,
+                                          )
+                                        : Colors.white,
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(
+                                      color:
+                                          _selectedBookingType ==
+                                              _BookingType.doctor
+                                          ? AppTheme.primaryColor
+                                          : const Color(0xFFE4E7EC),
+                                    ),
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Đặt lịch theo bác sĩ',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color:
+                                          _selectedBookingType ==
+                                              _BookingType.doctor
+                                          ? AppTheme.primaryColor
+                                          : const Color(0xFF344054),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 4,
+                              ),
+                              child: InkWell(
+                                onTap: () => setState(
+                                  () => _selectedBookingType =
+                                      _BookingType.specialty,
+                                ),
+                                child: Container(
+                                  height: 72,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        _selectedBookingType ==
+                                            _BookingType.specialty
+                                        ? AppTheme.primaryColor.withValues(
+                                            alpha: 0.08,
+                                          )
+                                        : Colors.white,
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(
+                                      color:
+                                          _selectedBookingType ==
+                                              _BookingType.specialty
+                                          ? AppTheme.primaryColor
+                                          : const Color(0xFFE4E7EC),
+                                    ),
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Đặt lịch theo chuyên khoa',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color:
+                                          _selectedBookingType ==
+                                              _BookingType.specialty
+                                          ? AppTheme.primaryColor
+                                          : const Color(0xFF344054),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8),
+                              child: InkWell(
+                                onTap: () => setState(
+                                  () => _selectedBookingType =
+                                      _BookingType.symptom,
+                                ),
+                                child: Container(
+                                  height: 72,
+                                  decoration: BoxDecoration(
+                                    color:
+                                        _selectedBookingType ==
+                                            _BookingType.symptom
+                                        ? AppTheme.primaryColor.withValues(
+                                            alpha: 0.08,
+                                          )
+                                        : Colors.white,
+                                    borderRadius: BorderRadius.circular(12),
+                                    border: Border.all(
+                                      color:
+                                          _selectedBookingType ==
+                                              _BookingType.symptom
+                                          ? AppTheme.primaryColor
+                                          : const Color(0xFFE4E7EC),
+                                    ),
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Đặt lịch theo triệu chứng',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      color:
+                                          _selectedBookingType ==
+                                              _BookingType.symptom
+                                          ? AppTheme.primaryColor
+                                          : const Color(0xFF344054),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                     const SizedBox(height: 16),
                     _SectionCard(
                       title: 'Lịch hẹn',

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -128,5 +129,9 @@ class TransitionHelper {
         return child;
       },
     );
+  }
+
+  static Page<T> cupertino<T>(GoRouterState state, Widget child) {
+    return CupertinoPage<T>(key: state.pageKey, child: child);
   }
 }
