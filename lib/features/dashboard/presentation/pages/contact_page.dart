@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:io';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 import '../../../../core/utils/constant.dart';
 import '../../../../core/theme/app_theme.dart';
 
@@ -50,6 +51,7 @@ class _ContactPageState extends ConsumerState<ContactPage> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
       ),
       builder: (context) {
+        final l10n = context.l10n;
         return Padding(
           padding: EdgeInsets.only(
             left: 16,
@@ -70,7 +72,7 @@ class _ContactPageState extends ConsumerState<ContactPage> {
               ),
               14.verticalSpace,
               Text(
-                'Liên hệ',
+                l10n.dashboard_contact_title,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w800,
                   color: Colors.grey[900],
@@ -82,8 +84,8 @@ class _ContactPageState extends ConsumerState<ContactPage> {
                 iconBg: AppTheme.primaryColor.withValues(alpha: 0.12),
                 iconColor: AppTheme.primaryColor,
                 title: _formatPhone(HOT_LINE_1),
-                subtitle: 'Hotline 1',
-                actionText: 'Gọi',
+                subtitle: l10n.dashboard_contact_hotline_1,
+                actionText: l10n.dashboard_contact_call_action,
                 onTap: () => _call(HOT_LINE_1),
               ),
               _ContactTile(
@@ -91,8 +93,8 @@ class _ContactPageState extends ConsumerState<ContactPage> {
                 iconBg: AppTheme.primaryColor.withValues(alpha: 0.12),
                 iconColor: AppTheme.primaryColor,
                 title: _formatPhone(HOT_LINE_2),
-                subtitle: 'Hotline 2',
-                actionText: 'Gọi',
+                subtitle: l10n.dashboard_contact_hotline_2,
+                actionText: l10n.dashboard_contact_call_action,
                 onTap: () => _call(HOT_LINE_2),
               ),
               10.verticalSpace,
@@ -101,18 +103,17 @@ class _ContactPageState extends ConsumerState<ContactPage> {
                 iconBg: const Color(0xFFEAF2FF),
                 iconColor: const Color(0xFF1877F2),
                 title: 'Messenger',
-                subtitle: 'Hỗ trợ trực tuyến',
-                actionText: 'Mở',
+                subtitle: l10n.dashboard_contact_online_support,
+                actionText: l10n.dashboard_contact_open_action,
                 onTap: _openMessenger,
               ),
               _ContactTile(
                 icon: IconsaxPlusLinear.location,
                 iconBg: const Color(0xFFE8F7F5),
                 iconColor: const Color(0xFF26A69A),
-                title: 'Bản đồ',
-                subtitle:
-                    '124 P. Nguyễn Đức Cảnh, Cát Dài, Lê Chân, Hải Phòng, Việt Nam',
-                actionText: 'Chỉ đường',
+                title: l10n.dashboard_contact_map,
+                subtitle: l10n.dashboard_contact_map_address,
+                actionText: l10n.dashboard_contact_directions_action,
                 onTap: _openMaps,
               ),
               10.verticalSpace,
@@ -143,8 +144,7 @@ class _ContactPageState extends ConsumerState<ContactPage> {
   }
 
   Future<void> _openMaps() async {
-    const query =
-        '124 P. Nguyễn Đức Cảnh, Cát Dài, Lê Chân, Hải Phòng, Việt Nam';
+    final query = context.l10n.dashboard_contact_map_address;
     final encoded = Uri.encodeComponent(query);
 
     final geo = Uri.parse('geo:0,0?q=$encoded');

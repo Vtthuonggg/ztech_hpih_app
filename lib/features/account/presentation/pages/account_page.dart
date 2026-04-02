@@ -115,7 +115,7 @@ class AccountPage extends ConsumerWidget {
             iconBg: Color(0xFFEAF2FF),
             iconColor: Color(0xFF3B82F6),
             title: context.l10n.account_security,
-            trailingText: 'Chưa thiết lập',
+            trailingText: context.l10n.account_security_not_set,
           ),
         ],
       ),

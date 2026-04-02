@@ -135,6 +135,56 @@ class AppLocalizationsVi extends AppLocalizations {
   String get common_placeholder_unknown => '-';
 
   @override
+  String get common_close => 'Đóng';
+
+  @override
+  String get common_confirm => 'Xác nhận';
+
+  @override
+  String get common_cancel => 'Hủy';
+
+  @override
+  String get common_apply => 'Áp dụng';
+
+  @override
+  String get common_ok => 'OK';
+
+  @override
+  String get common_select_date => 'Chọn ngày';
+
+  @override
+  String get common_select_time => 'Chọn thời gian';
+
+  @override
+  String get common_select_date_range => 'Chọn khoảng thời gian';
+
+  @override
+  String get common_select_year => 'Chọn năm';
+
+  @override
+  String common_select_month_with_year(Object year) {
+    return 'Chọn tháng - $year';
+  }
+
+  @override
+  String get common_hour => 'Giờ';
+
+  @override
+  String get common_minute => 'Phút';
+
+  @override
+  String get common_toast_success_title => 'Thành công';
+
+  @override
+  String get common_toast_error_title => 'Lỗi';
+
+  @override
+  String get common_toast_warning_title => 'Cảnh báo';
+
+  @override
+  String get common_toast_info_title => 'Thông tin';
+
+  @override
   String get dashboard_appointments => 'Lịch hẹn';
 
   @override
@@ -222,6 +272,36 @@ class AppLocalizationsVi extends AppLocalizations {
       'BỆNH VIỆN ĐA KHOA QUỐC TẾ HẢI PHÒNG\n124 Nguyễn Đức Cảnh, Cát Dài, Quận Lê Chân, Hải Phòng';
 
   @override
+  String get account_reset_password_title => 'Đổi mật khẩu';
+
+  @override
+  String get account_current_password_label => 'Mật khẩu hiện tại';
+
+  @override
+  String get account_current_password_hint => 'Nhập mật khẩu hiện tại';
+
+  @override
+  String get account_new_password_label => 'Mật khẩu mới';
+
+  @override
+  String get account_new_password_hint => 'Nhập mật khẩu mới';
+
+  @override
+  String get account_confirm_new_password_label => 'Xác nhận mật khẩu mới';
+
+  @override
+  String get account_confirm_new_password_hint => 'Nhập lại mật khẩu mới';
+
+  @override
+  String get account_reset_password_success => 'Đổi mật khẩu thành công';
+
+  @override
+  String get account_language_vietnamese => 'Tiếng Việt';
+
+  @override
+  String get account_language_english => 'English';
+
+  @override
   String get main_tab_home => 'Trang chủ';
 
   @override
@@ -247,6 +327,37 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get notification_empty_subtitle => 'Sắp ra mắt';
+
+  @override
+  String get notification_sample_appointment_confirmed_title =>
+      'Lịch hẹn đã được xác nhận';
+
+  @override
+  String get notification_sample_appointment_confirmed_desc =>
+      'Lịch hẹn với BS. Nguyễn vào 28/03 lúc 10:00 đã được xác nhận.';
+
+  @override
+  String get notification_sample_clinic_message_title =>
+      'Tin nhắn mới từ phòng khám';
+
+  @override
+  String get notification_sample_clinic_message_desc =>
+      'Vui lòng hoàn thành bảng câu hỏi trước buổi khám.';
+
+  @override
+  String get notification_sample_prescription_ready_title =>
+      'Đơn thuốc đã sẵn sàng';
+
+  @override
+  String get notification_sample_prescription_ready_desc =>
+      'Đơn thuốc Amoxicillin của bạn đã sẵn sàng để nhận.';
+
+  @override
+  String get notification_sample_vaccine_schedule_title => 'Lịch tiêm vắc xin';
+
+  @override
+  String get notification_sample_vaccine_schedule_desc =>
+      'Đã có thêm khung giờ tiêm trong tuần tới. Đặt ngay.';
 
   @override
   String get profile_section_general_title => 'Thông tin chung';
@@ -543,6 +654,65 @@ class AppLocalizationsVi extends AppLocalizations {
   String get profile_allergy_information_title => 'Thông tin dị ứng';
 
   @override
+  String get profile_life_style_nutrition => 'Dinh dưỡng';
+
+  @override
+  String get profile_life_style_drinking => 'Uống';
+
+  @override
+  String get profile_life_style_smoking => 'Thuốc lá';
+
+  @override
+  String get profile_life_style_sleep => 'Ngủ';
+
+  @override
+  String get profile_life_style_physical_activity => 'Hoạt động thể chất';
+
+  @override
+  String get profile_life_style_mental_health => 'Sức khoẻ tâm thần - tâm lý';
+
+  @override
+  String get profile_allergy_history => 'Tiền sử dị ứng';
+
+  @override
+  String get profile_allergy_food => 'Dị ứng thực phẩm';
+
+  @override
+  String get profile_allergy_medicine => 'Dị ứng thuốc';
+
+  @override
+  String get profile_allergy_skin => 'Dị ứng da';
+
+  @override
+  String get profile_allergy_environment => 'Dị ứng do môi trường';
+
+  @override
+  String get profile_allergy_other => 'Các dị ứng khác';
+
+  @override
+  String get profile_demo_registration_location_hpih =>
+      'Bệnh viện Đa khoa Quốc tế Hải Phòng';
+
+  @override
+  String get profile_demo_registration_location_vinmec =>
+      'Phòng khám Vinmec Hải Phòng';
+
+  @override
+  String get profile_demo_address_hp => '124 Nguyễn Đức Cảnh, Hải Phòng';
+
+  @override
+  String get profile_demo_full_name => 'Nguyễn Văn A';
+
+  @override
+  String get profile_demo_occupation_programmer => 'Lập trình viên';
+
+  @override
+  String get profile_demo_nationality_vietnam => 'Việt Nam';
+
+  @override
+  String get profile_demo_ethnicity_kinh => 'Kinh';
+
+  @override
   String get dashboard_section_new_services => 'Dịch vụ mới';
 
   @override
@@ -575,6 +745,162 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get dashboard_latest_news_title => 'Tin mới nhất';
+
+  @override
+  String get dashboard_important_notify_medicine_delivery =>
+      'Mua thuốc tại nhà tiện lợi cùng tính năng mới trên ứng dụng của chúng tôi';
+
+  @override
+  String get dashboard_important_notify_online_visit =>
+      'Khám bệnh trực tuyến cùng những y bác sĩ hàng đầu, không cần đến bệnh viện';
+
+  @override
+  String get dashboard_screening_reproductive_health =>
+      'Sàng lọc sức khoẻ sinh sản';
+
+  @override
+  String get dashboard_screening_stroke => 'Sàng lọc đột quỵ';
+
+  @override
+  String get dashboard_news_medical_services => 'Dịch vụ y tế';
+
+  @override
+  String get dashboard_news_hospital_activities => 'Hoạt động bệnh viện';
+
+  @override
+  String get dashboard_news_health_information => 'Thông tin sức khoẻ';
+
+  @override
+  String get dashboard_news_vaccine_center => 'Trung tâm vắc xin';
+
+  @override
+  String get dashboard_post_foreign_body_title =>
+      'Người đàn ông bị khối dị vật từ măng khô chiếm trọn dạ dày';
+
+  @override
+  String get dashboard_post_rare_blood_title =>
+      'Cấp cứu xuyên đêm cứu thai phụ mang nhóm máu hiếm';
+
+  @override
+  String get dashboard_post_us_tourist_title =>
+      'Cứu sống du khách Mỹ bị bóc tách động mạch chủ ngực';
+
+  @override
+  String get dashboard_post_practitioner_list_title =>
+      'Danh sách người thực hành khám bệnh, chữa bệnh tại Bệnh viện Đa khoa Quốc tế Hải Phòng';
+
+  @override
+  String get dashboard_contact_title => 'Liên hệ';
+
+  @override
+  String get dashboard_contact_hotline_1 => 'Hotline 1';
+
+  @override
+  String get dashboard_contact_hotline_2 => 'Hotline 2';
+
+  @override
+  String get dashboard_contact_online_support => 'Hỗ trợ trực tuyến';
+
+  @override
+  String get dashboard_contact_map => 'Bản đồ';
+
+  @override
+  String get dashboard_contact_call_action => 'Gọi';
+
+  @override
+  String get dashboard_contact_open_action => 'Mở';
+
+  @override
+  String get dashboard_contact_directions_action => 'Chỉ đường';
+
+  @override
+  String get dashboard_contact_map_address =>
+      '124 P. Nguyễn Đức Cảnh, Cát Dài, Lê Chân, Hải Phòng, Việt Nam';
+
+  @override
+  String get book_visit_title => 'Đặt lịch khám';
+
+  @override
+  String get book_visit_booker_info_title => 'Thông tin người đặt lịch';
+
+  @override
+  String get book_visit_booking_info_title => 'Thông tin đặt hẹn';
+
+  @override
+  String get book_visit_schedule_title => 'Lịch hẹn';
+
+  @override
+  String get book_visit_reason_title => 'Lý do khám';
+
+  @override
+  String get book_visit_select_visit_date => 'Chọn ngày khám';
+
+  @override
+  String get book_visit_select_session => 'Chọn buổi khám';
+
+  @override
+  String get book_visit_other_date => 'Ngày khác';
+
+  @override
+  String get book_visit_foreign_patient => 'Đặt hẹn cho người nước ngoài';
+
+  @override
+  String get book_visit_by_doctor => 'Đặt lịch theo bác sĩ';
+
+  @override
+  String get book_visit_by_specialty => 'Đặt lịch theo chuyên khoa';
+
+  @override
+  String get book_visit_by_symptom => 'Đặt lịch theo triệu chứng';
+
+  @override
+  String get book_visit_reason_hint =>
+      'Nhập lý do khám, triệu chứng hoặc nhu cầu tư vấn';
+
+  @override
+  String get book_visit_submit_button => 'Đặt lịch';
+
+  @override
+  String get book_visit_success_toast => 'Đặt lịch thành công (mô phỏng).';
+
+  @override
+  String get book_visit_select_branch_title => 'Chọn chi nhánh';
+
+  @override
+  String get book_visit_branch_le_chan => 'Chi nhánh Lê Chân';
+
+  @override
+  String get book_visit_branch_vinh_bao => 'Chi nhánh Vĩnh Bảo';
+
+  @override
+  String get book_visit_branch_an_duong => 'Chi nhánh An Dương';
+
+  @override
+  String get book_visit_session_morning => 'Sáng';
+
+  @override
+  String get book_visit_session_afternoon => 'Chiều';
+
+  @override
+  String get book_visit_weekday_short_mon => 'T2';
+
+  @override
+  String get book_visit_weekday_short_tue => 'T3';
+
+  @override
+  String get book_visit_weekday_short_wed => 'T4';
+
+  @override
+  String get book_visit_weekday_short_thu => 'T5';
+
+  @override
+  String get book_visit_weekday_short_fri => 'T6';
+
+  @override
+  String get book_visit_weekday_short_sat => 'T7';
+
+  @override
+  String get book_visit_weekday_short_sun => 'CN';
 
   @override
   String get profile_gender_male => 'Nam';

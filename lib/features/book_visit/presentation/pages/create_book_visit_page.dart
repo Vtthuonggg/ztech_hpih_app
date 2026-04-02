@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:intl/intl.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/widgets/custom_date_picker.dart';
@@ -78,13 +79,9 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Đặt lịch khám',
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-      ),
+      appBar: AppBar(title: Text(l10n.book_visit_title)),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.fromLTRB(
@@ -101,7 +98,7 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _SectionCard(
-                      title: 'Thông tin người đặt lịch',
+                      title: l10n.book_visit_booker_info_title,
                       icon: IconsaxPlusLinear.user_edit,
                       child: Column(
                         children: [
@@ -110,14 +107,14 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
                             textInputAction: TextInputAction.next,
                             onTapOutside: (event) =>
                                 FocusScope.of(context).unfocus(),
-                            decoration: const InputDecoration(
-                              hintText: 'Họ và tên',
+                            decoration: InputDecoration(
+                              hintText: l10n.profile_name_hint,
                               prefixIcon: Icon(IconsaxPlusLinear.user),
                               suffix: _RequiredStar(),
                             ),
                             validator: (value) {
                               if ((value ?? '').trim().isEmpty) {
-                                return 'Bắt buộc';
+                                return l10n.profile_required;
                               }
                               return null;
                             },
@@ -127,13 +124,13 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
                             controller: _dobController,
                             readOnly: true,
                             onTap: _pickDateOfBirth,
-                            decoration: const InputDecoration(
-                              hintText: 'Ngày sinh',
+                            decoration: InputDecoration(
+                              hintText: l10n.profile_label_dob,
                               prefixIcon: Icon(IconsaxPlusLinear.cake),
                               suffix: _RequiredStar(),
                             ),
                             validator: (_) {
-                              if (_dateOfBirth == null) return 'Bắt buộc';
+                              if (_dateOfBirth == null) return l10n.profile_required;
                               return null;
                             },
                           ),
@@ -144,22 +141,25 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
                             textInputAction: TextInputAction.next,
                             onTapOutside: (event) =>
                                 FocusScope.of(context).unfocus(),
-                            decoration: const InputDecoration(
-                              hintText: 'Số điện thoại',
+                            decoration: InputDecoration(
+                              hintText: l10n.profile_phone_hint,
                               prefixIcon: Icon(IconsaxPlusLinear.call),
                               suffix: _RequiredStar(),
                             ),
                             validator: (value) {
                               final raw = (value ?? '').trim();
-                              if (raw.isEmpty) return 'Bắt buộc';
+                              if (raw.isEmpty) return l10n.profile_required;
                               if (raw.length < 9) {
-                                return 'Số điện thoại không hợp lệ';
+                                return l10n.profile_phone_invalid;
                               }
                               return null;
                             },
                           ),
                           const SizedBox(height: 14),
-                          _SectionLabel(title: 'Giới tính', required: true),
+                          _SectionLabel(
+                            title: l10n.profile_gender_label,
+                            required: true,
+                          ),
                           const SizedBox(height: 10),
                           GenderPicker(
                             value: _gender,
@@ -177,8 +177,8 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
                                 () => _isForeignPatient = value ?? false,
                               );
                             },
-                            title: const Text(
-                              'Đặt hẹn cho người nước ngoài',
+                            title: Text(
+                              l10n.book_visit_foreign_patient,
                               style: TextStyle(fontWeight: FontWeight.w600),
                             ),
                           ),
@@ -188,7 +188,7 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
 
                     const SizedBox(height: 16),
                     _SectionCard(
-                      title: "Thông tin đặt hẹn",
+                      title: l10n.book_visit_booking_info_title,
                       icon: IconsaxPlusLinear.info_circle,
                       child: Row(
                         children: [
@@ -221,7 +221,7 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
                                   ),
                                   alignment: Alignment.center,
                                   child: Text(
-                                    'Đặt lịch theo bác sĩ',
+                                    l10n.book_visit_by_doctor,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
@@ -267,7 +267,7 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
                                   ),
                                   alignment: Alignment.center,
                                   child: Text(
-                                    'Đặt lịch theo chuyên khoa',
+                                    l10n.book_visit_by_specialty,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
@@ -311,7 +311,7 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
                                   ),
                                   alignment: Alignment.center,
                                   child: Text(
-                                    'Đặt lịch theo triệu chứng',
+                                    l10n.book_visit_by_symptom,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
@@ -331,13 +331,13 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
                     ),
                     const SizedBox(height: 16),
                     _SectionCard(
-                      title: 'Lịch hẹn',
+                      title: l10n.book_visit_schedule_title,
                       icon: IconsaxPlusLinear.calendar,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const _SectionLabel(
-                            title: 'Chọn ngày khám',
+                          _SectionLabel(
+                            title: l10n.book_visit_select_visit_date,
                             required: true,
                           ),
                           const SizedBox(height: 12),
@@ -371,9 +371,9 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
                               Expanded(
                                 child: _DateChip(
                                   label: _isQuickDate(_appointmentDate)
-                                      ? 'Ngày khác'
+                                      ? l10n.book_visit_other_date
                                       : _appointmentDate == null
-                                      ? 'Ngày khác'
+                                      ? l10n.book_visit_other_date
                                       : DateFormat(
                                           'dd/MM',
                                         ).format(_appointmentDate!),
@@ -388,8 +388,8 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
                           ),
                           if (_appointmentDate != null) ...[
                             const SizedBox(height: 16),
-                            const _SectionLabel(
-                              title: 'Chọn buổi khám',
+                            _SectionLabel(
+                              title: l10n.book_visit_select_session,
                               required: true,
                             ),
                             const SizedBox(height: 10),
@@ -405,7 +405,7 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
                     ),
                     const SizedBox(height: 16),
                     _SectionCard(
-                      title: 'Lý do khám',
+                      title: l10n.book_visit_reason_title,
                       icon: IconsaxPlusLinear.note_text,
                       child: TextFormField(
                         controller: _reasonController,
@@ -414,9 +414,8 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
                         textInputAction: TextInputAction.newline,
                         onTapOutside: (event) =>
                             FocusScope.of(context).unfocus(),
-                        decoration: const InputDecoration(
-                          hintText:
-                              'Nhập lý do khám, triệu chứng hoặc nhu cầu tư vấn',
+                        decoration: InputDecoration(
+                          hintText: l10n.book_visit_reason_hint,
                           alignLabelWithHint: true,
                           prefixIcon: Padding(
                             padding: EdgeInsets.only(bottom: 88),
@@ -427,7 +426,7 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
                           suffix: _RequiredStar(),
                         ),
                         validator: (value) {
-                          if ((value ?? '').trim().isEmpty) return 'Bắt buộc';
+                          if ((value ?? '').trim().isEmpty) return l10n.profile_required;
                           return null;
                         },
                       ),
@@ -446,7 +445,7 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
                                   strokeWidth: 2,
                                 ),
                               )
-                            : const Text('Đặt lịch'),
+                            : Text(l10n.book_visit_submit_button),
                       ),
                     ),
                   ],
@@ -517,7 +516,7 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
 
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Đặt lịch thành công (mô phỏng).')),
+        SnackBar(content: Text(context.l10n.book_visit_success_toast)),
       );
       Navigator.of(context).pop(payload);
     } finally {
@@ -538,14 +537,15 @@ class _CreateBookVisitPageState extends ConsumerState<CreateBookVisitPage> {
   }
 
   String _formatQuickDate(DateTime date) {
+    final l10n = context.l10n;
     final weekday = switch (date.weekday) {
-      DateTime.monday => 'T2',
-      DateTime.tuesday => 'T3',
-      DateTime.wednesday => 'T4',
-      DateTime.thursday => 'T5',
-      DateTime.friday => 'T6',
-      DateTime.saturday => 'T7',
-      DateTime.sunday => 'CN',
+      DateTime.monday => l10n.book_visit_weekday_short_mon,
+      DateTime.tuesday => l10n.book_visit_weekday_short_tue,
+      DateTime.wednesday => l10n.book_visit_weekday_short_wed,
+      DateTime.thursday => l10n.book_visit_weekday_short_thu,
+      DateTime.friday => l10n.book_visit_weekday_short_fri,
+      DateTime.saturday => l10n.book_visit_weekday_short_sat,
+      DateTime.sunday => l10n.book_visit_weekday_short_sun,
       _ => '',
     };
     return '$weekday\n${DateFormat('dd/MM').format(date)}';
@@ -661,7 +661,7 @@ class _SessionPicker extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(
-                          session.label,
+                          session.label(context),
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
@@ -761,11 +761,20 @@ class _RequiredStar extends StatelessWidget {
 }
 
 enum _AppointmentSession {
-  morning('Sáng', 'morning'),
-  afternoon('Chiều', 'afternoon');
+  morning('morning'),
+  afternoon('afternoon');
 
-  const _AppointmentSession(this.label, this.apiValue);
+  const _AppointmentSession(this.apiValue);
 
-  final String label;
   final String apiValue;
+
+  String label(BuildContext context) {
+    final l10n = context.l10n;
+    switch (this) {
+      case _AppointmentSession.morning:
+        return l10n.book_visit_session_morning;
+      case _AppointmentSession.afternoon:
+        return l10n.book_visit_session_afternoon;
+    }
+  }
 }

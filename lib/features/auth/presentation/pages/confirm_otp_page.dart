@@ -71,12 +71,7 @@ class _ConfirmOtpPageState extends ConsumerState<ConfirmOtpPage>
     final l10n = context.l10n;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          l10n.auth_confirm_otp_title,
-          style: const TextStyle(fontWeight: FontWeight.w600),
-        ),
-      ),
+      appBar: AppBar(title: Text(l10n.auth_confirm_otp_title)),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),

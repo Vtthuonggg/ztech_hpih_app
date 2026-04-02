@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:motion_toast/motion_toast.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 
 class ToastHelper {
   static void success(
     BuildContext context, {
     required String message,
-    String title = 'Thành công',
+    String? title,
   }) {
+    final l10n = context.l10n;
     MotionToast(
       icon: IconsaxPlusLinear.tick_circle,
       primaryColor: const Color(0xFF6FCF97),
       secondaryColor: Colors.white,
       title: Text(
-        title,
+        title ?? l10n.common_toast_success_title,
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           color: Colors.white,
@@ -41,14 +43,15 @@ class ToastHelper {
   static void error(
     BuildContext context, {
     required String message,
-    String title = 'Lỗi',
+    String? title,
   }) {
+    final l10n = context.l10n;
     MotionToast(
       icon: IconsaxPlusLinear.info_circle,
       primaryColor: const Color(0xFFEB5758),
       secondaryColor: Colors.white,
       title: Text(
-        title,
+        title ?? l10n.common_toast_error_title,
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           color: Colors.white,
@@ -76,15 +79,16 @@ class ToastHelper {
   static void warning(
     BuildContext context, {
     required String message,
-    String title = 'Cảnh báo',
+    String? title,
   }) {
+    final l10n = context.l10n;
     MotionToast(
       icon: IconsaxPlusLinear.warning_2,
       primaryColor: const Color(0xFFF2C94C),
       secondaryColor: Colors.white,
 
       title: Text(
-        title,
+        title ?? l10n.common_toast_warning_title,
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           color: Colors.white,
@@ -112,14 +116,15 @@ class ToastHelper {
   static void info(
     BuildContext context, {
     required String message,
-    String title = 'Thông tin',
+    String? title,
   }) {
+    final l10n = context.l10n;
     MotionToast(
       icon: IconsaxPlusLinear.info_circle,
       primaryColor: const Color(0xFF3081ED),
       secondaryColor: Colors.white,
       title: Text(
-        title,
+        title ?? l10n.common_toast_info_title,
         style: const TextStyle(
           fontWeight: FontWeight.bold,
           color: Colors.white,

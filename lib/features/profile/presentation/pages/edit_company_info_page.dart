@@ -53,7 +53,6 @@ class _EditCompanyInfoState extends ConsumerState<EditCompanyInfoPage> {
           _isEditMode
               ? l10n.profile_company_edit_title
               : l10n.profile_company_add_title,
-          style: const TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
       body: SafeArea(

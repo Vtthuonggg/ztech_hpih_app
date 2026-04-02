@@ -12,7 +12,14 @@ class AppTheme {
   static const Color successColor = Color(0xFF2EC4B6);
 
   static ThemeData lightTheme = ThemeData(
-    appBarTheme: const AppBarTheme(backgroundColor: Colors.white),
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.white,
+      titleTextStyle: TextStyle(
+        color: Colors.black,
+        fontSize: 20,
+        fontWeight: FontWeight.w600,
+      ),
+    ),
     useMaterial3: true,
     colorScheme: ColorScheme.fromSeed(
       seedColor: primaryColor,
@@ -49,7 +56,7 @@ class AppTheme {
         foregroundColor: Colors.white,
         textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         elevation: 8,
-        shadowColor: AppTheme.secondaryColor.withValues(alpha: 0.3),
+        shadowColor: AppTheme.primaryColor.withValues(alpha: 0.3),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
@@ -95,7 +102,7 @@ class AppTheme {
         ),
         elevation: WidgetStateProperty.all(8),
         shadowColor: WidgetStateProperty.all(
-          AppTheme.secondaryColor.withValues(alpha: 0.3),
+          AppTheme.primaryColor.withValues(alpha: 0.3),
         ),
       ),
     ),

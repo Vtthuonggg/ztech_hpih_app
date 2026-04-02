@@ -19,24 +19,25 @@ class DetailProfilePage extends ConsumerStatefulWidget {
 }
 
 class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
-  final Map<String, dynamic> _healthInsurance = {
+  Map<String, dynamic> _healthInsurance(BuildContext context) => {
     'id': 1,
     'code': 'HN-1234-5678-9012',
-    'registration_location': 'Bệnh viện Đa khoa Quốc tế Hải Phòng',
+    'registration_location': context.l10n.profile_demo_registration_location_hpih,
   };
 
-  final Map<String, dynamic> _privateInsurance = {
+  Map<String, dynamic> _privateInsurance(BuildContext context) => {
     'id': 2,
     'code': 'PVI-8899-XX12',
-    'registration_location': 'Phòng khám Vinmec Hải Phòng',
+    'registration_location':
+        context.l10n.profile_demo_registration_location_vinmec,
     'expiration_date': '2027-12-31T00:00:00.000',
   };
 
-  final Map<String, dynamic> _companyInfo = {
+  Map<String, dynamic> _companyInfo(BuildContext context) => {
     'id': 3,
     'name': 'ZTech Healthcare',
     'tax_code': '0201234567',
-    'address': '124 Nguyễn Đức Cảnh, Hải Phòng',
+    'address': context.l10n.profile_demo_address_hp,
   };
 
   @override
@@ -45,12 +46,7 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
     return Scaffold(
       backgroundColor: Colors.grey[50],
 
-      appBar: AppBar(
-        title: Text(
-          l10n.profile_personal_info,
-          style: TextStyle(fontWeight: FontWeight.w500),
-        ),
-      ),
+      appBar: AppBar(title: Text(l10n.profile_personal_info)),
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -99,7 +95,7 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
                     onPressed: () {
                       context.push(
                         EditCompanyInfoPage.path,
-                        extra: {'edit_data': _companyInfo},
+                        extra: {'edit_data': _companyInfo(context)},
                       );
                     },
                     child: Text(l10n.profile_edit_button),
@@ -127,13 +123,13 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
           children: [
             _InsuranceRow(
               title: l10n.profile_insurance_health,
-              data: _healthInsurance,
+              data: _healthInsurance(context),
               onTap: () {
                 context.push(
                   EditInsurancePage.path,
                   extra: {
                     'is_private_insurance': false,
-                    'edit_data': _healthInsurance,
+                    'edit_data': _healthInsurance(context),
                   },
                 );
               },
@@ -141,13 +137,13 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
             const SizedBox(height: 12),
             _InsuranceRow(
               title: l10n.profile_insurance_private,
-              data: _privateInsurance,
+              data: _privateInsurance(context),
               onTap: () {
                 context.push(
                   EditInsurancePage.path,
                   extra: {
                     'is_private_insurance': true,
-                    'edit_data': _privateInsurance,
+                    'edit_data': _privateInsurance(context),
                   },
                 );
               },
@@ -171,7 +167,7 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
           children: [
             InforRow(
               title: l10n.profile_label_full_name,
-              value: 'Nguyễn Văn A',
+              value: l10n.profile_demo_full_name,
             ),
             const SizedBox(height: 12),
             InforRow(title: l10n.profile_label_dob, value: '01/01/1990'),
@@ -181,7 +177,10 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
             InforRow(title: l10n.profile_label_email),
             const SizedBox(height: 12),
 
-            InforRow(title: l10n.profile_label_gender, value: 'Nam'),
+            InforRow(
+              title: l10n.profile_label_gender,
+              value: l10n.profile_gender_male,
+            ),
             const SizedBox(height: 12),
           ],
         ),
@@ -205,12 +204,20 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
               value: '031203010143',
             ),
             const SizedBox(height: 12),
-            InforRow(title: l10n.profile_job_hint, value: 'Lập trình viên'),
+            InforRow(
+              title: l10n.profile_job_hint,
+              value: l10n.profile_demo_occupation_programmer,
+            ),
             const SizedBox(height: 12),
-
-            InforRow(title: l10n.profile_nationality_hint, value: 'Việt Nam'),
+            InforRow(
+              title: l10n.profile_nationality_hint,
+              value: l10n.profile_demo_nationality_vietnam,
+            ),
             const SizedBox(height: 12),
-            InforRow(title: l10n.profile_nation_hint, value: 'Kinh'),
+            InforRow(
+              title: l10n.profile_nation_hint,
+              value: l10n.profile_demo_ethnicity_kinh,
+            ),
             const SizedBox(height: 12),
           ],
         ),
@@ -231,17 +238,17 @@ class _DetailProfilePageState extends ConsumerState<DetailProfilePage> {
           children: [
             InforRow(
               title: l10n.profile_company_name,
-              value: _companyInfo['name'] as String?,
+              value: _companyInfo(context)['name'] as String?,
             ),
             const SizedBox(height: 12),
             InforRow(
               title: l10n.profile_company_tax_code,
-              value: _companyInfo['tax_code'] as String?,
+              value: _companyInfo(context)['tax_code'] as String?,
             ),
             const SizedBox(height: 12),
             InforRow(
               title: l10n.profile_company_address,
-              value: _companyInfo['address'] as String?,
+              value: _companyInfo(context)['address'] as String?,
             ),
             const SizedBox(height: 12),
           ],
@@ -340,7 +347,7 @@ class MenuCard extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: AppTheme.secondaryColor,
+                color: AppTheme.primaryColor,
               ),
             ),
             trailing: trailing,

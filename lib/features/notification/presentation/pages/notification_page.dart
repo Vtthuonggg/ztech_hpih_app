@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 
 class NotificationPage extends ConsumerStatefulWidget {
   const NotificationPage({super.key});
@@ -11,40 +12,41 @@ class NotificationPage extends ConsumerStatefulWidget {
 }
 
 class _NotificationPageState extends ConsumerState<NotificationPage> {
-  final List<Map<String, String>> _samples = [
-    {
-      'title': 'Appointment confirmed',
-      'description':
-          'Your appointment with Dr. Nguyen on 28 Mar at 10:00 is confirmed.',
-      'time': '2h',
-      'url': 'https://hih.vn/',
-    },
-    {
-      'title': 'New message from clinic',
-      'description':
-          'Please complete your pre-visit questionnaire before the appointment.',
-      'time': '6h',
-      'url': 'https://hih.vn/',
-    },
-    {
-      'title': 'Prescription ready',
-      'description': 'Your prescription for Amoxicillin is ready for pickup.',
-      'time': '1d',
-      'url': 'https://hih.vn/',
-    },
-    {
-      'title': 'Vaccine schedule',
-      'description': 'New vaccine slots are available next week. Book now.',
-      'time': '3d',
-      'url': 'https://hih.vn/',
-    },
-  ];
-
   Future<void> _onRefresh() async {
     // mock refresh
     await Future.delayed(const Duration(milliseconds: 600));
     // in real app, trigger provider refresh here
     setState(() {});
+  }
+
+  List<Map<String, String>> _samples(BuildContext context) {
+    final l10n = context.l10n;
+    return [
+      {
+        'title': l10n.notification_sample_appointment_confirmed_title,
+        'description': l10n.notification_sample_appointment_confirmed_desc,
+        'time': '2h',
+        'url': 'https://hih.vn/',
+      },
+      {
+        'title': l10n.notification_sample_clinic_message_title,
+        'description': l10n.notification_sample_clinic_message_desc,
+        'time': '6h',
+        'url': 'https://hih.vn/',
+      },
+      {
+        'title': l10n.notification_sample_prescription_ready_title,
+        'description': l10n.notification_sample_prescription_ready_desc,
+        'time': '1d',
+        'url': 'https://hih.vn/',
+      },
+      {
+        'title': l10n.notification_sample_vaccine_schedule_title,
+        'description': l10n.notification_sample_vaccine_schedule_desc,
+        'time': '3d',
+        'url': 'https://hih.vn/',
+      },
+    ];
   }
 
   Widget _buildItem(Map<String, String> item) {
@@ -73,15 +75,16 @@ class _NotificationPageState extends ConsumerState<NotificationPage> {
 
   @override
   Widget build(BuildContext context) {
+    final samples = _samples(context);
     return Scaffold(
-      appBar: AppBar(title: const Text('Notifications'), centerTitle: true),
+      appBar: AppBar(title: Text(context.l10n.notification_title), centerTitle: true),
       body: RefreshIndicator(
         onRefresh: _onRefresh,
         child: ListView.builder(
           physics: const AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.symmetric(vertical: 8),
-          itemCount: _samples.length,
-          itemBuilder: (_, index) => _buildItem(_samples[index]),
+          itemCount: samples.length,
+          itemBuilder: (_, index) => _buildItem(samples[index]),
         ),
       ),
     );

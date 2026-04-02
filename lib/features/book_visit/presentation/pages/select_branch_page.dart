@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 
 Future<String?> showSelectBranchSheet(BuildContext context) {
   return showModalBottomSheet<String?>(
@@ -36,7 +37,7 @@ Future<String?> showSelectBranchSheet(BuildContext context) {
                 ),
                 const SizedBox(height: 14),
                 Text(
-                  'Chọn chi nhánh',
+                  ctx.l10n.book_visit_select_branch_title,
                   style: Theme.of(ctx).textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.w800,
                     color: Colors.grey[900],
@@ -70,7 +71,7 @@ Future<String?> showSelectBranchSheet(BuildContext context) {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    branch.label,
+                                    branch.label(ctx),
                                     style: const TextStyle(
                                       fontWeight: FontWeight.w700,
                                       color: Color(0xFF101828),
@@ -99,11 +100,22 @@ Future<String?> showSelectBranchSheet(BuildContext context) {
 }
 
 enum _BookingBranch {
-  leChan('Chi nhánh Lê Chân', 'le_chan'),
-  vinhBao('Chi nhánh Vĩnh Bảo', 'vinh_bao'),
-  anDuong('Chi nhánh An Dương', 'an_duong');
+  leChan('le_chan'),
+  vinhBao('vinh_bao'),
+  anDuong('an_duong');
 
-  const _BookingBranch(this.label, this.apiValue);
-  final String label;
+  const _BookingBranch(this.apiValue);
   final String apiValue;
+
+  String label(BuildContext context) {
+    final l10n = context.l10n;
+    switch (this) {
+      case _BookingBranch.leChan:
+        return l10n.book_visit_branch_le_chan;
+      case _BookingBranch.vinhBao:
+        return l10n.book_visit_branch_vinh_bao;
+      case _BookingBranch.anDuong:
+        return l10n.book_visit_branch_an_duong;
+    }
+  }
 }

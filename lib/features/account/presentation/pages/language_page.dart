@@ -14,32 +14,24 @@ class LanguagePage extends ConsumerWidget {
     final notifier = ref.read(localeProvider.notifier);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.l10n.account_language),
-        backgroundColor: AppTheme.primaryColor,
-      ),
+      appBar: AppBar(title: Text(context.l10n.account_language)),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           children: [
             const SizedBox(height: 8),
             _LanguageOption(
-              label: 'Tiếng Việt',
+              label: context.l10n.account_language_vietnamese,
               localeValue: const Locale('vi', 'VN'),
               groupValue: locale,
               onSelected: (v) => notifier.state = v,
             ),
             const SizedBox(height: 12),
             _LanguageOption(
-              label: 'English',
+              label: context.l10n.account_language_english,
               localeValue: const Locale('en', 'US'),
               groupValue: locale,
               onSelected: (v) => notifier.state = v,
-            ),
-            const SizedBox(height: 24),
-            Text(
-              context.l10n.app_title,
-              style: const TextStyle(fontSize: 12, color: Colors.grey),
             ),
           ],
         ),
@@ -67,7 +59,7 @@ class _LanguageOption extends StatelessWidget {
     return Material(
       color: Colors.white,
       elevation: selected ? 6 : 0,
-      shadowColor: Colors.black.withOpacity(0.06),
+      shadowColor: Colors.black.withValues(alpha: 0.06),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
         side: BorderSide(
@@ -88,9 +80,7 @@ class _LanguageOption extends StatelessWidget {
                 ),
               ),
               if (selected)
-                Icon(Icons.check_circle, color: AppTheme.primaryColor)
-              else
-                const Icon(Icons.chevron_right, color: Color(0xFF98A2B3)),
+                Icon(Icons.check_circle, color: AppTheme.primaryColor),
             ],
           ),
         ),

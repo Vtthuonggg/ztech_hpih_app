@@ -55,10 +55,7 @@ class _AddProfileByCodePageState extends ConsumerState<AddProfileByCodePage> {
       child: Scaffold(
         backgroundColor: Colors.grey[50],
         appBar: AppBar(
-          title: Text(
-            l10n.profile_add_by_code_title,
-            style: TextStyle(fontWeight: FontWeight.w600),
-          ),
+          title: Text(l10n.profile_add_by_code_title),
           bottom: TabBar(
             indicatorSize: TabBarIndicatorSize.tab,
             dividerColor: Colors.transparent,

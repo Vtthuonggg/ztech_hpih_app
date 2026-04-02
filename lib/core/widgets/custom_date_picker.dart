@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:intl/intl.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 
 import '../theme/app_theme.dart';
 
@@ -179,11 +179,12 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   }
 
   Widget _buildHeader() {
+    final l10n = context.l10n;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'Chọn ngày',
+          l10n.common_select_date,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -201,6 +202,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   }
 
   Widget _buildMonthNavigation() {
+    final locale = Localizations.localeOf(context).languageCode;
     return Container(
       padding: EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
@@ -230,7 +232,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
-                    'Tháng ${focusedDay.month}',
+                    DateFormat.MMMM(locale).format(focusedDay),
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -275,6 +277,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   }
 
   Widget _buildYearSelector() {
+    final l10n = context.l10n;
     final currentYear = DateTime.now().year;
     final startYear = widget.firstDate?.year ?? 2000;
     final endYear = widget.lastDate?.year ?? currentYear + 10;
@@ -300,7 +303,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                   },
                   icon: Icon(Icons.arrow_back, color: primaryColor, size: 20),
                   label: Text(
-                    'Chọn năm',
+                    l10n.common_select_year,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -367,20 +370,12 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   }
 
   Widget _buildMonthSelector() {
-    final months = [
-      'Tháng 1',
-      'Tháng 2',
-      'Tháng 3',
-      'Tháng 4',
-      'Tháng 5',
-      'Tháng 6',
-      'Tháng 7',
-      'Tháng 8',
-      'Tháng 9',
-      'Tháng 10',
-      'Tháng 11',
-      'Tháng 12',
-    ];
+    final l10n = context.l10n;
+    final locale = Localizations.localeOf(context).languageCode;
+    final months = List<String>.generate(
+      12,
+      (index) => DateFormat.MMMM(locale).format(DateTime(2024, index + 1)),
+    );
 
     return SizedBox(
       height: 300,
@@ -403,7 +398,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                   },
                   icon: Icon(Icons.arrow_back, color: primaryColor, size: 20),
                   label: Text(
-                    'Chọn tháng - ${focusedDay.year}',
+                    l10n.common_select_month_with_year(focusedDay.year),
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -592,6 +587,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   }
 
   Widget _buildSelectedDateDisplay() {
+    final locale = Localizations.localeOf(context).languageCode;
     return Container(
       padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -604,7 +600,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
           Icon(IconsaxPlusLinear.calendar, size: 16, color: primaryColor),
           SizedBox(width: 8),
           Text(
-            DateFormat('EEEE, dd/MM/yyyy', 'vi').format(selectedDate!),
+            DateFormat('EEEE, dd/MM/yyyy', locale).format(selectedDate!),
             style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
@@ -617,6 +613,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   }
 
   Widget _buildActionButtons() {
+    final l10n = context.l10n;
     return Row(
       children: [
         Expanded(
@@ -630,7 +627,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
             ),
             onPressed: () => Navigator.pop(context),
             child: Text(
-              'Hủy',
+              l10n.common_cancel,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -653,7 +650,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
               Navigator.pop(context, selectedDate);
             },
             child: Text(
-              'Áp dụng',
+              l10n.common_apply,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,

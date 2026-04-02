@@ -67,12 +67,7 @@ class _GeneralHealthPageState extends State<GeneralHealthPage> {
     final l10n = context.l10n;
     return Scaffold(
       backgroundColor: const Color(0xFFF7F8FA),
-      appBar: AppBar(
-        title: Text(
-          l10n.profile_general_health_title,
-          style: const TextStyle(fontWeight: FontWeight.w700),
-        ),
-      ),
+      appBar: AppBar(title: Text(l10n.profile_general_health_title)),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 
 import '../theme/app_theme.dart';
 
@@ -9,11 +10,11 @@ class CustomTimePicker extends StatefulWidget {
   final bool use24HourFormat;
 
   const CustomTimePicker({
-    Key? key,
+    super.key,
     required this.initialTime,
     this.primaryColor,
     this.use24HourFormat = true,
-  }) : super(key: key);
+  });
 
   static Future<TimeOfDay?> show({
     required BuildContext context,
@@ -89,11 +90,12 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
   }
 
   Widget _buildHeader() {
+    final l10n = context.l10n;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'Chọn thời gian',
+          l10n.common_select_time,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -114,7 +116,7 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       decoration: BoxDecoration(
-        color: primaryColor.withOpacity(0.1),
+        color: primaryColor.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
@@ -156,7 +158,8 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
                   selectedHour = value;
                 });
               },
-              label: 'Giờ',
+              label: context.l10n.common_hour,
+              isHour: true,
             ),
           ),
           Container(
@@ -179,7 +182,8 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
                   selectedMinute = value;
                 });
               },
-              label: 'Phút',
+              label: context.l10n.common_minute,
+              isHour: false,
             ),
           ),
         ],
@@ -193,6 +197,7 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
     required int selectedValue,
     required Function(int) onChanged,
     required String label,
+    required bool isHour,
   }) {
     return Stack(
       children: [
@@ -201,8 +206,8 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
           child: Container(
             height: 50,
             decoration: BoxDecoration(
-              color: primaryColor.withOpacity(0.15),
-              borderRadius: label == 'Giờ'
+              color: primaryColor.withValues(alpha: 0.15),
+              borderRadius: isHour
                   ? BorderRadius.only(
                       topLeft: Radius.circular(8),
                       topRight: Radius.circular(0),
@@ -282,6 +287,7 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
   }
 
   Widget _buildActionButtons() {
+    final l10n = context.l10n;
     return Row(
       children: [
         Expanded(
@@ -295,7 +301,7 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
             ),
             onPressed: () => Navigator.pop(context),
             child: Text(
-              'Hủy',
+              l10n.common_cancel,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -321,7 +327,7 @@ class _CustomTimePickerState extends State<CustomTimePicker> {
               );
             },
             child: Text(
-              'Áp dụng',
+              l10n.common_apply,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   static const path = '/account/reset-password';
@@ -31,8 +32,9 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
-      appBar: AppBar(title: const Text('Đổi mật khẩu')),
+      appBar: AppBar(title: Text(l10n.account_reset_password_title)),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.only(
@@ -54,8 +56,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   obscureText: _obscureCurrent,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                    labelText: 'Mật khẩu hiện tại',
-                    hintText: 'Nhập mật khẩu hiện tại',
+                    labelText: l10n.account_current_password_label,
+                    hintText: l10n.account_current_password_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.lock),
                     suffixIcon: IconButton(
                       icon: Icon(
@@ -78,8 +80,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   obscureText: _obscureNew,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                    labelText: 'Mật khẩu mới',
-                    hintText: 'Nhập mật khẩu mới',
+                    labelText: l10n.account_new_password_label,
+                    hintText: l10n.account_new_password_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.lock),
                     suffixIcon: IconButton(
                       icon: Icon(
@@ -103,8 +105,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   textInputAction: TextInputAction.done,
                   onFieldSubmitted: (_) => _handleSave(),
                   decoration: InputDecoration(
-                    labelText: 'Xác nhận mật khẩu mới',
-                    hintText: 'Nhập lại mật khẩu mới',
+                    labelText: l10n.account_confirm_new_password_label,
+                    hintText: l10n.account_confirm_new_password_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.lock),
                     suffixIcon: IconButton(
                       icon: Icon(
@@ -134,7 +136,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: _handleSave,
-                  child: const Text('Xác nhận'),
+                  child: Text(l10n.auth_confirm_button),
                 ),
               ],
             ),
@@ -145,12 +147,13 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   }
 
   void _handleSave() async {
+    final l10n = context.l10n;
     final newPwd = _newController.text;
     final confirm = _confirmController.text;
 
     if (newPwd != confirm) {
       setState(() {
-        _errorMessage = 'Mật khẩu xác nhận không trùng khớp';
+        _errorMessage = l10n.auth_password_mismatch_error;
       });
       return;
     }
@@ -169,7 +172,9 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
       if (!mounted) return;
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('Đổi mật khẩu thành công')));
+      ).showSnackBar(
+        SnackBar(content: Text(l10n.account_reset_password_success)),
+      );
       Navigator.of(context).pop();
     } catch (e) {
       setState(() {

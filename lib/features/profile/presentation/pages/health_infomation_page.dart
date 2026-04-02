@@ -58,12 +58,12 @@ class _HealthInfomationPageState extends ConsumerState<HealthInfomationPage> {
                           const SizedBox(height: 12),
                           InforRow(
                             title: l10n.profile_label_weight,
-                            value: '50kg',
+                            value: '50 ${l10n.profile_unit_kg}',
                           ),
                           const SizedBox(height: 12),
                           InforRow(
                             title: l10n.profile_label_height,
-                            value: '170cm',
+                            value: '170 ${l10n.profile_unit_cm}',
                           ),
                           const SizedBox(height: 12),
                         ],
@@ -84,7 +84,7 @@ class _HealthInfomationPageState extends ConsumerState<HealthInfomationPage> {
                         children: lifeStyleHabitItems
                             .map(
                               (e) => _MenuItem(
-                                title: e.title,
+                                title: e.titleBuilder(l10n),
                                 routePath: e.routePath,
                               ),
                             )
@@ -106,7 +106,7 @@ class _HealthInfomationPageState extends ConsumerState<HealthInfomationPage> {
                         children: allergyInfomationItems
                             .map(
                               (e) => _MenuItem(
-                                title: e.title,
+                                title: e.titleBuilder(l10n),
                                 routePath: e.routePath,
                               ),
                             )
@@ -125,9 +125,9 @@ class _HealthInfomationPageState extends ConsumerState<HealthInfomationPage> {
 }
 
 class _MenuItem extends StatelessWidget {
-  String title;
-  String routePath;
-  _MenuItem({required this.title, required this.routePath});
+  final String title;
+  final String routePath;
+  const _MenuItem({required this.title, required this.routePath});
 
   @override
   Widget build(BuildContext context) {

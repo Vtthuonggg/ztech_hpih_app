@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 
 import '../theme/app_theme.dart';
 
@@ -26,18 +27,18 @@ class SelectOptionBottomSheet extends StatelessWidget {
     super.key,
     required this.title,
     required this.options,
-    this.closeText = 'Đóng',
+    this.closeText,
   });
 
   final String title;
   final List<SelectOptionBottomSheetOption> options;
-  final String closeText;
+  final String? closeText;
 
   static Future<T?> show<T>(
     BuildContext context, {
     required String title,
     required List<SelectOptionBottomSheetOption> options,
-    String closeText = 'Đóng',
+    String? closeText,
   }) {
     return showModalBottomSheet<T>(
       context: context,
@@ -60,6 +61,7 @@ class SelectOptionBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final resolvedCloseText = closeText ?? context.l10n.common_close;
     return Padding(
       padding: EdgeInsets.only(
         left: 16,
@@ -103,7 +105,7 @@ class SelectOptionBottomSheet extends StatelessWidget {
                 ),
               ),
               child: Text(
-                closeText,
+                resolvedCloseText,
                 style: const TextStyle(fontWeight: FontWeight.w700),
               ),
             ),

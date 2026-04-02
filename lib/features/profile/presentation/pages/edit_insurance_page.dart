@@ -81,9 +81,7 @@ class _EditInsurancePageState extends ConsumerState<EditInsurancePage> {
         : l10n.profile_insurance_health;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
-      ),
+      appBar: AppBar(title: Text(title)),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),

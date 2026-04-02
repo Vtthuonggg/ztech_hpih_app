@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 
 import '../widgets/app_loading.dart';
 
@@ -7,10 +8,11 @@ class DialogUtils {
     BuildContext context, {
     required String title,
     required String message,
-    String confirmText = 'Xác nhận',
-    String cancelText = 'Huỷ',
+    String? confirmText,
+    String? cancelText,
     bool isDangerous = false,
   }) {
+    final l10n = context.l10n;
     return showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
@@ -19,14 +21,14 @@ class DialogUtils {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: Text(cancelText),
+            child: Text(cancelText ?? l10n.common_cancel),
           ),
           ElevatedButton(
             onPressed: () => Navigator.of(context).pop(true),
             style: isDangerous
                 ? ElevatedButton.styleFrom(backgroundColor: Colors.red)
                 : null,
-            child: Text(confirmText),
+            child: Text(confirmText ?? l10n.common_confirm),
           ),
         ],
       ),
@@ -37,8 +39,9 @@ class DialogUtils {
     BuildContext context, {
     required String title,
     required String message,
-    String buttonText = 'OK',
+    String? buttonText,
   }) {
+    final l10n = context.l10n;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -47,7 +50,7 @@ class DialogUtils {
         actions: [
           ElevatedButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Text(buttonText),
+            child: Text(buttonText ?? l10n.common_ok),
           ),
         ],
       ),
@@ -58,8 +61,8 @@ class DialogUtils {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => WillPopScope(
-        onWillPop: () async => false,
+      builder: (context) => PopScope(
+        canPop: false,
         child: AlertDialog(
           content: Column(
             mainAxisSize: MainAxisSize.min,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:intl/intl.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 
 import '../theme/app_theme.dart';
 
@@ -12,12 +12,12 @@ class CustomDateRangePicker extends StatefulWidget {
   final Color? primaryColor;
 
   const CustomDateRangePicker({
-    Key? key,
+    super.key,
     required this.initialDateRange,
     this.firstDate,
     this.lastDate,
     this.primaryColor,
-  }) : super(key: key);
+  });
 
   static Future<DateTimeRange?> show({
     required BuildContext context,
@@ -137,11 +137,12 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
   }
 
   Widget _buildHeader() {
+    final l10n = context.l10n;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          'Chọn khoảng thời gian',
+          l10n.common_select_date_range,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -159,6 +160,7 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
   }
 
   Widget _buildMonthNavigation() {
+    final locale = Localizations.localeOf(context).languageCode;
     return Container(
       padding: EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(
@@ -188,7 +190,7 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
-                    'Tháng ${focusedDay.month}',
+                    DateFormat.MMMM(locale).format(focusedDay),
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -233,11 +235,12 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
   }
 
   Widget _buildYearSelector() {
+    final l10n = context.l10n;
     final currentYear = DateTime.now().year;
     final startYear = widget.firstDate?.year ?? 2000;
     final endYear = widget.lastDate?.year ?? currentYear;
 
-    return Container(
+    return SizedBox(
       height: 300,
       child: Column(
         children: [
@@ -258,7 +261,7 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
                   },
                   icon: Icon(Icons.arrow_back, color: primaryColor, size: 20),
                   label: Text(
-                    'Chọn năm',
+                    l10n.common_select_year,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -314,22 +317,14 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
   }
 
   Widget _buildMonthSelector() {
-    final months = [
-      'Tháng 1',
-      'Tháng 2',
-      'Tháng 3',
-      'Tháng 4',
-      'Tháng 5',
-      'Tháng 6',
-      'Tháng 7',
-      'Tháng 8',
-      'Tháng 9',
-      'Tháng 10',
-      'Tháng 11',
-      'Tháng 12',
-    ];
+    final l10n = context.l10n;
+    final locale = Localizations.localeOf(context).languageCode;
+    final months = List<String>.generate(
+      12,
+      (index) => DateFormat.MMMM(locale).format(DateTime(2024, index + 1)),
+    );
 
-    return Container(
+    return SizedBox(
       height: 300,
       child: Column(
         children: [
@@ -350,7 +345,7 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
                   },
                   icon: Icon(Icons.arrow_back, color: primaryColor, size: 20),
                   label: Text(
-                    'Chọn tháng - ${focusedDay.year}',
+                    l10n.common_select_month_with_year(focusedDay.year),
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
@@ -414,7 +409,7 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
     final lastDate = widget.lastDate ?? now;
 
     // Fixed height: always show 6 rows (max possible)
-    return Container(
+    return SizedBox(
       height: 260, // Fixed height để không bị nhảy
       child: Column(
         children: [
@@ -485,12 +480,12 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
                           child: Container(
                             margin: EdgeInsets.all(2),
                             decoration: BoxDecoration(
-                              color: isStartDate || isEndDate
+                                  color: isStartDate || isEndDate
                                   ? primaryColor
                                   : isInRange
-                                  ? primaryColor.withOpacity(0.2)
+                                  ? primaryColor.withValues(alpha: 0.2)
                                   : isToday
-                                  ? primaryColor.withOpacity(0.1)
+                                  ? primaryColor.withValues(alpha: 0.1)
                                   : Colors.transparent,
                               borderRadius: BorderRadius.circular(8),
                               border: isToday && !isStartDate && !isEndDate
@@ -534,7 +529,7 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
     return Container(
       padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: primaryColor.withOpacity(0.1),
+        color: primaryColor.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -558,6 +553,7 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
   }
 
   Widget _buildActionButtons() {
+    final l10n = context.l10n;
     final canApply = tempStartDate != null && tempEndDate != null;
 
     return Row(
@@ -573,7 +569,7 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
             ),
             onPressed: () => Navigator.pop(context),
             child: Text(
-              'Hủy',
+              l10n.common_cancel,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -601,7 +597,7 @@ class _CustomDateRangePickerState extends State<CustomDateRangePicker> {
                   }
                 : null,
             child: Text(
-              'Áp dụng',
+              l10n.common_apply,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,

@@ -40,12 +40,7 @@ class _AdditionalInformationPageState
     final l10n = context.l10n;
     return Scaffold(
       backgroundColor: Colors.grey[50],
-      appBar: AppBar(
-        title: Text(
-          l10n.profile_additional_title,
-          style: TextStyle(fontWeight: FontWeight.w600),
-        ),
-      ),
+      appBar: AppBar(title: Text(l10n.profile_additional_title)),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),

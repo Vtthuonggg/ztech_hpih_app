@@ -332,6 +332,102 @@ abstract class AppLocalizations {
   /// **'-'**
   String get common_placeholder_unknown;
 
+  /// No description provided for @common_close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get common_close;
+
+  /// No description provided for @common_confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get common_confirm;
+
+  /// No description provided for @common_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get common_cancel;
+
+  /// No description provided for @common_apply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get common_apply;
+
+  /// No description provided for @common_ok.
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get common_ok;
+
+  /// No description provided for @common_select_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Select date'**
+  String get common_select_date;
+
+  /// No description provided for @common_select_time.
+  ///
+  /// In en, this message translates to:
+  /// **'Select time'**
+  String get common_select_time;
+
+  /// No description provided for @common_select_date_range.
+  ///
+  /// In en, this message translates to:
+  /// **'Select date range'**
+  String get common_select_date_range;
+
+  /// No description provided for @common_select_year.
+  ///
+  /// In en, this message translates to:
+  /// **'Select year'**
+  String get common_select_year;
+
+  /// No description provided for @common_select_month_with_year.
+  ///
+  /// In en, this message translates to:
+  /// **'Select month - {year}'**
+  String common_select_month_with_year(Object year);
+
+  /// No description provided for @common_hour.
+  ///
+  /// In en, this message translates to:
+  /// **'Hour'**
+  String get common_hour;
+
+  /// No description provided for @common_minute.
+  ///
+  /// In en, this message translates to:
+  /// **'Minute'**
+  String get common_minute;
+
+  /// No description provided for @common_toast_success_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get common_toast_success_title;
+
+  /// No description provided for @common_toast_error_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get common_toast_error_title;
+
+  /// No description provided for @common_toast_warning_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning'**
+  String get common_toast_warning_title;
+
+  /// No description provided for @common_toast_info_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Information'**
+  String get common_toast_info_title;
+
   /// No description provided for @dashboard_appointments.
   ///
   /// In en, this message translates to:
@@ -500,6 +596,66 @@ abstract class AppLocalizations {
   /// **'INTERNATIONAL GENERAL HOSPITAL HAI PHONG\n124 Nguyen Duc Canh, Cat Dai, Le Chan District, Hai Phong'**
   String get account_hospital_contact;
 
+  /// No description provided for @account_reset_password_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Change password'**
+  String get account_reset_password_title;
+
+  /// No description provided for @account_current_password_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Current password'**
+  String get account_current_password_label;
+
+  /// No description provided for @account_current_password_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter current password'**
+  String get account_current_password_hint;
+
+  /// No description provided for @account_new_password_label.
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get account_new_password_label;
+
+  /// No description provided for @account_new_password_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter new password'**
+  String get account_new_password_hint;
+
+  /// No description provided for @account_confirm_new_password_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm new password'**
+  String get account_confirm_new_password_label;
+
+  /// No description provided for @account_confirm_new_password_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Re-enter new password'**
+  String get account_confirm_new_password_hint;
+
+  /// No description provided for @account_reset_password_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Password changed successfully'**
+  String get account_reset_password_success;
+
+  /// No description provided for @account_language_vietnamese.
+  ///
+  /// In en, this message translates to:
+  /// **'Vietnamese'**
+  String get account_language_vietnamese;
+
+  /// No description provided for @account_language_english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get account_language_english;
+
   /// No description provided for @main_tab_home.
   ///
   /// In en, this message translates to:
@@ -553,6 +709,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Coming Soon'**
   String get notification_empty_subtitle;
+
+  /// No description provided for @notification_sample_appointment_confirmed_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment confirmed'**
+  String get notification_sample_appointment_confirmed_title;
+
+  /// No description provided for @notification_sample_appointment_confirmed_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Your appointment with Dr. Nguyen on 28 Mar at 10:00 is confirmed.'**
+  String get notification_sample_appointment_confirmed_desc;
+
+  /// No description provided for @notification_sample_clinic_message_title.
+  ///
+  /// In en, this message translates to:
+  /// **'New message from clinic'**
+  String get notification_sample_clinic_message_title;
+
+  /// No description provided for @notification_sample_clinic_message_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Please complete your pre-visit questionnaire before the appointment.'**
+  String get notification_sample_clinic_message_desc;
+
+  /// No description provided for @notification_sample_prescription_ready_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Prescription ready'**
+  String get notification_sample_prescription_ready_title;
+
+  /// No description provided for @notification_sample_prescription_ready_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Your prescription for Amoxicillin is ready for pickup.'**
+  String get notification_sample_prescription_ready_desc;
+
+  /// No description provided for @notification_sample_vaccine_schedule_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccine schedule'**
+  String get notification_sample_vaccine_schedule_title;
+
+  /// No description provided for @notification_sample_vaccine_schedule_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'New vaccine slots are available next week. Book now.'**
+  String get notification_sample_vaccine_schedule_desc;
 
   /// No description provided for @profile_section_general_title.
   ///
@@ -1112,6 +1316,120 @@ abstract class AppLocalizations {
   /// **'Allergy information'**
   String get profile_allergy_information_title;
 
+  /// No description provided for @profile_life_style_nutrition.
+  ///
+  /// In en, this message translates to:
+  /// **'Nutrition'**
+  String get profile_life_style_nutrition;
+
+  /// No description provided for @profile_life_style_drinking.
+  ///
+  /// In en, this message translates to:
+  /// **'Drinking'**
+  String get profile_life_style_drinking;
+
+  /// No description provided for @profile_life_style_smoking.
+  ///
+  /// In en, this message translates to:
+  /// **'Smoking'**
+  String get profile_life_style_smoking;
+
+  /// No description provided for @profile_life_style_sleep.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep'**
+  String get profile_life_style_sleep;
+
+  /// No description provided for @profile_life_style_physical_activity.
+  ///
+  /// In en, this message translates to:
+  /// **'Physical activity'**
+  String get profile_life_style_physical_activity;
+
+  /// No description provided for @profile_life_style_mental_health.
+  ///
+  /// In en, this message translates to:
+  /// **'Mental health'**
+  String get profile_life_style_mental_health;
+
+  /// No description provided for @profile_allergy_history.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergy history'**
+  String get profile_allergy_history;
+
+  /// No description provided for @profile_allergy_food.
+  ///
+  /// In en, this message translates to:
+  /// **'Food allergy'**
+  String get profile_allergy_food;
+
+  /// No description provided for @profile_allergy_medicine.
+  ///
+  /// In en, this message translates to:
+  /// **'Drug allergy'**
+  String get profile_allergy_medicine;
+
+  /// No description provided for @profile_allergy_skin.
+  ///
+  /// In en, this message translates to:
+  /// **'Skin allergy'**
+  String get profile_allergy_skin;
+
+  /// No description provided for @profile_allergy_environment.
+  ///
+  /// In en, this message translates to:
+  /// **'Environmental allergy'**
+  String get profile_allergy_environment;
+
+  /// No description provided for @profile_allergy_other.
+  ///
+  /// In en, this message translates to:
+  /// **'Other allergies'**
+  String get profile_allergy_other;
+
+  /// No description provided for @profile_demo_registration_location_hpih.
+  ///
+  /// In en, this message translates to:
+  /// **'Hai Phong International General Hospital'**
+  String get profile_demo_registration_location_hpih;
+
+  /// No description provided for @profile_demo_registration_location_vinmec.
+  ///
+  /// In en, this message translates to:
+  /// **'Vinmec Hai Phong Clinic'**
+  String get profile_demo_registration_location_vinmec;
+
+  /// No description provided for @profile_demo_address_hp.
+  ///
+  /// In en, this message translates to:
+  /// **'124 Nguyen Duc Canh, Hai Phong'**
+  String get profile_demo_address_hp;
+
+  /// No description provided for @profile_demo_full_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Nguyen Van A'**
+  String get profile_demo_full_name;
+
+  /// No description provided for @profile_demo_occupation_programmer.
+  ///
+  /// In en, this message translates to:
+  /// **'Programmer'**
+  String get profile_demo_occupation_programmer;
+
+  /// No description provided for @profile_demo_nationality_vietnam.
+  ///
+  /// In en, this message translates to:
+  /// **'Vietnam'**
+  String get profile_demo_nationality_vietnam;
+
+  /// No description provided for @profile_demo_ethnicity_kinh.
+  ///
+  /// In en, this message translates to:
+  /// **'Kinh'**
+  String get profile_demo_ethnicity_kinh;
+
   /// No description provided for @dashboard_section_new_services.
   ///
   /// In en, this message translates to:
@@ -1171,6 +1489,300 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Latest news'**
   String get dashboard_latest_news_title;
+
+  /// No description provided for @dashboard_important_notify_medicine_delivery.
+  ///
+  /// In en, this message translates to:
+  /// **'Order medicine at home conveniently with our new app feature'**
+  String get dashboard_important_notify_medicine_delivery;
+
+  /// No description provided for @dashboard_important_notify_online_visit.
+  ///
+  /// In en, this message translates to:
+  /// **'Online medical consultation with leading doctors without going to the hospital'**
+  String get dashboard_important_notify_online_visit;
+
+  /// No description provided for @dashboard_screening_reproductive_health.
+  ///
+  /// In en, this message translates to:
+  /// **'Reproductive health screening'**
+  String get dashboard_screening_reproductive_health;
+
+  /// No description provided for @dashboard_screening_stroke.
+  ///
+  /// In en, this message translates to:
+  /// **'Stroke screening'**
+  String get dashboard_screening_stroke;
+
+  /// No description provided for @dashboard_news_medical_services.
+  ///
+  /// In en, this message translates to:
+  /// **'Medical services'**
+  String get dashboard_news_medical_services;
+
+  /// No description provided for @dashboard_news_hospital_activities.
+  ///
+  /// In en, this message translates to:
+  /// **'Hospital activities'**
+  String get dashboard_news_hospital_activities;
+
+  /// No description provided for @dashboard_news_health_information.
+  ///
+  /// In en, this message translates to:
+  /// **'Health information'**
+  String get dashboard_news_health_information;
+
+  /// No description provided for @dashboard_news_vaccine_center.
+  ///
+  /// In en, this message translates to:
+  /// **'Vaccine center'**
+  String get dashboard_news_vaccine_center;
+
+  /// No description provided for @dashboard_post_foreign_body_title.
+  ///
+  /// In en, this message translates to:
+  /// **'A man had a mass of foreign objects from dried bamboo shoots occupying his stomach'**
+  String get dashboard_post_foreign_body_title;
+
+  /// No description provided for @dashboard_post_rare_blood_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency overnight saves a pregnant woman with a rare blood type'**
+  String get dashboard_post_rare_blood_title;
+
+  /// No description provided for @dashboard_post_us_tourist_title.
+  ///
+  /// In en, this message translates to:
+  /// **'American tourist saved from thoracic aortic dissection'**
+  String get dashboard_post_us_tourist_title;
+
+  /// No description provided for @dashboard_post_practitioner_list_title.
+  ///
+  /// In en, this message translates to:
+  /// **'List of medical practitioners at Hai Phong International General Hospital'**
+  String get dashboard_post_practitioner_list_title;
+
+  /// No description provided for @dashboard_contact_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact'**
+  String get dashboard_contact_title;
+
+  /// No description provided for @dashboard_contact_hotline_1.
+  ///
+  /// In en, this message translates to:
+  /// **'Hotline 1'**
+  String get dashboard_contact_hotline_1;
+
+  /// No description provided for @dashboard_contact_hotline_2.
+  ///
+  /// In en, this message translates to:
+  /// **'Hotline 2'**
+  String get dashboard_contact_hotline_2;
+
+  /// No description provided for @dashboard_contact_online_support.
+  ///
+  /// In en, this message translates to:
+  /// **'Online support'**
+  String get dashboard_contact_online_support;
+
+  /// No description provided for @dashboard_contact_map.
+  ///
+  /// In en, this message translates to:
+  /// **'Map'**
+  String get dashboard_contact_map;
+
+  /// No description provided for @dashboard_contact_call_action.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get dashboard_contact_call_action;
+
+  /// No description provided for @dashboard_contact_open_action.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get dashboard_contact_open_action;
+
+  /// No description provided for @dashboard_contact_directions_action.
+  ///
+  /// In en, this message translates to:
+  /// **'Directions'**
+  String get dashboard_contact_directions_action;
+
+  /// No description provided for @dashboard_contact_map_address.
+  ///
+  /// In en, this message translates to:
+  /// **'124 P. Nguyen Duc Canh, Cat Dai, Le Chan, Hai Phong, Vietnam'**
+  String get dashboard_contact_map_address;
+
+  /// No description provided for @book_visit_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Book visit'**
+  String get book_visit_title;
+
+  /// No description provided for @book_visit_booker_info_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Booker information'**
+  String get book_visit_booker_info_title;
+
+  /// No description provided for @book_visit_booking_info_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking information'**
+  String get book_visit_booking_info_title;
+
+  /// No description provided for @book_visit_schedule_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Appointment schedule'**
+  String get book_visit_schedule_title;
+
+  /// No description provided for @book_visit_reason_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason for visit'**
+  String get book_visit_reason_title;
+
+  /// No description provided for @book_visit_select_visit_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Select visit date'**
+  String get book_visit_select_visit_date;
+
+  /// No description provided for @book_visit_select_session.
+  ///
+  /// In en, this message translates to:
+  /// **'Select session'**
+  String get book_visit_select_session;
+
+  /// No description provided for @book_visit_other_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Other date'**
+  String get book_visit_other_date;
+
+  /// No description provided for @book_visit_foreign_patient.
+  ///
+  /// In en, this message translates to:
+  /// **'Book for a foreign patient'**
+  String get book_visit_foreign_patient;
+
+  /// No description provided for @book_visit_by_doctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Book by doctor'**
+  String get book_visit_by_doctor;
+
+  /// No description provided for @book_visit_by_specialty.
+  ///
+  /// In en, this message translates to:
+  /// **'Book by specialty'**
+  String get book_visit_by_specialty;
+
+  /// No description provided for @book_visit_by_symptom.
+  ///
+  /// In en, this message translates to:
+  /// **'Book by symptom'**
+  String get book_visit_by_symptom;
+
+  /// No description provided for @book_visit_reason_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter reason for visit, symptoms, or consultation needs'**
+  String get book_visit_reason_hint;
+
+  /// No description provided for @book_visit_submit_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Book visit'**
+  String get book_visit_submit_button;
+
+  /// No description provided for @book_visit_success_toast.
+  ///
+  /// In en, this message translates to:
+  /// **'Booking successful (mock).'**
+  String get book_visit_success_toast;
+
+  /// No description provided for @book_visit_select_branch_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Select branch'**
+  String get book_visit_select_branch_title;
+
+  /// No description provided for @book_visit_branch_le_chan.
+  ///
+  /// In en, this message translates to:
+  /// **'Le Chan branch'**
+  String get book_visit_branch_le_chan;
+
+  /// No description provided for @book_visit_branch_vinh_bao.
+  ///
+  /// In en, this message translates to:
+  /// **'Vinh Bao branch'**
+  String get book_visit_branch_vinh_bao;
+
+  /// No description provided for @book_visit_branch_an_duong.
+  ///
+  /// In en, this message translates to:
+  /// **'An Duong branch'**
+  String get book_visit_branch_an_duong;
+
+  /// No description provided for @book_visit_session_morning.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning'**
+  String get book_visit_session_morning;
+
+  /// No description provided for @book_visit_session_afternoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Afternoon'**
+  String get book_visit_session_afternoon;
+
+  /// No description provided for @book_visit_weekday_short_mon.
+  ///
+  /// In en, this message translates to:
+  /// **'Mon'**
+  String get book_visit_weekday_short_mon;
+
+  /// No description provided for @book_visit_weekday_short_tue.
+  ///
+  /// In en, this message translates to:
+  /// **'Tue'**
+  String get book_visit_weekday_short_tue;
+
+  /// No description provided for @book_visit_weekday_short_wed.
+  ///
+  /// In en, this message translates to:
+  /// **'Wed'**
+  String get book_visit_weekday_short_wed;
+
+  /// No description provided for @book_visit_weekday_short_thu.
+  ///
+  /// In en, this message translates to:
+  /// **'Thu'**
+  String get book_visit_weekday_short_thu;
+
+  /// No description provided for @book_visit_weekday_short_fri.
+  ///
+  /// In en, this message translates to:
+  /// **'Fri'**
+  String get book_visit_weekday_short_fri;
+
+  /// No description provided for @book_visit_weekday_short_sat.
+  ///
+  /// In en, this message translates to:
+  /// **'Sat'**
+  String get book_visit_weekday_short_sat;
+
+  /// No description provided for @book_visit_weekday_short_sun.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun'**
+  String get book_visit_weekday_short_sun;
 
   /// No description provided for @profile_gender_male.
   ///

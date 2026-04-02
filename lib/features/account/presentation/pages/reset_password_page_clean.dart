@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 
 /// Clean replacement for the broken `reset_password_page.dart`.
 /// Use this file while we resolve the corrupted file issue.
@@ -32,8 +33,9 @@ class _ResetPasswordPageCleanState extends State<ResetPasswordPageClean> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
-      appBar: AppBar(title: const Text('Đổi mật khẩu')),
+      appBar: AppBar(title: Text(l10n.account_reset_password_title)),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.only(
@@ -55,8 +57,8 @@ class _ResetPasswordPageCleanState extends State<ResetPasswordPageClean> {
                   obscureText: _obscureCurrent,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                    labelText: 'Mật khẩu hiện tại',
-                    hintText: 'Nhập mật khẩu hiện tại',
+                    labelText: l10n.account_current_password_label,
+                    hintText: l10n.account_current_password_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.lock),
                     suffixIcon: IconButton(
                       icon: Icon(
@@ -77,8 +79,8 @@ class _ResetPasswordPageCleanState extends State<ResetPasswordPageClean> {
                   obscureText: _obscureNew,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                    labelText: 'Mật khẩu mới',
-                    hintText: 'Nhập mật khẩu mới',
+                    labelText: l10n.account_new_password_label,
+                    hintText: l10n.account_new_password_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.lock),
                     suffixIcon: IconButton(
                       icon: Icon(
@@ -100,8 +102,8 @@ class _ResetPasswordPageCleanState extends State<ResetPasswordPageClean> {
                   textInputAction: TextInputAction.done,
                   onFieldSubmitted: (_) => _handleSave(),
                   decoration: InputDecoration(
-                    labelText: 'Xác nhận mật khẩu mới',
-                    hintText: 'Nhập lại mật khẩu mới',
+                    labelText: l10n.account_confirm_new_password_label,
+                    hintText: l10n.account_confirm_new_password_hint,
                     prefixIcon: Icon(IconsaxPlusLinear.lock),
                     suffixIcon: IconButton(
                       icon: Icon(
@@ -128,7 +130,7 @@ class _ResetPasswordPageCleanState extends State<ResetPasswordPageClean> {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: _handleSave,
-                  child: const Text('Xác nhận'),
+                  child: Text(l10n.auth_confirm_button),
                 ),
               ],
             ),
@@ -139,11 +141,12 @@ class _ResetPasswordPageCleanState extends State<ResetPasswordPageClean> {
   }
 
   void _handleSave() async {
+    final l10n = context.l10n;
     final newPwd = _newController.text;
     final confirm = _confirmController.text;
 
     if (newPwd != confirm) {
-      setState(() => _errorMessage = 'Mật khẩu xác nhận không trùng khớp');
+      setState(() => _errorMessage = l10n.auth_password_mismatch_error);
       return;
     }
 
@@ -154,7 +157,9 @@ class _ResetPasswordPageCleanState extends State<ResetPasswordPageClean> {
     if (!mounted) return;
     ScaffoldMessenger.of(
       context,
-    ).showSnackBar(const SnackBar(content: Text('Đổi mật khẩu thành công')));
+    ).showSnackBar(
+      SnackBar(content: Text(l10n.account_reset_password_success)),
+    );
     Navigator.of(context).pop();
   }
 }

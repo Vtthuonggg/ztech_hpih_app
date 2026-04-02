@@ -25,12 +25,7 @@ class _ForgetPasswordPageState extends ConsumerState<ForgetPasswordPage> {
     final l10n = context.l10n;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          l10n.forgot_password_title,
-          style: TextStyle(fontWeight: FontWeight.w600),
-        ),
-      ),
+      appBar: AppBar(title: Text(l10n.forgot_password_title)),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),

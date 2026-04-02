@@ -50,7 +50,7 @@ class MyApp extends ConsumerWidget {
         home: Scaffold(body: Center(child: AppLoading())),
       ),
       orElse: () => MaterialApp.router(
-        title: 'Health',
+        title: lookupAppLocalizations(appLocale ?? const Locale('vi', 'VN')).app_title,
         theme: AppTheme.lightTheme,
         routerConfig: router,
         localizationsDelegates: const [

@@ -1,9 +1,12 @@
 import 'dart:developer';
+import 'dart:ui';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
+import 'package:ztech_hpih_app/core/providers/locale_provider.dart';
 import 'package:ztech_hpih_app/features/main/presentation/pages/main_page.dart';
+import 'package:ztech_hpih_app/l10n/app_localizations.dart';
 import '../../data/repositoreis/auth_repository.dart';
 import '../../domain/models/login_request.dart';
 import 'auth_state.dart';
@@ -54,16 +57,24 @@ class AuthNotifier extends StateNotifier<AuthState> {
       state = AuthState.authenticated(user);
     } on DioException catch (e) {
       if (e.response?.statusCode == 422) {
-        state = const AuthState.error('Tài khoản hoặc mật khẩu không đúng');
+        state = AuthState.error(
+          _l10n.auth_otp_invalid_error == 'Invalid OTP code'
+              ? 'Incorrect username or password'
+              : 'Tài khoản hoặc mật khẩu không đúng',
+        );
       } else if (e.response?.statusCode == 401) {
-        state = const AuthState.error('Tài khoản hoặc mật khẩu không đúng');
+        state = AuthState.error(
+          _l10n.auth_otp_invalid_error == 'Invalid OTP code'
+              ? 'Incorrect username or password'
+              : 'Tài khoản hoặc mật khẩu không đúng',
+        );
       } else {
         state = AuthState.error(
-          e.response?.data['message'] ?? 'Đã có lỗi xảy ra. Vui lòng thử lại',
+          e.response?.data['message'] ?? _genericErrorMessage,
         );
       }
     } catch (e) {
-      state = const AuthState.error('Đã có lỗi xảy ra. Vui lòng thử lại');
+      state = AuthState.error(_genericErrorMessage);
     }
   }
 
@@ -71,5 +82,17 @@ class AuthNotifier extends StateNotifier<AuthState> {
     await _authRepository.logout();
     _ref.read(currentIndexProvider.notifier).state = 0;
     state = const AuthState.unauthenticated();
+  }
+
+  AppLocalizations get _l10n {
+    final locale = _ref.read(localeProvider) ?? const Locale('vi', 'VN');
+    return lookupAppLocalizations(locale);
+  }
+
+  String get _genericErrorMessage {
+    return _l10n.auth_login_error_required ==
+            'Please enter all the required information'
+        ? 'Something went wrong. Please try again'
+        : 'Đã có lỗi xảy ra. Vui lòng thử lại';
   }
 }

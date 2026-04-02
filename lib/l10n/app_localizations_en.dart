@@ -137,6 +137,56 @@ class AppLocalizationsEn extends AppLocalizations {
   String get common_placeholder_unknown => '-';
 
   @override
+  String get common_close => 'Close';
+
+  @override
+  String get common_confirm => 'Confirm';
+
+  @override
+  String get common_cancel => 'Cancel';
+
+  @override
+  String get common_apply => 'Apply';
+
+  @override
+  String get common_ok => 'OK';
+
+  @override
+  String get common_select_date => 'Select date';
+
+  @override
+  String get common_select_time => 'Select time';
+
+  @override
+  String get common_select_date_range => 'Select date range';
+
+  @override
+  String get common_select_year => 'Select year';
+
+  @override
+  String common_select_month_with_year(Object year) {
+    return 'Select month - $year';
+  }
+
+  @override
+  String get common_hour => 'Hour';
+
+  @override
+  String get common_minute => 'Minute';
+
+  @override
+  String get common_toast_success_title => 'Success';
+
+  @override
+  String get common_toast_error_title => 'Error';
+
+  @override
+  String get common_toast_warning_title => 'Warning';
+
+  @override
+  String get common_toast_info_title => 'Information';
+
+  @override
   String get dashboard_appointments => 'My visits';
 
   @override
@@ -225,6 +275,36 @@ class AppLocalizationsEn extends AppLocalizations {
       'INTERNATIONAL GENERAL HOSPITAL HAI PHONG\n124 Nguyen Duc Canh, Cat Dai, Le Chan District, Hai Phong';
 
   @override
+  String get account_reset_password_title => 'Change password';
+
+  @override
+  String get account_current_password_label => 'Current password';
+
+  @override
+  String get account_current_password_hint => 'Enter current password';
+
+  @override
+  String get account_new_password_label => 'New password';
+
+  @override
+  String get account_new_password_hint => 'Enter new password';
+
+  @override
+  String get account_confirm_new_password_label => 'Confirm new password';
+
+  @override
+  String get account_confirm_new_password_hint => 'Re-enter new password';
+
+  @override
+  String get account_reset_password_success => 'Password changed successfully';
+
+  @override
+  String get account_language_vietnamese => 'Vietnamese';
+
+  @override
+  String get account_language_english => 'English';
+
+  @override
   String get main_tab_home => 'Home';
 
   @override
@@ -250,6 +330,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notification_empty_subtitle => 'Coming Soon';
+
+  @override
+  String get notification_sample_appointment_confirmed_title =>
+      'Appointment confirmed';
+
+  @override
+  String get notification_sample_appointment_confirmed_desc =>
+      'Your appointment with Dr. Nguyen on 28 Mar at 10:00 is confirmed.';
+
+  @override
+  String get notification_sample_clinic_message_title =>
+      'New message from clinic';
+
+  @override
+  String get notification_sample_clinic_message_desc =>
+      'Please complete your pre-visit questionnaire before the appointment.';
+
+  @override
+  String get notification_sample_prescription_ready_title =>
+      'Prescription ready';
+
+  @override
+  String get notification_sample_prescription_ready_desc =>
+      'Your prescription for Amoxicillin is ready for pickup.';
+
+  @override
+  String get notification_sample_vaccine_schedule_title => 'Vaccine schedule';
+
+  @override
+  String get notification_sample_vaccine_schedule_desc =>
+      'New vaccine slots are available next week. Book now.';
 
   @override
   String get profile_section_general_title => 'General information';
@@ -547,6 +658,65 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_allergy_information_title => 'Allergy information';
 
   @override
+  String get profile_life_style_nutrition => 'Nutrition';
+
+  @override
+  String get profile_life_style_drinking => 'Drinking';
+
+  @override
+  String get profile_life_style_smoking => 'Smoking';
+
+  @override
+  String get profile_life_style_sleep => 'Sleep';
+
+  @override
+  String get profile_life_style_physical_activity => 'Physical activity';
+
+  @override
+  String get profile_life_style_mental_health => 'Mental health';
+
+  @override
+  String get profile_allergy_history => 'Allergy history';
+
+  @override
+  String get profile_allergy_food => 'Food allergy';
+
+  @override
+  String get profile_allergy_medicine => 'Drug allergy';
+
+  @override
+  String get profile_allergy_skin => 'Skin allergy';
+
+  @override
+  String get profile_allergy_environment => 'Environmental allergy';
+
+  @override
+  String get profile_allergy_other => 'Other allergies';
+
+  @override
+  String get profile_demo_registration_location_hpih =>
+      'Hai Phong International General Hospital';
+
+  @override
+  String get profile_demo_registration_location_vinmec =>
+      'Vinmec Hai Phong Clinic';
+
+  @override
+  String get profile_demo_address_hp => '124 Nguyen Duc Canh, Hai Phong';
+
+  @override
+  String get profile_demo_full_name => 'Nguyen Van A';
+
+  @override
+  String get profile_demo_occupation_programmer => 'Programmer';
+
+  @override
+  String get profile_demo_nationality_vietnam => 'Vietnam';
+
+  @override
+  String get profile_demo_ethnicity_kinh => 'Kinh';
+
+  @override
   String get dashboard_section_new_services => 'New services';
 
   @override
@@ -579,6 +749,162 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dashboard_latest_news_title => 'Latest news';
+
+  @override
+  String get dashboard_important_notify_medicine_delivery =>
+      'Order medicine at home conveniently with our new app feature';
+
+  @override
+  String get dashboard_important_notify_online_visit =>
+      'Online medical consultation with leading doctors without going to the hospital';
+
+  @override
+  String get dashboard_screening_reproductive_health =>
+      'Reproductive health screening';
+
+  @override
+  String get dashboard_screening_stroke => 'Stroke screening';
+
+  @override
+  String get dashboard_news_medical_services => 'Medical services';
+
+  @override
+  String get dashboard_news_hospital_activities => 'Hospital activities';
+
+  @override
+  String get dashboard_news_health_information => 'Health information';
+
+  @override
+  String get dashboard_news_vaccine_center => 'Vaccine center';
+
+  @override
+  String get dashboard_post_foreign_body_title =>
+      'A man had a mass of foreign objects from dried bamboo shoots occupying his stomach';
+
+  @override
+  String get dashboard_post_rare_blood_title =>
+      'Emergency overnight saves a pregnant woman with a rare blood type';
+
+  @override
+  String get dashboard_post_us_tourist_title =>
+      'American tourist saved from thoracic aortic dissection';
+
+  @override
+  String get dashboard_post_practitioner_list_title =>
+      'List of medical practitioners at Hai Phong International General Hospital';
+
+  @override
+  String get dashboard_contact_title => 'Contact';
+
+  @override
+  String get dashboard_contact_hotline_1 => 'Hotline 1';
+
+  @override
+  String get dashboard_contact_hotline_2 => 'Hotline 2';
+
+  @override
+  String get dashboard_contact_online_support => 'Online support';
+
+  @override
+  String get dashboard_contact_map => 'Map';
+
+  @override
+  String get dashboard_contact_call_action => 'Call';
+
+  @override
+  String get dashboard_contact_open_action => 'Open';
+
+  @override
+  String get dashboard_contact_directions_action => 'Directions';
+
+  @override
+  String get dashboard_contact_map_address =>
+      '124 P. Nguyen Duc Canh, Cat Dai, Le Chan, Hai Phong, Vietnam';
+
+  @override
+  String get book_visit_title => 'Book visit';
+
+  @override
+  String get book_visit_booker_info_title => 'Booker information';
+
+  @override
+  String get book_visit_booking_info_title => 'Booking information';
+
+  @override
+  String get book_visit_schedule_title => 'Appointment schedule';
+
+  @override
+  String get book_visit_reason_title => 'Reason for visit';
+
+  @override
+  String get book_visit_select_visit_date => 'Select visit date';
+
+  @override
+  String get book_visit_select_session => 'Select session';
+
+  @override
+  String get book_visit_other_date => 'Other date';
+
+  @override
+  String get book_visit_foreign_patient => 'Book for a foreign patient';
+
+  @override
+  String get book_visit_by_doctor => 'Book by doctor';
+
+  @override
+  String get book_visit_by_specialty => 'Book by specialty';
+
+  @override
+  String get book_visit_by_symptom => 'Book by symptom';
+
+  @override
+  String get book_visit_reason_hint =>
+      'Enter reason for visit, symptoms, or consultation needs';
+
+  @override
+  String get book_visit_submit_button => 'Book visit';
+
+  @override
+  String get book_visit_success_toast => 'Booking successful (mock).';
+
+  @override
+  String get book_visit_select_branch_title => 'Select branch';
+
+  @override
+  String get book_visit_branch_le_chan => 'Le Chan branch';
+
+  @override
+  String get book_visit_branch_vinh_bao => 'Vinh Bao branch';
+
+  @override
+  String get book_visit_branch_an_duong => 'An Duong branch';
+
+  @override
+  String get book_visit_session_morning => 'Morning';
+
+  @override
+  String get book_visit_session_afternoon => 'Afternoon';
+
+  @override
+  String get book_visit_weekday_short_mon => 'Mon';
+
+  @override
+  String get book_visit_weekday_short_tue => 'Tue';
+
+  @override
+  String get book_visit_weekday_short_wed => 'Wed';
+
+  @override
+  String get book_visit_weekday_short_thu => 'Thu';
+
+  @override
+  String get book_visit_weekday_short_fri => 'Fri';
+
+  @override
+  String get book_visit_weekday_short_sat => 'Sat';
+
+  @override
+  String get book_visit_weekday_short_sun => 'Sun';
 
   @override
   String get profile_gender_male => 'Male';

@@ -73,12 +73,7 @@ class _EditBasicProfilePageState extends ConsumerState<EditBasicProfilePage> {
     final l10n = context.l10n;
     return Scaffold(
       backgroundColor: Colors.grey[50],
-      appBar: AppBar(
-        title: Text(
-          l10n.profile_edit_basic_profile_title,
-          style: TextStyle(fontWeight: FontWeight.w600),
-        ),
-      ),
+      appBar: AppBar(title: Text(l10n.profile_edit_basic_profile_title)),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),

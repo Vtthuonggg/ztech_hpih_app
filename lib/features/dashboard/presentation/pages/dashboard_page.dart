@@ -26,27 +26,25 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
 
   List<Map<String, dynamic>> listNoti = [
     {
-      'description':
-          'Mua thuốc tại nhà tiện lợi cùng tính năng mới trên ứng dụng của chúng tôi',
+      'descriptionKey': 'dashboard_important_notify_medicine_delivery',
       'url': 'https://hih.vn/',
       'isNew': true,
     },
     {
-      'description':
-          'Khám bệnh trực tuyến cùng những y bác sĩ hàng đầu, không cần đến bệnh viện',
+      'descriptionKey': 'dashboard_important_notify_online_visit',
       'url': 'https://hih.vn/',
     },
   ];
   List<Map<String, dynamic>> newServices = [
     {
-      'title': 'Cổng dịch vụ khách hàng',
-      'subtitle': 'Nhanh - Tiện - Dễ dàng',
+      'titleKey': 'dashboard_service_customer_portal_title',
+      'subtitleKey': 'dashboard_service_customer_portal_subtitle',
       'image':
           'https://img.freepik.com/free-photo/beautiful-young-female-doctor-looking-camera-office_1301-7807.jpg?semt=ais_rp_progressive&w=740&q=80',
     },
     {
-      'title': 'Đặt lịch nhanh - Xác nhận lịch tự động',
-      'subtitle': 'Xem ngay lịch khám, giờ khámn với bác sĩ ở bất cứ đâu',
+      'titleKey': 'dashboard_service_quick_booking_title',
+      'subtitleKey': 'dashboard_service_quick_booking_subtitle',
       'image':
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0pCwJuV_7SHriE0ay_CIzHTeTuk07U0BNhw&s',
     },
@@ -289,6 +287,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
   }
 
   Widget buildNewService() {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -331,11 +330,11 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                   ),
                 ),
                 title: Text(
-                  service['title'],
+                  _resolveL10n(service['titleKey'], l10n),
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
                 subtitle: Text(
-                  service['subtitle'],
+                  _resolveL10n(service['subtitleKey'], l10n),
                   style: TextStyle(fontSize: 10, color: Colors.grey[600]),
                 ),
                 trailing: IconButton(
@@ -355,6 +354,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
   }
 
   Widget buildQuestionAnswer() {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -390,7 +390,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                   size: 20,
                 ),
                 title: Text(
-                  question['title'],
+                  _resolveL10n(question['titleKey'], l10n),
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                 ),
                 trailing: IconButton(
@@ -410,6 +410,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
   }
 
   Widget buildNews() {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -464,7 +465,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        news[index]['title'],
+                        _resolveL10n(news[index]['titleKey'], l10n),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,
@@ -486,6 +487,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
   }
 
   Widget buildImportantNotify() {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -518,7 +520,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
-                    noti['description'],
+                    _resolveL10n(noti['descriptionKey'], l10n),
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
@@ -567,6 +569,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
   }
 
   Widget buildNewPost() {
+    final l10n = context.l10n;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -599,7 +602,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                 ),
               ),
               title: Text(
-                post['title'],
+                _resolveL10n(post['titleKey'], l10n),
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
               ),
               subtitle: Text(
@@ -615,103 +618,98 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
 
   List<Map<String, dynamic>> questionAnswer = [
     {
-      'title': 'Sàng lọc sức khoẻ sinh sản',
+      'titleKey': 'dashboard_screening_reproductive_health',
       'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
     },
     {
-      'title': 'Sàng lọc đột quỵ',
+      'titleKey': 'dashboard_screening_stroke',
       'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
     },
   ];
 
   List<Map<String, dynamic>> news = [
     {
-      'title': 'Dịch vụ y tế',
+      'titleKey': 'dashboard_news_medical_services',
       'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
     },
     {
-      'title': 'Hoạt động bệnh viện',
+      'titleKey': 'dashboard_news_hospital_activities',
       'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
     },
     {
-      'title': 'Thông tin sức khoẻ',
+      'titleKey': 'dashboard_news_health_information',
       'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
     },
-    {
-      'title': 'Trung tâm vắc xin',
-      'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
-    },
-    {
-      'title': 'Trung tâm vắc xin',
-      'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
-    },
-    {
-      'title': 'Trung tâm vắc xin',
-      'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
-    },
-    {
-      'title': 'Trung tâm vắc xin',
-      'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
-    },
-    {
-      'title': 'Trung tâm vắc xin',
-      'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
-    },
-    {
-      'title': 'Trung tâm vắc xin',
-      'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
-    },
-    {
-      'title': 'Trung tâm vắc xin',
-      'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
-    },
-    {
-      'title': 'Trung tâm vắc xin',
-      'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
-    },
-    {
-      'title': 'Trung tâm vắc xin',
-      'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
-    },
-    {
-      'title': 'Trung tâm vắc xin',
-      'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
-    },
-    {
-      'title': 'Trung tâm vắc xin',
-      'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
-    },
-    {
-      'title': 'Trung tâm vắc xin',
-      'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
-    },
+    for (var i = 0; i < 12; i++)
+      {
+        'titleKey': 'dashboard_news_vaccine_center',
+        'icon': HealthIcons.iScheduleSchoolDateTimeFilled,
+      },
   ];
   List<Map<String, dynamic>> newPosts = [
     {
-      'title': 'Người đàn ông bị khối dị vật từ măng khô chiếm trọn dạ dày',
+      'titleKey': 'dashboard_post_foreign_body_title',
       'image':
           'https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2025/2/15/z6320157926804b67056d5f6d46e78825094928430171c-1739608232888203533536.jpg',
       'date': '15/02/2025',
     },
     {
-      'title': 'Cấp cứu xuyên đêm cứu thai phụ mang nhóm máu hiếm',
+      'titleKey': 'dashboard_post_rare_blood_title',
       'image':
           'https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2025/2/15/z6320157926804b67056d5f6d46e78825094928430171c-1739608232888203533536.jpg',
       'date': '15/02/2025',
     },
     {
-      'title': 'Cứu sống du khách Mỹ bị bóc tách động mạch chủ ngực',
+      'titleKey': 'dashboard_post_us_tourist_title',
       'image':
           'https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2025/2/15/z6320157926804b67056d5f6d46e78825094928430171c-1739608232888203533536.jpg',
 
       'date': '15/02/2025',
     },
     {
-      'title':
-          'Danh sách người thực hành khám bệnh, chữa bệnh tại Bệnh viện Đa khoa Quốc tế Hải Phòng',
+      'titleKey': 'dashboard_post_practitioner_list_title',
       'image':
           'https://cdn2.tuoitre.vn/thumb_w/480/471584752817336320/2025/2/15/z6320157926804b67056d5f6d46e78825094928430171c-1739608232888203533536.jpg',
       'date': '15/02/2025',
     },
   ];
+
+  String _resolveL10n(String key, dynamic l10n) {
+    switch (key) {
+      case 'dashboard_important_notify_medicine_delivery':
+        return l10n.dashboard_important_notify_medicine_delivery;
+      case 'dashboard_important_notify_online_visit':
+        return l10n.dashboard_important_notify_online_visit;
+      case 'dashboard_service_customer_portal_title':
+        return l10n.dashboard_service_customer_portal_title;
+      case 'dashboard_service_customer_portal_subtitle':
+        return l10n.dashboard_service_customer_portal_subtitle;
+      case 'dashboard_service_quick_booking_title':
+        return l10n.dashboard_service_quick_booking_title;
+      case 'dashboard_service_quick_booking_subtitle':
+        return l10n.dashboard_service_quick_booking_subtitle;
+      case 'dashboard_screening_reproductive_health':
+        return l10n.dashboard_screening_reproductive_health;
+      case 'dashboard_screening_stroke':
+        return l10n.dashboard_screening_stroke;
+      case 'dashboard_news_medical_services':
+        return l10n.dashboard_news_medical_services;
+      case 'dashboard_news_hospital_activities':
+        return l10n.dashboard_news_hospital_activities;
+      case 'dashboard_news_health_information':
+        return l10n.dashboard_news_health_information;
+      case 'dashboard_news_vaccine_center':
+        return l10n.dashboard_news_vaccine_center;
+      case 'dashboard_post_foreign_body_title':
+        return l10n.dashboard_post_foreign_body_title;
+      case 'dashboard_post_rare_blood_title':
+        return l10n.dashboard_post_rare_blood_title;
+      case 'dashboard_post_us_tourist_title':
+        return l10n.dashboard_post_us_tourist_title;
+      case 'dashboard_post_practitioner_list_title':
+        return l10n.dashboard_post_practitioner_list_title;
+      default:
+        return key;
+    }
+  }
 }

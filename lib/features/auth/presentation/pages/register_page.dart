@@ -39,15 +39,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     final l10n = context.l10n;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(
-          l10n.auth_register_title,
-          style: TextStyle(fontWeight: FontWeight.w600),
-        ),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        elevation: 0,
-      ),
+      appBar: AppBar(title: Text(l10n.auth_register_title)),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
@@ -166,7 +158,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                 24.verticalSpace,
                 ElevatedButton(
                   onPressed: _handleRegister,
-                  child: const Text('Đăng ký'),
+                  child: Text(l10n.auth_register_link),
                 ),
               ],
             ),
@@ -183,22 +175,21 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
 
     if (username.isEmpty || password.isEmpty || confirmPassword.isEmpty) {
       setState(() {
-        _errorMessage = 'Vui lòng nhập đầy đủ thông tin';
+        _errorMessage = context.l10n.auth_required_field_error;
       });
       return;
     }
 
     if (password != confirmPassword) {
       setState(() {
-        _errorMessage = 'Mật khẩu nhập lại không khớp';
+        _errorMessage = context.l10n.auth_password_mismatch_error;
       });
       return;
     }
 
     if (!_agreed) {
       setState(() {
-        _errorMessage =
-            'Vui lòng đồng ý với Quy định sử dụng và Chính sách bảo vệ dữ liệu cá nhân';
+        _errorMessage = context.l10n.auth_terms_not_accepted_error;
       });
       return;
     }
@@ -209,18 +200,15 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
       });
     }
 
-    ToastHelper.success(context, message: 'Đăng ký thành công (demo)');
+    ToastHelper.success(context, message: context.l10n.register_success_toast);
   }
 
   void _openTermsOfUse() {
-    ToastHelper.info(context, message: 'TODO: mở URL Quy định sử dụng');
+    ToastHelper.info(context, message: context.l10n.terms_terms_link);
   }
 
   void _openPrivacyPolicy() {
-    ToastHelper.info(
-      context,
-      message: 'TODO: mở URL Chính sách bảo vệ dữ liệu cá nhân',
-    );
+    ToastHelper.info(context, message: context.l10n.terms_policy_link);
   }
 }
 

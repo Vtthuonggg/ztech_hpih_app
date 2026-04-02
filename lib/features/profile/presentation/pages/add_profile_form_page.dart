@@ -73,12 +73,7 @@ class _AddProfileFormPageState extends ConsumerState<AddProfileFormPage> {
     final l10n = context.l10n;
     return Scaffold(
       backgroundColor: Colors.grey[50],
-      appBar: AppBar(
-        title: Text(
-          l10n.profile_add_form_title,
-          style: const TextStyle(fontWeight: FontWeight.w600),
-        ),
-      ),
+      appBar: AppBar(title: Text(l10n.profile_add_form_title)),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
@@ -333,7 +328,7 @@ class _AddProfileFormPageState extends ConsumerState<AddProfileFormPage> {
       await Future<void>.delayed(const Duration(milliseconds: 900));
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Đã thêm hồ sơ (mô phỏng).')),
+        SnackBar(content: Text(context.l10n.profile_add_success_toast)),
       );
     } finally {
       if (mounted) setState(() => _submitting = false);
@@ -343,7 +338,7 @@ class _AddProfileFormPageState extends ConsumerState<AddProfileFormPage> {
 
 enum _Relationship { child, wife, husband, father, mother, other }
 
-extension RelationshipLabel on _Relationship {
+extension _RelationshipLabel on _Relationship {
   String label(BuildContext context) {
     final l10n = context.l10n;
     switch (this) {
