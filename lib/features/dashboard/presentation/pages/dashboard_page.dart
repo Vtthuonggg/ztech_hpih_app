@@ -96,14 +96,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                         Container(
                           height: MediaQuery.of(context).size.height / 2.5,
                           decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                AppTheme.primaryColor,
-                                AppTheme.secondaryColor,
-                              ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                            ),
+                            color: AppTheme.primaryColor,
                             borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(30),
                               bottomRight: Radius.circular(30),

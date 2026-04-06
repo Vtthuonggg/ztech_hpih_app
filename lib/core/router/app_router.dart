@@ -6,6 +6,7 @@ import 'package:ztech_hpih_app/features/account/presentation/pages/reset_passwor
 import 'package:ztech_hpih_app/features/auth/presentation/pages/confirm_otp_page.dart';
 import 'package:ztech_hpih_app/features/dashboard/presentation/pages/contact_page.dart';
 import 'package:ztech_hpih_app/features/book_visit/presentation/pages/create_book_visit_page.dart';
+import 'package:ztech_hpih_app/features/motherhood/presentation/pages/mother_profile_page.dart';
 import 'package:ztech_hpih_app/features/profile/presentation/pages/activity_survey_page.dart';
 import 'package:ztech_hpih_app/features/profile/presentation/pages/allergy_survey_page.dart';
 import 'package:ztech_hpih_app/features/profile/presentation/pages/add_profile_by_code_page.dart';
@@ -210,9 +211,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: AllergySurveyPage.path,
         pageBuilder: (context, state) => TransitionHelper.cupertino(
           state,
-          AllergySurveyPage(
-            type: state.pathParameters['type'] ?? 'history',
-          ),
+          AllergySurveyPage(type: state.pathParameters['type'] ?? 'history'),
         ),
       ),
       GoRoute(
@@ -239,6 +238,11 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: SmokingSurveyPage.path,
         pageBuilder: (context, state) =>
             TransitionHelper.cupertino(state, const SmokingSurveyPage()),
+      ),
+      GoRoute(
+        path: MotherProfilePage.path,
+        pageBuilder: (context, state) =>
+            TransitionHelper.cupertino(state, const MotherProfilePage()),
       ),
     ],
   );
