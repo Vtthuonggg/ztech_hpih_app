@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -7,6 +9,7 @@ import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:health_icons/health_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:ztech_hpih_app/core/utils/constant.dart';
 
 import '../../../../core/theme/app_theme.dart';
 import '../../../../core/utils/asset_helper.dart';
@@ -121,7 +124,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 12,
+                                        fontSize: 15,
                                         fontWeight: FontWeight.w400,
                                       ),
                                     ),
@@ -133,7 +136,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 18,
+                                        fontSize: 20,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     ),
@@ -166,6 +169,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                         buildNews(),
                         buildImportantNotify(),
                         buildNewPost(),
+                        SizedBox(height: 50),
                       ]),
                     ),
                   ),
@@ -216,6 +220,62 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                   ),
                 ),
               ),
+              if (APP_VERSION == 0)
+                Positioned(
+                  bottom: 30,
+                  left: MediaQuery.of(context).size.width * 0.25,
+                  right: MediaQuery.of(context).size.width * 0.25,
+                  child: GestureDetector(
+                    onTap: () {
+                      if (Platform.isAndroid) {
+                        launchUrl(
+                          Uri.parse(
+                            'https://play.google.com/store/apps/details?id=com.ztech.hpih',
+                          ),
+                          mode: LaunchMode.externalApplication,
+                        );
+                      }
+                      if (Platform.isIOS) {
+                        launchUrl(
+                          Uri.parse(
+                            'https://apps.apple.com/vn/app/id6467622531',
+                          ),
+                          mode: LaunchMode.externalApplication,
+                        );
+                      }
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      height: 40,
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: AppTheme.primaryColor.withValues(alpha: 0.9),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 4,
+                            offset: Offset(0, 1),
+                          ),
+                        ],
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Cập nhật phiên bản mới',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
             ],
           ),
         ),
