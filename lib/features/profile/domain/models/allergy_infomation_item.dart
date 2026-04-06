@@ -1,4 +1,5 @@
 import 'package:ztech_hpih_app/l10n/app_localizations.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/allergy_survey_page.dart';
 
 class AllergyInfomationItem {
   final String Function(AppLocalizations l10n) titleBuilder;
@@ -10,26 +11,26 @@ class AllergyInfomationItem {
 List<AllergyInfomationItem> allergyInfomationItems = [
   AllergyInfomationItem(
     titleBuilder: (l10n) => l10n.profile_allergy_history,
-    routePath: '',
+    routePath: AllergySurveyPage.location('history'),
   ),
   AllergyInfomationItem(
     titleBuilder: (l10n) => l10n.profile_allergy_food,
-    routePath: '',
+    routePath: AllergySurveyPage.location('food'),
   ),
   AllergyInfomationItem(
     titleBuilder: (l10n) => l10n.profile_allergy_medicine,
-    routePath: '',
+    routePath: AllergySurveyPage.location('medicine'),
   ),
   AllergyInfomationItem(
     titleBuilder: (l10n) => l10n.profile_allergy_skin,
-    routePath: '',
+    routePath: AllergySurveyPage.location('skin'),
   ),
   AllergyInfomationItem(
     titleBuilder: (l10n) => l10n.profile_allergy_environment,
-    routePath: '',
+    routePath: AllergySurveyPage.location('environment'),
   ),
   AllergyInfomationItem(
     titleBuilder: (l10n) => l10n.profile_allergy_other,
-    routePath: '',
+    routePath: AllergySurveyPage.location('other'),
   ),
 ];

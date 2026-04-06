@@ -6,15 +6,22 @@ import 'package:ztech_hpih_app/features/account/presentation/pages/reset_passwor
 import 'package:ztech_hpih_app/features/auth/presentation/pages/confirm_otp_page.dart';
 import 'package:ztech_hpih_app/features/dashboard/presentation/pages/contact_page.dart';
 import 'package:ztech_hpih_app/features/book_visit/presentation/pages/create_book_visit_page.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/activity_survey_page.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/allergy_survey_page.dart';
 import 'package:ztech_hpih_app/features/profile/presentation/pages/add_profile_by_code_page.dart';
 import 'package:ztech_hpih_app/features/profile/presentation/pages/add_profile_form_page.dart';
 import 'package:ztech_hpih_app/features/profile/presentation/pages/additional_information_page.dart';
 import 'package:ztech_hpih_app/features/profile/presentation/pages/detail_profile_page.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/drink_survey_page.dart';
 import 'package:ztech_hpih_app/features/profile/presentation/pages/edit_basic_profile_page.dart';
 import 'package:ztech_hpih_app/features/profile/presentation/pages/edit_company_info_page.dart';
 import 'package:ztech_hpih_app/features/profile/presentation/pages/edit_insurance_page.dart';
 import 'package:ztech_hpih_app/features/profile/presentation/pages/general_health_page.dart';
 import 'package:ztech_hpih_app/features/profile/presentation/pages/health_infomation_page.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/mental_health_survey_page.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/nutrition_survey_page.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/sleep_survey_page.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/smoking_survey_page.dart';
 import '../../features/auth/presentation/pages/forget_password_page.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/auth/presentation/pages/register_page.dart';
@@ -193,6 +200,45 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: LanguagePage.path,
         pageBuilder: (context, state) =>
             TransitionHelper.cupertino(state, const LanguagePage()),
+      ),
+      GoRoute(
+        path: ActivitySurveyPage.path,
+        pageBuilder: (context, state) =>
+            TransitionHelper.cupertino(state, const ActivitySurveyPage()),
+      ),
+      GoRoute(
+        path: AllergySurveyPage.path,
+        pageBuilder: (context, state) => TransitionHelper.cupertino(
+          state,
+          AllergySurveyPage(
+            type: state.pathParameters['type'] ?? 'history',
+          ),
+        ),
+      ),
+      GoRoute(
+        path: DrinkSurveyPage.path,
+        pageBuilder: (context, state) =>
+            TransitionHelper.cupertino(state, const DrinkSurveyPage()),
+      ),
+      GoRoute(
+        path: MentalHealthSurveyPage.path,
+        pageBuilder: (context, state) =>
+            TransitionHelper.cupertino(state, const MentalHealthSurveyPage()),
+      ),
+      GoRoute(
+        path: NutritionSurveyPage.path,
+        pageBuilder: (context, state) =>
+            TransitionHelper.cupertino(state, const NutritionSurveyPage()),
+      ),
+      GoRoute(
+        path: SleepSurveyPage.path,
+        pageBuilder: (context, state) =>
+            TransitionHelper.cupertino(state, const SleepSurveyPage()),
+      ),
+      GoRoute(
+        path: SmokingSurveyPage.path,
+        pageBuilder: (context, state) =>
+            TransitionHelper.cupertino(state, const SmokingSurveyPage()),
       ),
     ],
   );

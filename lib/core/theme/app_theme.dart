@@ -106,6 +106,17 @@ class AppTheme {
         ),
       ),
     ),
+    radioTheme: RadioThemeData(
+      splashRadius: 0,
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
+      fillColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return primaryColor;
+        }
+        return Colors.grey.shade400;
+      }),
+    ),
+    splashFactory: NoSplash.splashFactory,
   );
 
   static ThemeData darkTheme = ThemeData(

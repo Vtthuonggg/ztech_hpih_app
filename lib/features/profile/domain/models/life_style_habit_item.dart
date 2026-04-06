@@ -1,3 +1,9 @@
+import 'package:ztech_hpih_app/features/profile/presentation/pages/activity_survey_page.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/drink_survey_page.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/mental_health_survey_page.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/nutrition_survey_page.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/sleep_survey_page.dart';
+import 'package:ztech_hpih_app/features/profile/presentation/pages/smoking_survey_page.dart';
 import 'package:ztech_hpih_app/l10n/app_localizations.dart';
 
 class LifeStyleHabitItem {
@@ -10,26 +16,26 @@ class LifeStyleHabitItem {
 List<LifeStyleHabitItem> lifeStyleHabitItems = [
   LifeStyleHabitItem(
     titleBuilder: (l10n) => l10n.profile_life_style_nutrition,
-    routePath: '',
+    routePath: NutritionSurveyPage.path,
   ),
   LifeStyleHabitItem(
     titleBuilder: (l10n) => l10n.profile_life_style_drinking,
-    routePath: '',
+    routePath: DrinkSurveyPage.path,
   ),
   LifeStyleHabitItem(
     titleBuilder: (l10n) => l10n.profile_life_style_smoking,
-    routePath: '',
+    routePath: SmokingSurveyPage.path,
   ),
   LifeStyleHabitItem(
     titleBuilder: (l10n) => l10n.profile_life_style_sleep,
-    routePath: '',
+    routePath: SleepSurveyPage.path,
   ),
   LifeStyleHabitItem(
     titleBuilder: (l10n) => l10n.profile_life_style_physical_activity,
-    routePath: '',
+    routePath: ActivitySurveyPage.path,
   ),
   LifeStyleHabitItem(
     titleBuilder: (l10n) => l10n.profile_life_style_mental_health,
-    routePath: '',
+    routePath: MentalHealthSurveyPage.path,
   ),
 ];
