@@ -1,9 +1,8 @@
-import 'dart:io';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ztech_hpih_app/core/localization/l10n_extension.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
@@ -15,6 +14,7 @@ import '../../../../core/theme/app_theme.dart';
 import '../../../../core/utils/asset_helper.dart';
 import '../../domain/models/dashboard_item.dart';
 import '../widgets/feature_table.dart';
+import '../widgets/update_noti_dialog.dart';
 
 class DashBoardPage extends ConsumerStatefulWidget {
   const DashBoardPage({super.key});
@@ -24,8 +24,13 @@ class DashBoardPage extends ConsumerStatefulWidget {
 }
 
 class _DashBoardPageState extends ConsumerState<DashBoardPage> {
+  static const _updateDialogVersionKey = 'update_dialog_version';
+
   final ScrollController _scrollController = ScrollController();
+  final FlutterSecureStorage _storage = const FlutterSecureStorage();
   bool _isCollapsed = false;
+  bool _hasShownUpdateDialog = false;
+  final int verApi = 0;
 
   List<Map<String, dynamic>> listNoti = [
     {
@@ -66,6 +71,45 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
         setState(() => _isCollapsed = false);
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _handleUpdatePrompt();
+    });
+  }
+
+  Future<void> _handleUpdatePrompt() async {
+    if (APP_VERSION == verApi) {
+      await _storage.write(
+        key: _updateDialogVersionKey,
+        value: verApi.toString(),
+      );
+      return;
+    }
+
+    final savedVersion = int.tryParse(
+      await _storage.read(key: _updateDialogVersionKey) ?? '',
+    );
+
+    if (!mounted || savedVersion == verApi || _hasShownUpdateDialog) {
+      return;
+    }
+
+    _hasShownUpdateDialog = true;
+    await showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => UpdateNotiDialog(
+        onClose: () async {
+          await _storage.write(
+            key: _updateDialogVersionKey,
+            value: verApi.toString(),
+          );
+          if (mounted) {
+            Navigator.of(context).pop();
+          }
+        },
+      ),
+    );
   }
 
   @override
@@ -213,43 +257,21 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                   ),
                 ),
               ),
-              if (APP_VERSION == 0)
+              if (APP_VERSION != verApi)
                 Positioned(
                   bottom: 30,
                   left: MediaQuery.of(context).size.width * 0.25,
                   right: MediaQuery.of(context).size.width * 0.25,
                   child: GestureDetector(
-                    onTap: () {
-                      if (Platform.isAndroid) {
-                        launchUrl(
-                          Uri.parse(
-                            'https://play.google.com/store/apps/details?id=com.ztech.hpih',
-                          ),
-                          mode: LaunchMode.externalApplication,
-                        );
-                      }
-                      if (Platform.isIOS) {
-                        launchUrl(
-                          Uri.parse(
-                            'https://apps.apple.com/vn/app/id6467622531',
-                          ),
-                          mode: LaunchMode.externalApplication,
-                        );
-                      }
-                    },
+                    onTap: UpdateNotiDialog.openStore,
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.5,
                       height: 40,
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       decoration: BoxDecoration(
                         color: AppTheme.primaryColor.withValues(alpha: 0.9),
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
-                          bottomLeft: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
-                        ),
-                        boxShadow: [
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: const [
                           BoxShadow(
                             color: Colors.black26,
                             blurRadius: 4,
@@ -257,9 +279,9 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                           ),
                         ],
                       ),
-                      child: Center(
+                      child: const Center(
                         child: Text(
-                          'Cập nhật phiên bản mới',
+                          'Cập nhật bản mới',
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             color: Colors.white,
@@ -362,7 +384,7 @@ class _DashBoardPageState extends ConsumerState<DashBoardPage> {
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.10),
+                    color: Colors.black.withValues(alpha: 0.10),
                     blurRadius: 8,
                     spreadRadius: 2,
                     offset: Offset(0, 0),

@@ -138,7 +138,6 @@ class _ProfileHeader extends StatelessWidget {
                 child: _LeafShape(size: 30, rotation: 0.8, flip: true),
               ),
 
-              // ── Chấm trang trí ──
               const Positioned(right: 52, top: 28, child: _Dot(size: 6)),
               const Positioned(right: 36, top: 58, child: _Dot(size: 4)),
               const Positioned(right: 86, top: 72, child: _Dot(size: 3)),
@@ -204,7 +203,6 @@ class _ProfileHeader extends StatelessWidget {
   }
 }
 
-// ── Profile Body ──────────────────────────────────────────────────────────────
 class _ProfileBody extends StatelessWidget {
   const _ProfileBody({required this.user});
 
