@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health_icons/health_icons.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:ztech_hpih_app/features/medicine/presentation/pages/list_medicine_page.dart';
 import 'package:ztech_hpih_app/features/motherhood/presentation/pages/mother_profile_page.dart';
 
 import '../../../dashboard/presentation/pages/contact_page.dart';
@@ -63,6 +64,6 @@ const List<DashboardItem> dashboardItems = [
   DashboardItem(
     icon: HealthIcons.blisterPillsOvalX14Outline,
     type: DashboardItemType.prescription,
-    routePath: '',
+    routePath: ListMedicinePage.path,
   ),
 ];

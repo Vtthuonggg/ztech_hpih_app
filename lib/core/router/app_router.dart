@@ -6,6 +6,8 @@ import 'package:ztech_hpih_app/features/account/presentation/pages/reset_passwor
 import 'package:ztech_hpih_app/features/auth/presentation/pages/confirm_otp_page.dart';
 import 'package:ztech_hpih_app/features/dashboard/presentation/pages/contact_page.dart';
 import 'package:ztech_hpih_app/features/book_visit/presentation/pages/create_book_visit_page.dart';
+import 'package:ztech_hpih_app/features/medicine/presentation/pages/create_medicine_page.dart';
+import 'package:ztech_hpih_app/features/medicine/presentation/pages/list_medicine_page.dart';
 import 'package:ztech_hpih_app/features/motherhood/presentation/pages/mother_profile_page.dart';
 import 'package:ztech_hpih_app/features/profile/presentation/pages/activity_survey_page.dart';
 import 'package:ztech_hpih_app/features/profile/presentation/pages/allergy_survey_page.dart';
@@ -243,6 +245,16 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: MotherProfilePage.path,
         pageBuilder: (context, state) =>
             TransitionHelper.cupertino(state, const MotherProfilePage()),
+      ),
+      GoRoute(
+        path: ListMedicinePage.path,
+        pageBuilder: (context, state) =>
+            TransitionHelper.cupertino(state, const ListMedicinePage()),
+      ),
+      GoRoute(
+        path: CreateMedicinePage.path,
+        pageBuilder: (context, state) =>
+            TransitionHelper.cupertino(state, const CreateMedicinePage()),
       ),
     ],
   );
